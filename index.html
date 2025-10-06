@@ -64,6 +64,12 @@
       rel="stylesheet"
     />
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -72,7 +78,7 @@
     <nav class="navbar-stadium" id="navbar">
       <div class="container-stadium">
         <div class="navbar-content">
-          <a href="#" class="navbar-stadium__logo">
+          <a href="index.html" class="navbar-stadium__logo">
             <img
               src="images/logo/logo-white.png"
               alt="Playmaker Group"
@@ -263,7 +269,7 @@
 
             <!-- Action Hint -->
             <div class="showcase-hint">
-              <span class="hint-text">Drag to explore</span>
+              <span class="hint-text">Swipe to explore</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M9 3H15M9 21H15M3 9V15M21 9V15"
@@ -312,221 +318,450 @@
     <!-- Portfolio Section -->
     <section class="portfolio-section" id="work">
       <div class="container-stadium">
-        <h2 class="section-title" data-fade-up>Game-Changing Work</h2>
+        <h2 class="section-title" data-fade-up>
+          Game-Changing <span class="gradient-text">Work</span>
+        </h2>
 
         <div class="filter-nav" data-fade-up>
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="video">Video</button>
-          <button class="filter-btn" data-filter="graphics">Graphics</button>
-          <button class="filter-btn" data-filter="branding">Branding</button>
+          <button class="filter-btn active" data-filter="graphics">
+            Graphics
+          </button>
+          <button class="filter-btn" data-filter="video">Videos</button>
         </div>
 
         <div class="portfolio-grid">
-          <!-- Portfolio Item 1 -->
-          <div class="portfolio-item" data-category="video">
-            <div class="portfolio-image">
-              <img
-                src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=800&fit=crop"
-                alt="Championship Campaign Video"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Championship Campaign</h3>
-                <p class="portfolio-category">Video Production</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Portfolio Item 2 -->
+          <!-- Portfolio Item 1 - Graphics -->
           <div class="portfolio-item" data-category="graphics">
             <div class="portfolio-image">
               <img
-                src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=1200&h=800&fit=crop"
+                src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=1067&fit=crop"
                 alt="Game Day Graphics"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
                 <h3 class="portfolio-title">Game Day Graphics</h3>
-                <p class="portfolio-category">Social Media Graphics</p>
+                <p class="portfolio-category">Social Media</p>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 3 -->
-          <div class="portfolio-item" data-category="branding">
+          <!-- Portfolio Item 2 - Graphics -->
+          <div class="portfolio-item" data-category="graphics">
             <div class="portfolio-image">
               <img
-                src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1200&h=800&fit=crop"
-                alt="Athlete Brand Identity"
+                src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&h=1067&fit=crop"
+                alt="Player Highlight Graphics"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Elite Athlete Branding</h3>
-                <p class="portfolio-category">Brand Identity</p>
+                <h3 class="portfolio-title">Player Highlights</h3>
+                <p class="portfolio-category">Social Media</p>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 4 -->
+          <!-- Portfolio Item 3 - Graphics -->
+          <div class="portfolio-item" data-category="graphics">
+            <div class="portfolio-image">
+              <img
+                src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&h=1067&fit=crop"
+                alt="Championship Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Championship Moments</h3>
+                <p class="portfolio-category">Social Media</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 4 - Video -->
           <div class="portfolio-item" data-category="video">
             <div class="portfolio-image">
               <img
-                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&h=800&fit=crop"
-                alt="Training Day Documentary"
+                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=1067&fit=crop"
+                alt="Training Day Series"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
                 <h3 class="portfolio-title">Training Day Series</h3>
-                <p class="portfolio-category">Documentary Video</p>
+                <p class="portfolio-category">Video</p>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 5 -->
+          <!-- Portfolio Item 5 - Graphics -->
           <div class="portfolio-item" data-category="graphics">
             <div class="portfolio-image">
               <img
-                src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&h=800&fit=crop"
-                alt="Stadium Night Graphics"
+                src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=1067&fit=crop"
+                alt="Stadium Nights Graphics"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Stadium Nights Campaign</h3>
-                <p class="portfolio-category">Digital Graphics</p>
+                <h3 class="portfolio-title">Stadium Nights</h3>
+                <p class="portfolio-category">Social Media</p>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 6 -->
-          <div class="portfolio-item" data-category="branding">
+          <!-- Portfolio Item 6 - Video -->
+          <div class="portfolio-item" data-category="video">
             <div class="portfolio-image">
               <img
-                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=800&fit=crop"
-                alt="Team Rebrand"
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=1067&fit=crop"
+                alt="Hype Reel Video"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Team Rebrand Project</h3>
-                <p class="portfolio-category">Brand Strategy</p>
+                <h3 class="portfolio-title">Hype Reel</h3>
+                <p class="portfolio-category">Video</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 7 - Graphics (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="graphics"
+          >
+            <div class="portfolio-image">
+              <img
+                src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=1067&fit=crop"
+                alt="Victory Moment Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Victory Moments</h3>
+                <p class="portfolio-category">Social Media</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 8 - Graphics (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="graphics"
+          >
+            <div class="portfolio-image">
+              <img
+                src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&h=1067&fit=crop"
+                alt="Team Spirit Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Team Spirit</h3>
+                <p class="portfolio-category">Social Media</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 9 - Graphics (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="graphics"
+          >
+            <div class="portfolio-image">
+              <img
+                src="https://images.unsplash.com/photo-1577223625816-7546f8673a10?w=600&h=1067&fit=crop"
+                alt="Action Shot Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Action Shots</h3>
+                <p class="portfolio-category">Social Media</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 10 - Graphics (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="graphics"
+          >
+            <div class="portfolio-image">
+              <img
+                src="https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=600&h=1067&fit=crop"
+                alt="Game Time Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Game Time</h3>
+                <p class="portfolio-category">Social Media</p>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Show More Button -->
+        <div class="portfolio-show-more">
+          <button class="btn-show-more" id="showMoreBtn">
+            <span class="show-more-text">Show More</span>
+            <svg
+              class="show-more-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-backdrop"></div>
+      <button
+        class="lightbox-close"
+        id="lightboxClose"
+        aria-label="Close lightbox"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+      <div class="lightbox-content">
+        <img src="" alt="" id="lightboxImage" />
+      </div>
+      <button
+        class="lightbox-nav lightbox-prev"
+        id="lightboxPrev"
+        aria-label="Previous"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <button
+        class="lightbox-nav lightbox-next"
+        id="lightboxNext"
+        aria-label="Next"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
 
     <!-- Services Section -->
     <section class="services-section" id="services">
       <div class="container-stadium">
-        <h2 class="section-title" data-fade-up>Our Playbook</h2>
-        <p class="section-subtitle" data-fade-up>
-          Championship-level services for athletes and brands
-        </p>
+        <div class="text-center mb-5">
+          <h2 class="section-title" data-fade-up>
+            Complete <span class="gradient-text">Digital Ecosystem</span><br />
+            For Elite Athletes
+          </h2>
+          <p class="section-subtitle" data-fade-up>
+            From viral content creation to strategic brand partnerships, we
+            handle every aspect of your digital presence
+          </p>
+        </div>
 
         <div class="services-grid">
           <!-- Service 1 -->
           <div class="service-card" data-fade-up>
             <div class="service-icon">
               <svg
-                width="64"
-                height="64"
+                width="48"
+                height="48"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor"
+                stroke-width="2"
               >
-                <path
-                  d="M23 7L16 12L23 17V7Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <rect
-                  x="1"
-                  y="5"
-                  width="15"
-                  height="14"
-                  rx="2"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
             </div>
-            <h3 class="service-title">Video Production</h3>
+            <h4 class="service-title">Matchday Coverage</h4>
             <p class="service-description">
-              Cinematic highlight reels, promotional videos, and social content
-              that captures your winning moments in 4K glory.
+              Live graphics, instant updates, and cinematic highlights with
+              behind-the-scenes insights that bring every match to life.
             </p>
+            <ul class="service-features">
+              <li>Live match graphics</li>
+              <li>Instant social updates</li>
+              <li>Behind-the-scenes content</li>
+            </ul>
           </div>
 
           <!-- Service 2 -->
           <div class="service-card" data-fade-up>
             <div class="service-icon">
               <svg
-                width="64"
-                height="64"
+                width="48"
+                height="48"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor"
+                stroke-width="2"
               >
-                <rect
-                  x="2"
-                  y="3"
-                  width="20"
-                  height="14"
-                  rx="2"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-                <path
-                  d="M8 21H16"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M12 17V21"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
+                <path d="M23 7l-7 5 7 5V7z"></path>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
               </svg>
             </div>
-            <h3 class="service-title">Graphics Design</h3>
+            <h4 class="service-title">Highlight Reels</h4>
             <p class="service-description">
-              Custom graphics, social templates, and visual content that makes
-              your brand stand out in every feed.
+              Dynamic edits that showcase key plays, team strategy, and the
+              intensity of the match, with exclusive footage that immerses
+              viewers in the action.
             </p>
+            <ul class="service-features">
+              <li>Dynamic video edits</li>
+              <li>Key play showcases</li>
+              <li>Exclusive footage</li>
+            </ul>
           </div>
 
           <!-- Service 3 -->
           <div class="service-card" data-fade-up>
             <div class="service-icon">
               <svg
-                width="64"
-                height="64"
+                width="48"
+                height="48"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                stroke="currentColor"
+                stroke-width="2"
               >
-                <rect
-                  x="3"
-                  y="3"
-                  width="18"
-                  height="18"
-                  rx="2"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-                <path d="M3 9H21" stroke="currentColor" stroke-width="2" />
-                <path d="M9 21V9" stroke="currentColor" stroke-width="2" />
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
               </svg>
             </div>
-            <h3 class="service-title">Social Strategy</h3>
+            <h4 class="service-title">Social Media Management</h4>
             <p class="service-description">
-              Strategic content planning and management that turns followers
-              into fans and engagement into victories.
+              Engaging content creation and strategic posting that grows your
+              audience, boosts interaction, and showcases your brand
+              effectively.
             </p>
+            <ul class="service-features">
+              <li>Content strategy</li>
+              <li>Audience growth</li>
+              <li>Brand showcase</li>
+            </ul>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card" data-fade-up>
+            <div class="service-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                ></path>
+                <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h4 class="service-title">Brand Partnerships</h4>
+            <p class="service-description">
+              Strategic connections with top brands and sponsors, managing
+              endorsement deals and collaborations that align with your values
+              and amplify your influence.
+            </p>
+            <ul class="service-features">
+              <li>Sponsor matching</li>
+              <li>Deal negotiation</li>
+              <li>Partnership management</li>
+            </ul>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card" data-fade-up>
+            <div class="service-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h4 class="service-title">Community Engagement</h4>
+            <p class="service-description">
+              Building authentic connections with your fanbase through
+              interactive content, fan events, and consistent engagement that
+              turns followers into a loyal community.
+            </p>
+            <ul class="service-features">
+              <li>Fan interaction</li>
+              <li>Community building</li>
+              <li>Engagement campaigns</li>
+            </ul>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card" data-fade-up>
+            <div class="service-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h4 class="service-title">Website Development</h4>
+            <p class="service-description">
+              Custom websites designed for seamless user experience, responsive
+              layouts, and visually compelling design that strengthens your
+              brand online.
+            </p>
+            <ul class="service-features">
+              <li>Custom design</li>
+              <li>Responsive layouts</li>
+              <li>Brand strengthening</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -534,22 +769,75 @@
 
     <!-- Stats Section -->
     <section class="stats-section">
-      <div class="light-flare light-flare-3"></div>
       <div class="container-stadium">
         <div class="stats-grid">
           <div class="stat-item" data-fade-up>
+            <div class="stat-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
             <h3 class="stat-number" data-count="150">0</h3>
             <p class="stat-label">Projects Delivered</p>
           </div>
           <div class="stat-item" data-fade-up>
+            <div class="stat-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
             <h3 class="stat-number" data-count="50">0</h3>
             <p class="stat-label">Pro Athletes</p>
           </div>
           <div class="stat-item" data-fade-up>
+            <div class="stat-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
             <h3 class="stat-number" data-count="25">0</h3>
             <p class="stat-label">Sports Brands</p>
           </div>
           <div class="stat-item" data-fade-up>
+            <div class="stat-icon">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
             <h3 class="stat-number" data-count="100">0</h3>
             <p class="stat-label">M+ Views</p>
           </div>
@@ -559,53 +847,251 @@
 
     <!-- About Section -->
     <section class="about-section" id="about">
+      <div class="stadium-grid"></div>
+      <canvas id="aboutCanvas" class="about-canvas"></canvas>
       <div class="container-stadium">
         <div class="row align-items-center">
           <div class="col-lg-6" data-fade-up>
-            <img
-              src="https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=1200&h=900&fit=crop"
-              alt="Playmaker Team"
-              class="about-image"
-            />
+            <div class="process-workflow">
+              <h3 class="process-header">Our Workflow</h3>
+
+              <div class="process-step" data-fade-up>
+                <div class="step-number">01</div>
+                <div class="step-content">
+                  <div class="step-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                  </div>
+                  <div class="step-info">
+                    <h4 class="step-title">Brief & Concept</h4>
+                    <p class="step-description">Share your vision and goals with us</p>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+              </div>
+
+              <div class="process-step" data-fade-up>
+                <div class="step-number">02</div>
+                <div class="step-content">
+                  <div class="step-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="3" y1="9" x2="21" y2="9"></line>
+                      <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                  </div>
+                  <div class="step-info">
+                    <h4 class="step-title">Design & Planning</h4>
+                    <p class="step-description">We craft the perfect strategy for your content</p>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+              </div>
+
+              <div class="process-step" data-fade-up>
+                <div class="step-number">03</div>
+                <div class="step-content">
+                  <div class="step-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="step-info">
+                    <h4 class="step-title">Creation</h4>
+                    <p class="step-description">Our team brings your content to life</p>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+              </div>
+
+              <div class="process-step" data-fade-up>
+                <div class="step-number">04</div>
+                <div class="step-content">
+                  <div class="step-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </div>
+                  <div class="step-info">
+                    <h4 class="step-title">Review & Revisions</h4>
+                    <p class="step-description">Refine until it's perfect for you</p>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+              </div>
+
+              <div class="process-step" data-fade-up>
+                <div class="step-number">05</div>
+                <div class="step-content">
+                  <div class="step-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <div class="step-info">
+                    <h4 class="step-title">Delivery</h4>
+                    <p class="step-description">Get your final files ready to publish</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-lg-6" data-fade-up>
-            <h2 class="section-title">Built for the Big Stage</h2>
-            <p class="about-text">
-              We're not just content creators—we're storytellers who live for
-              game day. Our team brings together award-winning filmmakers,
-              designers, and strategists who understand what it takes to capture
-              greatness.
-            </p>
-            <p class="about-text">
-              From locker room celebrations to stadium spectacles, we've been
-              there for the moments that define careers and build legacies. Your
-              story deserves championship-level production.
-            </p>
-            <blockquote class="about-quote">
-              "In the game of content, there's no second place. We play to win."
-            </blockquote>
+            <div class="about-content">
+              <h2 class="about-title">
+                Built for the <span class="gradient-text">Big Stage</span>
+              </h2>
+              <p class="about-text">
+                In the fast-paced world of professional football, your digital
+                presence is as crucial as your performance on the pitch.
+                Playmaker specializes in crafting compelling stories that
+                resonate with fans, sponsors, and the football community.
+              </p>
+              <p class="about-text">
+                We combine creative excellence with strategic thinking to
+                elevate your personal brand. From pre-match build-up to
+                post-game celebrations, we capture every moment that matters.
+                Our dedicated team understands the unique demands of elite
+                athletes and delivers content that showcases your journey,
+                personality, and achievements.
+              </p>
+              <div class="about-quote-wrapper">
+                <div class="quote-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <blockquote class="about-quote">
+                  In the game of content, there's no second place. <br />
+                  We play to win.
+                </blockquote>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="cta-background"></div>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
       <div class="container-stadium">
-        <div class="cta-content" data-fade-up>
-          <h2 class="cta-headline">Ready for Prime Time?</h2>
-          <p class="cta-text">
-            Let's create content that makes your competition nervous and your
-            fans unstoppable.
-          </p>
-          <a href="#contact" class="btn-primary btn-glow">Start Your Story</a>
+        <h2 class="section-title" data-fade-up>
+          What Our <span class="gradient-text">Athletes Say</span>
+        </h2>
+        <p class="section-subtitle" data-fade-up>
+          Hear from the champions we've helped elevate
+        </p>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card" data-fade-up>
+            <div class="testimonial-stars">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <p class="testimonial-text">
+              "PlayMaker took my social media to another level. The highlight reels they created helped me gain thousands of followers and caught the attention of scouts."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4 class="author-name">Marcus Johnson</h4>
+                <p class="author-position">Professional Footballer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" data-fade-up>
+            <div class="testimonial-stars">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <p class="testimonial-text">
+              "The quality and speed of their work is unmatched. Every graphic and video perfectly captures my brand identity and keeps my audience engaged."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4 class="author-name">Sarah Williams</h4>
+                <p class="author-position">College Basketball Player</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" data-fade-up>
+            <div class="testimonial-stars">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <p class="testimonial-text">
+              "Working with PlayMaker was a game-changer. They understand what it takes to build a personal brand in today's digital world."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4 class="author-name">David Martinez</h4>
+                <p class="author-position">Track & Field Athlete</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
+      <div class="contact-particles"></div>
       <div class="container-stadium">
         <h2 class="section-title" data-fade-up>Let's Make History</h2>
         <p class="section-subtitle" data-fade-up>
@@ -656,76 +1142,20 @@
           </div>
         </div>
 
+        <div class="contact-email" data-fade-up>
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:contact@playmakergroup.com">contact@playmakergroup.com</a>
+        </div>
+
         <div class="social-links" data-fade-up>
-          <a href="#" aria-label="Instagram">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="2"
-                y="2"
-                width="20"
-                height="20"
-                rx="5"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-              <circle
-                cx="12"
-                cy="12"
-                r="4"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
-            </svg>
+          <a href="https://www.instagram.com/playmaker.group/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" aria-label="Twitter">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <a href="https://www.youtube.com/@playmakergrp" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
           </a>
-          <a href="#" aria-label="LinkedIn">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="4"
-                cy="4"
-                r="2"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <a href="https://www.behance.net/playmakergroup" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+            <i class="fab fa-behance"></i>
           </a>
         </div>
       </div>
@@ -736,8 +1166,11 @@
       <div class="container-stadium">
         <div class="footer-content">
           <div class="footer-brand">
-            <span class="logo-text">PLAYMAKER</span>
-            <span class="logo-subtext">GROUP</span>
+            <img
+              src="images/logo/logo-white.png"
+              alt="Playmaker Group"
+              class="footer-logo"
+            />
           </div>
           <nav class="footer-nav" aria-label="Footer navigation">
             <a href="#home">Home</a>
@@ -748,6 +1181,18 @@
           </nav>
           <p class="footer-copyright">
             © 2025 Playmaker Group. All victories reserved.
+          </p>
+          <p class="dev-note">
+            Developed by
+            <a
+              href="https://jevta.site"
+              target="_blank"
+              rel="noopener"
+              class="jevta-link"
+              title="Website developer Jevta"
+            >
+              <span class="jevta-shine">Jevta</span>
+            </a>
           </p>
         </div>
       </div>
