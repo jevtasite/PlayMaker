@@ -105,6 +105,87 @@ function revealWords() {
 window.addEventListener('load', revealWords);
 
 // ==========================================================================
+// HERO CONTENT ANIMATIONS
+// ==========================================================================
+
+function animateHeroContent() {
+  // Animate hero label
+  gsap.from('.hero-label', {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'power3.out'
+  });
+
+  // Animate headline main
+  gsap.from('.headline-main', {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    delay: 0.4,
+    ease: 'power3.out'
+  });
+
+  // Animate headline subtitle
+  gsap.from('.headline-subtitle', {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    delay: 0.6,
+    ease: 'power3.out'
+  });
+
+  // Animate hero subhead
+  gsap.from('.hero-subhead', {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    delay: 0.8,
+    ease: 'power3.out'
+  });
+
+  // Animate CTA buttons
+  gsap.from('.hero-cta-group', {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    delay: 1,
+    ease: 'power3.out'
+  });
+
+  // Animate entire showcase container
+  gsap.from('.showcase-3d-container', {
+    opacity: 0,
+    x: 100,
+    duration: 1.2,
+    delay: 0.6,
+    ease: 'power3.out'
+  });
+
+  // Animate showcase controls
+  gsap.from('.showcase-controls', {
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    delay: 1.4,
+    ease: 'power3.out'
+  });
+
+  // Animate showcase hint
+  gsap.from('.showcase-hint', {
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    delay: 1.6,
+    ease: 'power3.out'
+  });
+}
+
+// Initialize hero animations
+window.addEventListener('load', animateHeroContent);
+
+// ==========================================================================
 // 3D PHONE STACK SHOWCASE
 // ==========================================================================
 
@@ -677,15 +758,7 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('load', () => {
   document.body.classList.add('loaded');
 
-  // Animate hero elements
-  gsap.from('.hero-subhead', {
-    opacity: 0,
-    y: 20,
-    duration: 0.8,
-    delay: 1,
-    ease: 'power3.out'
-  });
-
+  // Animate other elements
   gsap.from('.btn-glow', {
     opacity: 0,
     y: 20,
