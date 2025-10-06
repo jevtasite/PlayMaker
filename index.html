@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Playmaker Group | Cinematic Sports Content & Social Media Agency</title>
+  <meta name="description" content="Elite sports social media agency creating game-changing graphics and video content for athletes and brands. Your championship moment starts here.">
+  <meta name="keywords" content="sports social media agency, sports video production, sports graphics design, athlete content creation, sports marketing, social media content, sports branding">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://playmakergroup.com/">
+  <meta property="og:title" content="Playmaker Group | Cinematic Sports Content Agency">
+  <meta property="og:description" content="Where greatness lives under the lights. Creating championship-level content for athletes and sports brands.">
+  <meta property="og:image" content="https://playmakergroup.com/images/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Playmaker Group | Cinematic Sports Content">
+  <meta name="twitter:description" content="Elite sports social media agency creating game-changing content for champions.">
+  <meta name="twitter:image" content="https://playmakergroup.com/images/twitter-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Oswald:wght@600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar-stadium" id="navbar">
+    <div class="container-stadium">
+      <div class="navbar-content">
+        <a href="#" class="navbar-stadium__logo">
+          <span class="logo-text">PLAYMAKER</span>
+          <span class="logo-subtext">GROUP</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="navbar-stadium__menu" id="navMenu">
+          <li><a href="#home" class="navbar-stadium__link">Home</a></li>
+          <li><a href="#work" class="navbar-stadium__link">Work</a></li>
+          <li><a href="#services" class="navbar-stadium__link">Services</a></li>
+          <li><a href="#about" class="navbar-stadium__link">About</a></li>
+          <li><a href="#contact" class="navbar-stadium__link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <!-- Animated Sports Background -->
+    <div class="hero-background">
+      <div class="stadium-grid"></div>
+      <div class="light-flare light-flare-1"></div>
+      <div class="light-flare light-flare-2"></div>
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    </div>
+
+    <div class="hero-container">
+      <!-- Left Side: Content -->
+      <div class="hero-content-side">
+        <div class="hero-content">
+          <div class="hero-label" data-fade-up>Playmaker Group</div>
+          <h1 class="hero-headline">
+            <span class="headline-main">Controlling the <span class="headline-flow">Flow</span></span>
+            <span class="headline-subtitle">for Elite Athletes</span>
+          </h1>
+          <p class="hero-subhead" data-fade-up>
+            Premium social media content & creative services that put you in control of your narrative
+          </p>
+          <div class="hero-cta-group" data-fade-up>
+            <a href="#contact" class="btn-hero-primary">
+              <span>Get Started</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#work" class="btn-hero-secondary">
+              View Our Work
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: 3D Phone Stack Showcase -->
+      <div class="hero-showcase-side">
+        <div class="showcase-3d-container">
+          <!-- 3D Rotating Phone Stack -->
+          <div class="phone-stack" id="phoneStack">
+            <!-- Phone 1 - Center Focus -->
+            <div class="phone-card" data-index="0">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=1067&fit=crop" alt="Game Day Graphics" loading="eager">
+                <div class="phone-reflection"></div>
+              </div>
+              <div class="phone-label">Game Day Graphics</div>
+            </div>
+
+            <!-- Phone 2 - Stacked Behind -->
+            <div class="phone-card" data-index="1">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=1067&fit=crop" alt="Player Features" loading="eager">
+                <div class="phone-reflection"></div>
+              </div>
+              <div class="phone-label">Player Features</div>
+            </div>
+
+            <!-- Phone 3 - Stacked Behind -->
+            <div class="phone-card" data-index="2">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=1067&fit=crop" alt="Championship Content" loading="eager">
+                <div class="phone-reflection"></div>
+              </div>
+              <div class="phone-label">Championship Vibes</div>
+            </div>
+
+            <!-- Phone 4 - Stacked Behind -->
+            <div class="phone-card" data-index="3">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&h=1067&fit=crop" alt="Social Content" loading="eager">
+                <div class="phone-reflection"></div>
+              </div>
+              <div class="phone-label">Social Domination</div>
+            </div>
+
+            <!-- Phone 5 - Stacked Behind -->
+            <div class="phone-card" data-index="4">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&h=1067&fit=crop" alt="Brand Content" loading="eager">
+                <div class="phone-reflection"></div>
+              </div>
+              <div class="phone-label">Elite Branding</div>
+            </div>
+          </div>
+
+          <!-- Navigation Controls -->
+          <div class="showcase-controls">
+            <button class="control-btn prev-btn" id="prevPhone" aria-label="Previous graphic">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="control-counter">
+              <span class="current-number">1</span>
+              <span class="divider">/</span>
+              <span class="total-number">5</span>
+            </div>
+            <button class="control-btn next-btn" id="nextPhone" aria-label="Next graphic">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Action Hint -->
+          <div class="showcase-hint">
+            <span class="hint-text">Drag to explore</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 3H15M9 21H15M3 9V15M21 9V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="intro-section">
+    <div class="container-stadium">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-fade-up>
+          <h2 class="section-quote gradient-text">
+            "Every frame tells a story. Every story builds a legacy."
+          </h2>
+        </div>
+        <div class="col-lg-6" data-fade-up>
+          <p class="intro-text">
+            At Playmaker Group, we don't just create content—we capture championship moments.
+            Our team of elite creators specializes in cinematic video production, dynamic graphics,
+            and strategic social media content that transforms athletes and brands into legends.
+          </p>
+          <p class="intro-text">
+            From pre-game hype to post-victory celebrations, we're there for every moment that matters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section" id="work">
+    <div class="container-stadium">
+      <h2 class="section-title" data-fade-up>Game-Changing Work</h2>
+
+      <div class="filter-nav" data-fade-up>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="video">Video</button>
+        <button class="filter-btn" data-filter="graphics">Graphics</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- Portfolio Item 1 -->
+        <div class="portfolio-item" data-category="video">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=800&fit=crop" alt="Championship Campaign Video" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Championship Campaign</h3>
+              <p class="portfolio-category">Video Production</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 2 -->
+        <div class="portfolio-item" data-category="graphics">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?w=1200&h=800&fit=crop" alt="Game Day Graphics" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Game Day Graphics</h3>
+              <p class="portfolio-category">Social Media Graphics</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 3 -->
+        <div class="portfolio-item" data-category="branding">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1200&h=800&fit=crop" alt="Athlete Brand Identity" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Elite Athlete Branding</h3>
+              <p class="portfolio-category">Brand Identity</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 4 -->
+        <div class="portfolio-item" data-category="video">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&h=800&fit=crop" alt="Training Day Documentary" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Training Day Series</h3>
+              <p class="portfolio-category">Documentary Video</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 5 -->
+        <div class="portfolio-item" data-category="graphics">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&h=800&fit=crop" alt="Stadium Night Graphics" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Stadium Nights Campaign</h3>
+              <p class="portfolio-category">Digital Graphics</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 6 -->
+        <div class="portfolio-item" data-category="branding">
+          <div class="portfolio-image">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=800&fit=crop" alt="Team Rebrand" loading="lazy">
+            <div class="portfolio-overlay">
+              <h3 class="portfolio-title">Team Rebrand Project</h3>
+              <p class="portfolio-category">Brand Strategy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services">
+    <div class="container-stadium">
+      <h2 class="section-title" data-fade-up>Our Playbook</h2>
+      <p class="section-subtitle" data-fade-up>Championship-level services for athletes and brands</p>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card" data-fade-up>
+          <div class="service-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 7L16 12L23 17V7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Video Production</h3>
+          <p class="service-description">
+            Cinematic highlight reels, promotional videos, and social content that captures your winning moments in 4K glory.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card" data-fade-up>
+          <div class="service-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Graphics Design</h3>
+          <p class="service-description">
+            Custom graphics, social templates, and visual content that makes your brand stand out in every feed.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card" data-fade-up>
+          <div class="service-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 9H21" stroke="currentColor" stroke-width="2"/>
+              <path d="M9 21V9" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Social Strategy</h3>
+          <p class="service-description">
+            Strategic content planning and management that turns followers into fans and engagement into victories.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="light-flare light-flare-3"></div>
+    <div class="container-stadium">
+      <div class="stats-grid">
+        <div class="stat-item" data-fade-up>
+          <h3 class="stat-number" data-count="150">0</h3>
+          <p class="stat-label">Projects Delivered</p>
+        </div>
+        <div class="stat-item" data-fade-up>
+          <h3 class="stat-number" data-count="50">0</h3>
+          <p class="stat-label">Pro Athletes</p>
+        </div>
+        <div class="stat-item" data-fade-up>
+          <h3 class="stat-number" data-count="25">0</h3>
+          <p class="stat-label">Sports Brands</p>
+        </div>
+        <div class="stat-item" data-fade-up>
+          <h3 class="stat-number" data-count="100">0</h3>
+          <p class="stat-label">M+ Views</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container-stadium">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-fade-up>
+          <img src="https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?w=1200&h=900&fit=crop" alt="Playmaker Team" class="about-image">
+        </div>
+        <div class="col-lg-6" data-fade-up>
+          <h2 class="section-title">Built for the Big Stage</h2>
+          <p class="about-text">
+            We're not just content creators—we're storytellers who live for game day. Our team brings together
+            award-winning filmmakers, designers, and strategists who understand what it takes to capture greatness.
+          </p>
+          <p class="about-text">
+            From locker room celebrations to stadium spectacles, we've been there for the moments that define careers
+            and build legacies. Your story deserves championship-level production.
+          </p>
+          <blockquote class="about-quote">
+            "In the game of content, there's no second place. We play to win."
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-background"></div>
+    <div class="container-stadium">
+      <div class="cta-content" data-fade-up>
+        <h2 class="cta-headline">Ready for Prime Time?</h2>
+        <p class="cta-text">Let's create content that makes your competition nervous and your fans unstoppable.</p>
+        <a href="#contact" class="btn-primary btn-glow">Start Your Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container-stadium">
+      <h2 class="section-title" data-fade-up>Let's Make History</h2>
+      <p class="section-subtitle" data-fade-up>Book your championship moment</p>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form class="contact-form" data-fade-up>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <input type="text" class="form-input" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 mb-4">
+                <input type="email" class="form-input" placeholder="Email Address" required>
+              </div>
+            </div>
+            <div class="mb-4">
+              <input type="text" class="form-input" placeholder="Subject" required>
+            </div>
+            <div class="mb-4">
+              <textarea class="form-input" rows="6" placeholder="Tell us about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-glow">Send the Play</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="social-links" data-fade-up>
+        <a href="#" aria-label="Instagram">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-stadium">
+    <div class="container-stadium">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-text">PLAYMAKER</span>
+          <span class="logo-subtext">GROUP</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="footer-copyright">© 2025 Playmaker Group. All victories reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Playmaker Group",
+    "url": "https://playmakergroup.com",
+    "logo": "https://playmakergroup.com/images/logo.png",
+    "description": "Elite sports social media agency specializing in cinematic video production and graphics design for athletes and sports brands",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "email": "hello@playmakergroup.com"
+    },
+    "sameAs": [
+      "https://www.instagram.com/playmakergroup",
+      "https://www.twitter.com/playmakergroup",
+      "https://www.linkedin.com/company/playmakergroup"
+    ]
+  }
+  </script>
+</body>
+</html>
