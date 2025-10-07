@@ -102,7 +102,12 @@ body:not(.loaded) .hero-content-side [data-fade-up],
 body:not(.loaded) .hero-content-side .hero-label,
 body:not(.loaded) .hero-content-side .hero-headline,
 body:not(.loaded) .hero-content-side .hero-subhead,
-body:not(.loaded) .hero-content-side .hero-cta-group {
+body:not(.loaded) .hero-content-side .hero-cta-group,
+body:not(.loaded) .phone-stack,
+body:not(.loaded) .showcase-3d-container,
+body:not(.loaded) .showcase-controls,
+body:not(.loaded) .swipe-indicator,
+body:not(.loaded) .scroll-indicator {
   opacity: 0 !important;
   visibility: hidden !important;
 }
