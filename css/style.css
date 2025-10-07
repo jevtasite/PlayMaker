@@ -97,6 +97,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent flash of unstyled content on hero elements */
+body:not(.loaded) .hero-content-side [data-fade-up],
+body:not(.loaded) .hero-content-side .hero-label,
+body:not(.loaded) .hero-content-side .hero-headline,
+body:not(.loaded) .hero-content-side .hero-subhead,
+body:not(.loaded) .hero-content-side .hero-cta-group {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 /* Container */
 .container-stadium {
   max-width: 1400px;
@@ -2090,6 +2100,58 @@ textarea.form-input {
   outline-offset: 4px;
 }
 
+/* ==========================================================================
+   BACK TO TOP BUTTON
+   ========================================================================== */
+
+.back-to-top {
+  position: fixed !important;
+  bottom: 40px !important;
+  right: 40px !important;
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+  background: linear-gradient(135deg, #f4d03f 0%, #ff6b35 100%) !important;
+  border: 2px solid #f4d03f !important;
+  border-radius: 50% !important;
+  color: #1a1d29 !important;
+  cursor: pointer !important;
+  z-index: 999999 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+  box-shadow: 0 4px 20px rgba(244, 208, 63, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 30px rgba(244, 208, 63, 0.5) !important;
+}
+
+.back-to-top:active {
+  transform: translateY(-2px) !important;
+}
+
+.back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.back-to-top i {
+  font-size: 20px !important;
+  color: #1a1d29 !important;
+}
+
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -2420,6 +2482,15 @@ textarea.form-input {
     --text-h3: 20px;
   }
 
+  /* Fix navbar overflow for mobile */
+  .navbar-stadium {
+    overflow: visible !important;
+  }
+
+  .navbar-stadium.scrolled {
+    overflow: visible !important;
+  }
+
   .navbar-stadium__menu {
     position: fixed;
     top: 72px;
@@ -2435,18 +2506,29 @@ textarea.form-input {
     opacity: 0;
     transition: max-height var(--duration-normal) var(--ease-out),
       opacity var(--duration-fast) var(--ease-out);
-    z-index: 999;
+    z-index: 1003;
+    pointer-events: none;
   }
 
   .navbar-stadium__menu.active {
     max-height: 400px;
     opacity: 1;
+    pointer-events: auto;
   }
 
   .menu-toggle {
     display: flex;
     position: relative;
     z-index: 1001;
+  }
+
+  /* Remove tablet padding on mobile */
+  .navbar-stadium__logo {
+    margin-left: 0 !important;
+  }
+
+  .navbar-content {
+    padding: 0 24px !important;
   }
 
   /* Hero responsive */
@@ -2645,6 +2727,14 @@ textarea.form-input {
   :root {
     --text-hero: 32px;
     --text-h2: 24px;
+  }
+
+  /* Back to top button mobile positioning */
+  .back-to-top {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
   }
 
   .hero-section {

@@ -33,7 +33,8 @@ window.addEventListener("scroll", () => {
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
-menuToggle.addEventListener("click", () => {
+menuToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
   menuToggle.classList.toggle("active");
   navMenu.classList.toggle("active");
   document.body.style.overflow = navMenu.classList.contains("active")
@@ -48,6 +49,16 @@ document.querySelectorAll(".navbar-stadium__link").forEach((link) => {
     navMenu.classList.remove("active");
     document.body.style.overflow = "";
   });
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  const navbar = document.getElementById("navbar");
+  if (navMenu.classList.contains("active") && !navbar.contains(e.target)) {
+    menuToggle.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.body.style.overflow = "";
+  }
 });
 
 // ==========================================================================
@@ -1151,6 +1162,38 @@ document.addEventListener("keydown", (e) => {
     menuToggle.focus();
   }
 });
+
+// ==========================================================================
+// BACK TO TOP BUTTON
+// ==========================================================================
+
+const backToTopBtn = document.getElementById("backToTop");
+
+if (backToTopBtn) {
+  // Show/hide button based on scroll position
+  window.addEventListener("scroll", () => {
+    const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollPos > 300) {
+      backToTopBtn.classList.add("visible");
+      backToTopBtn.style.opacity = "1";
+      backToTopBtn.style.visibility = "visible";
+      backToTopBtn.style.transform = "translateY(0)";
+    } else {
+      backToTopBtn.classList.remove("visible");
+      backToTopBtn.style.opacity = "0";
+      backToTopBtn.style.visibility = "hidden";
+      backToTopBtn.style.transform = "translateY(20px)";
+    }
+  });
+
+  // Scroll to top when clicked
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
 
 // ==========================================================================
 // PAGE LOAD ANIMATION
