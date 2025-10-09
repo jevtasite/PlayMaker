@@ -302,8 +302,14 @@ function prevPhone() {
 }
 
 // Button controls
-if (nextBtn) nextBtn.addEventListener("click", nextPhone);
-if (prevBtn) prevBtn.addEventListener("click", prevPhone);
+if (nextBtn) nextBtn.addEventListener("click", () => {
+  stopAutoRotate();
+  nextPhone();
+});
+if (prevBtn) prevBtn.addEventListener("click", () => {
+  stopAutoRotate();
+  prevPhone();
+});
 
 // Mouse/Touch drag interaction
 if (phoneStack) {
@@ -339,6 +345,7 @@ function endDrag() {
 
   // Determine if we should advance to next/prev
   if (Math.abs(rotationY) > 30) {
+    stopAutoRotate();
     if (rotationY > 0) {
       prevPhone();
     } else {
@@ -355,6 +362,13 @@ function endDrag() {
 let autoRotateInterval = setInterval(() => {
   nextPhone();
 }, 4000);
+let hasInteracted = false;
+
+// Stop auto-rotate permanently on any interaction
+function stopAutoRotate() {
+  hasInteracted = true;
+  clearInterval(autoRotateInterval);
+}
 
 // Pause auto-rotate on hover
 if (phoneStack) {
@@ -363,9 +377,12 @@ if (phoneStack) {
   });
 
   phoneStack.addEventListener("mouseleave", () => {
-    autoRotateInterval = setInterval(() => {
-      nextPhone();
-    }, 4000);
+    // Only restart if user hasn't interacted
+    if (!hasInteracted) {
+      autoRotateInterval = setInterval(() => {
+        nextPhone();
+      }, 4000);
+    }
   });
 }
 
@@ -374,8 +391,14 @@ document.addEventListener("keydown", (e) => {
   // Only handle if lightbox and mobile menu are not active
   if (!lightbox || !lightbox.classList.contains("active")) {
     if (!navMenu || !navMenu.classList.contains("active")) {
-      if (e.key === "ArrowLeft") prevPhone();
-      if (e.key === "ArrowRight") nextPhone();
+      if (e.key === "ArrowLeft") {
+        stopAutoRotate();
+        prevPhone();
+      }
+      if (e.key === "ArrowRight") {
+        stopAutoRotate();
+        nextPhone();
+      }
     }
   }
 });
@@ -863,19 +886,22 @@ if (showMoreBtn) {
       showMoreText.textContent = "Show More";
       showMoreBtn.classList.remove("active");
 
-      portfolioMoreItems.forEach((item, index) => {
+      // Reverse order for smooth closing
+      const itemsArray = Array.from(portfolioMoreItems).reverse();
+
+      itemsArray.forEach((item, index) => {
         gsap.to(item, {
           opacity: 0,
-          y: 30,
-          scale: 0.8,
-          duration: 0.4,
-          delay: index * 0.1,
-          ease: "power2.in",
+          y: -20,
+          scale: 0.95,
+          duration: 0.5,
+          delay: index * 0.08,
+          ease: "power3.inOut",
           onComplete: () => {
             item.classList.add("hidden");
             item.style.display = "none";
 
-            if (index === portfolioMoreItems.length - 1) {
+            if (index === itemsArray.length - 1) {
               // Scroll back to work section after hiding
               const workSection = document.getElementById("work");
               if (workSection) {
