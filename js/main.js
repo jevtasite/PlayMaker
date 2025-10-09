@@ -1208,17 +1208,109 @@ if (backToTopBtn) {
 }
 
 // ==========================================================================
-// TESTIMONIAL CAROUSEL
+// TESTIMONIAL SWIPER CAROUSEL
 // ==========================================================================
 
-const testimonialGrid = document.querySelector(".testimonials-grid");
-const testimonialCards = document.querySelectorAll(".testimonial-card");
-const testimonialPrev = document.querySelector(".testimonial-prev");
-const testimonialNext = document.querySelector(".testimonial-next");
-const testimonialDotsContainer = document.querySelector(".testimonial-dots");
+// Initialize Testimonial Swiper
+const testimonialSwiper = document.querySelector(".testimonials-swiper");
 
-// Since we're using a grid layout now (not carousel), skip carousel functionality
-if (false && testimonialGrid && testimonialCards.length > 0) {
+if (testimonialSwiper) {
+  const swiper = new Swiper(".testimonials-swiper", {
+    // Carousel settings
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    loop: false,
+
+    // Coverflow effect for 3D look
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    },
+
+    // Autoplay
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+
+    // Speed
+    speed: 800,
+
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    // Pagination dots
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+
+    // Keyboard control
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
+    },
+
+    // Touch/Swipe
+    touchRatio: 1,
+    touchAngle: 45,
+
+    // Responsive breakpoints
+    breakpoints: {
+      // Mobile
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        coverflowEffect: {
+          depth: 50,
+          modifier: 1,
+        },
+      },
+      // Tablet
+      768: {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        coverflowEffect: {
+          depth: 80,
+          modifier: 1.5,
+        },
+      },
+      // Desktop
+      1024: {
+        slidesPerView: "auto",
+        spaceBetween: 40,
+        coverflowEffect: {
+          depth: 100,
+          modifier: 2,
+        },
+      },
+    },
+  });
+
+  // Pause autoplay on hover (additional control)
+  if (testimonialSwiper) {
+    testimonialSwiper.addEventListener("mouseenter", () => {
+      swiper.autoplay.stop();
+    });
+
+    testimonialSwiper.addEventListener("mouseleave", () => {
+      swiper.autoplay.start();
+    });
+  }
+}
+
+// Old testimonial carousel code (disabled)
+if (false) {
   let currentIndex = 0;
   const totalSlides = testimonialCards.length;
   let autoplayInterval;
