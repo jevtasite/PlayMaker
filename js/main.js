@@ -81,6 +81,52 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 // ==========================================================================
+// ACTIVE NAVIGATION LINK HIGHLIGHTING
+// ==========================================================================
+
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".navbar-stadium__link");
+
+  let currentSection = "";
+  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Find which section is currently in view
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 100; // Offset for navbar height
+    const sectionHeight = section.offsetHeight;
+
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  // Special case: if at the top of the page, highlight Home
+  if (scrollPosition < 100) {
+    currentSection = "home";
+  }
+
+  // Update active class on nav links
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+
+    // Handle home link (both "/" and "#home")
+    if (href === "/" && currentSection === "home") {
+      link.classList.add("active");
+    } else if (href === `#${currentSection}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
+// Run on scroll
+window.addEventListener("scroll", updateActiveNavLink);
+
+// Run on page load
+window.addEventListener("load", updateActiveNavLink);
+
+// ==========================================================================
 // HERO WORD REVEAL ANIMATION
 // ==========================================================================
 
@@ -1039,6 +1085,9 @@ class ParticleSystem {
   createParticle() {
     const particle = document.createElement("div");
     particle.className = "atmosphere-particle";
+    const containerWidth = this.container.offsetWidth;
+    const containerHeight = this.container.offsetHeight;
+
     particle.style.cssText = `
       position: absolute;
       width: ${Math.random() * 4 + 2}px;
@@ -1046,15 +1095,15 @@ class ParticleSystem {
       background: rgba(244, 208, 63, ${Math.random() * 0.5 + 0.2});
       border-radius: 50%;
       pointer-events: none;
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
+      left: 0;
+      top: 0;
     `;
 
     this.container.appendChild(particle);
     this.particles.push({
       element: particle,
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * containerWidth,
+      y: Math.random() * containerHeight,
       speedY: Math.random() * 0.5 + 0.3,
       speedX: (Math.random() - 0.5) * 0.3,
       opacity: Math.random() * 0.5 + 0.2,
@@ -1063,13 +1112,20 @@ class ParticleSystem {
 
   animate() {
     this.particles.forEach((particle) => {
+      const containerWidth = this.container.offsetWidth;
+      const containerHeight = this.container.offsetHeight;
+
       particle.y -= particle.speedY;
       particle.x += Math.sin(Date.now() * 0.001) * particle.speedX;
 
+      // Keep particles within container bounds
+      if (particle.x < 0) particle.x = containerWidth;
+      if (particle.x > containerWidth) particle.x = 0;
+
       // Reset position when particle goes off screen
       if (particle.y < -10) {
-        particle.y = window.innerHeight + 10;
-        particle.x = Math.random() * window.innerWidth;
+        particle.y = containerHeight + 10;
+        particle.x = Math.random() * containerWidth;
       }
 
       particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
