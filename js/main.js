@@ -383,10 +383,10 @@ updatePhoneStack();
 // ==========================================================================
 
 // Check if mobile device for performance optimization
-const isMobile = window.innerWidth <= 575;
+const isMobile = window.matchMedia("(max-width: 575px)").matches;
 
 const canvas = document.getElementById("heroCanvas");
-if (canvas && !isMobile) {
+if (canvas && !isMobile && window.getComputedStyle(canvas).display !== "none") {
   const ctx = canvas.getContext("2d");
   let animationId;
 
@@ -482,7 +482,11 @@ if (canvas && !isMobile) {
 // ==========================================================================
 
 const aboutCanvas = document.getElementById("aboutCanvas");
-if (aboutCanvas && !isMobile) {
+if (
+  aboutCanvas &&
+  !isMobile &&
+  window.getComputedStyle(aboutCanvas).display !== "none"
+) {
   const aboutCtx = aboutCanvas.getContext("2d");
   let aboutAnimationId;
 
@@ -555,7 +559,9 @@ if (aboutCanvas && !isMobile) {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 150) {
-          aboutCtx.strokeStyle = `rgba(244, 208, 63, ${0.1 * (1 - distance / 150)})`;
+          aboutCtx.strokeStyle = `rgba(244, 208, 63, ${
+            0.1 * (1 - distance / 150)
+          })`;
           aboutCtx.lineWidth = 1;
           aboutCtx.beginPath();
           aboutCtx.moveTo(particle.x, particle.y);
@@ -870,7 +876,7 @@ if (showMoreBtn) {
               // Scroll back to work section after hiding
               const workSection = document.getElementById("work");
               if (workSection) {
-                const offsetTop = workSection.offsetTop - 150;
+                const offsetTop = workSection.offsetTop - 50;
                 window.scrollTo({
                   top: offsetTop,
                   behavior: "smooth",
@@ -1050,10 +1056,10 @@ if (heroSection) {
   new ParticleSystem(heroSection, 25);
 }
 
-// Initialize particles on contact section
+// Initialize particles on contact section (reduced count on mobile for performance)
 const contactParticles = document.querySelector(".contact-particles");
-if (contactParticles && !isMobile) {
-  new ParticleSystem(contactParticles, 30);
+if (contactParticles) {
+  new ParticleSystem(contactParticles, isMobile ? 15 : 30);
 }
 
 // ==========================================================================
@@ -1193,138 +1199,72 @@ if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 }
 
 // ==========================================================================
-// TESTIMONIAL CAROUSEL
+// TESTIMONIAL CAROUSEL (SWIPER)
 // ==========================================================================
 
-const testimonialCarousel = document.querySelector(".testimonials-carousel");
-const testimonialCards = document.querySelectorAll(".testimonial-card");
-const testimonialPrev = document.querySelector(".testimonial-prev");
-const testimonialNext = document.querySelector(".testimonial-next");
-const testimonialDotsContainer = document.querySelector(".testimonial-dots");
-
-if (testimonialCarousel && testimonialCards.length > 0) {
-  let currentIndex = 0;
-  const totalSlides = testimonialCards.length;
-  let autoplayInterval;
-
-  // Create dots
-  for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement("button");
-    dot.classList.add("testimonial-dot");
-    dot.setAttribute("aria-label", `Go to testimonial ${i + 1}`);
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => goToSlide(i));
-    testimonialDotsContainer.appendChild(dot);
-  }
-
-  const dots = document.querySelectorAll(".testimonial-dot");
-
-  function updateCarousel() {
-    const cardWidth = testimonialCards[0].offsetWidth;
-    const gap = 48; // var(--space-2xl)
-    const offset = -(currentIndex * (cardWidth + gap));
-    testimonialCarousel.style.transform = `translateX(${offset}px)`;
-
-    // Update dots
-    dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === currentIndex);
-    });
-  }
-
-  function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
-    resetAutoplay();
-  }
-
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  }
-
-  function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-  }
-
-  function resetAutoplay() {
-    clearInterval(autoplayInterval);
-    startAutoplay();
-  }
-
-  // Event listeners
-  testimonialNext.addEventListener("click", () => {
-    nextSlide();
-    resetAutoplay();
-  });
-
-  testimonialPrev.addEventListener("click", () => {
-    prevSlide();
-    resetAutoplay();
-  });
-
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  testimonialCarousel.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  testimonialCarousel.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
-
-  function handleSwipe() {
-    if (touchStartX - touchEndX > 50) {
-      nextSlide();
-      resetAutoplay();
-    }
-    if (touchEndX - touchStartX > 50) {
-      prevSlide();
-      resetAutoplay();
-    }
-  }
-
-  // Keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      prevSlide();
-      resetAutoplay();
-    }
-    if (e.key === "ArrowRight") {
-      nextSlide();
-      resetAutoplay();
-    }
-  });
-
-  // Pause autoplay on hover
-  testimonialCarousel.addEventListener("mouseenter", () => {
-    clearInterval(autoplayInterval);
-  });
-
-  testimonialCarousel.addEventListener("mouseleave", () => {
-    startAutoplay();
-  });
-
-  // Responsive resize
-  window.addEventListener("resize", updateCarousel);
-
-  // Start autoplay
-  startAutoplay();
-  updateCarousel();
-}
+const testimonialSwiper = new Swiper(".testimonials-swiper", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  loop: false,
+  preventInteractionOnTransition: true,
+  touchStartPreventDefault: false,
+  touchMoveStopPropagation: false,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  coverflowEffect: {
+    rotate: 0,
+    stretch: 0,
+    depth: 100,
+    modifier: 2,
+    slideShadows: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  keyboard: {
+    enabled: true,
+    onlyInViewport: true,
+  },
+  mousewheel: false,
+  touchReleaseOnEdges: true,
+  resistanceRatio: 0,
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      autoplay: false,
+      coverflowEffect: {
+        depth: 0,
+        modifier: 1,
+      },
+    },
+    768: {
+      slidesPerView: "auto",
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      coverflowEffect: {
+        depth: 100,
+        modifier: 2,
+      },
+    },
+  },
+});
 
 // ==========================================================================
 // PAGE LOAD ANIMATION
