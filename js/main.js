@@ -369,10 +369,15 @@ if (phoneStack) {
   });
 }
 
-// Keyboard navigation
+// Keyboard navigation for phone stack
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") prevPhone();
-  if (e.key === "ArrowRight") nextPhone();
+  // Only handle if lightbox and mobile menu are not active
+  if (!lightbox || !lightbox.classList.contains("active")) {
+    if (!navMenu || !navMenu.classList.contains("active")) {
+      if (e.key === "ArrowLeft") prevPhone();
+      if (e.key === "ArrowRight") nextPhone();
+    }
+  }
 });
 
 // Initialize
@@ -382,11 +387,13 @@ updatePhoneStack();
 // ANIMATED SPORTS CANVAS BACKGROUND
 // ==========================================================================
 
-// Check if mobile device for performance optimization
-const isMobile = window.innerWidth <= 575;
+// Function to check if mobile device for performance optimization
+function checkIsMobile() {
+  return window.innerWidth <= 575;
+}
 
 const canvas = document.getElementById("heroCanvas");
-if (canvas && !isMobile) {
+if (canvas && !checkIsMobile()) {
   const ctx = canvas.getContext("2d");
   let animationId;
 
@@ -482,7 +489,7 @@ if (canvas && !isMobile) {
 // ==========================================================================
 
 const aboutCanvas = document.getElementById("aboutCanvas");
-if (aboutCanvas && !isMobile) {
+if (aboutCanvas && !checkIsMobile()) {
   const aboutCtx = aboutCanvas.getContext("2d");
   let aboutAnimationId;
 
@@ -1054,7 +1061,7 @@ if (heroSection) {
 
 // Initialize particles on contact section (reduced count on mobile for performance)
 const contactParticles = document.querySelector(".contact-particles");
-if (contactParticles && !isMobile) {
+if (contactParticles && !checkIsMobile()) {
   new ParticleSystem(contactParticles, 30);
 }
 
@@ -1204,13 +1211,14 @@ if (backToTopBtn) {
 // TESTIMONIAL CAROUSEL
 // ==========================================================================
 
-const testimonialCarousel = document.querySelector(".testimonials-carousel");
+const testimonialGrid = document.querySelector(".testimonials-grid");
 const testimonialCards = document.querySelectorAll(".testimonial-card");
 const testimonialPrev = document.querySelector(".testimonial-prev");
 const testimonialNext = document.querySelector(".testimonial-next");
 const testimonialDotsContainer = document.querySelector(".testimonial-dots");
 
-if (testimonialCarousel && testimonialCards.length > 0) {
+// Since we're using a grid layout now (not carousel), skip carousel functionality
+if (false && testimonialGrid && testimonialCards.length > 0) {
   let currentIndex = 0;
   const totalSlides = testimonialCards.length;
   let autoplayInterval;
@@ -1299,17 +1307,17 @@ if (testimonialCarousel && testimonialCards.length > 0) {
     }
   }
 
-  // Keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") {
-      prevSlide();
-      resetAutoplay();
-    }
-    if (e.key === "ArrowRight") {
-      nextSlide();
-      resetAutoplay();
-    }
-  });
+  // Keyboard navigation (disabled - using grid layout)
+  // document.addEventListener("keydown", (e) => {
+  //   if (e.key === "ArrowLeft") {
+  //     prevSlide();
+  //     resetAutoplay();
+  //   }
+  //   if (e.key === "ArrowRight") {
+  //     nextSlide();
+  //     resetAutoplay();
+  //   }
+  // });
 
   // Pause autoplay on hover
   testimonialCarousel.addEventListener("mouseenter", () => {

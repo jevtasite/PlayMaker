@@ -2361,13 +2361,14 @@ textarea.form-input {
     font-size: 40px;
   }
 
-  /* Testimonials Swiper Tablet */
-  .testimonials-swiper {
-    padding: 50px 60px;
+  /* Testimonials Grid Tablet */
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
   }
 
-  .swiper-slide {
-    width: 350px;
+  .testimonial-card {
+    padding: var(--space-xl);
   }
 
   /* Contact */
@@ -2743,13 +2744,10 @@ textarea.form-input {
     font-size: 28px;
   }
 
-  /* Testimonials Swiper Mobile */
-  .testimonials-swiper {
-    padding: 40px 20px;
-  }
-
-  .swiper-slide {
-    width: 100%;
+  /* Testimonials Grid Mobile */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 
   .testimonial-card {
@@ -2762,26 +2760,6 @@ textarea.form-input {
 
   .author-name {
     font-size: 16px;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 40px;
-    height: 40px;
-  }
-
-  .swiper-button-next:after,
-  .swiper-button-prev:after {
-    font-size: 16px;
-  }
-
-  /* Remove scale transform on mobile to prevent scroll jumps */
-  .swiper-slide:not(.swiper-slide-active) .testimonial-card {
-    transform: scale(1) !important;
-  }
-
-  .swiper-slide-active .testimonial-card {
-    transform: scale(1) !important;
   }
 
   /* Footer */
