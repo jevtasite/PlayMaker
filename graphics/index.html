@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Graphics Portfolio | Playmaker Group</title>
+    <meta
+      name="description"
+      content="Explore our championship-level graphics portfolio - dynamic game day designs, player highlights, and social media content for elite athletes."
+    />
+    <meta
+      name="keywords"
+      content="sports graphics design, match day graphics, social media graphics, athlete branding, sports design portfolio, player highlight graphics"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://playmakergroup.com/graphics.html" />
+    <meta
+      property="og:title"
+      content="Graphics Portfolio | Playmaker Group"
+    />
+    <meta
+      property="og:description"
+      content="Championship-level graphics design for elite athletes and sports brands. View our portfolio of match day graphics, social media designs, and branding work."
+    />
+    <meta
+      property="og:image"
+      content="https://playmakergroup.com/images/og-image-graphics.jpg"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Graphics Portfolio | Playmaker Group"
+    />
+    <meta
+      name="twitter:description"
+      content="Championship-level graphics design for elite athletes and sports brands."
+    />
+    <meta
+      name="twitter:image"
+      content="https://playmakergroup.com/images/twitter-image-graphics.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Oswald:wght@600;700&family=Inter:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar-stadium scrolled" id="navbar">
+      <div class="navbar-content">
+        <a href="/" class="navbar-stadium__logo">
+          <img
+            src="images/logo/logo-white.png"
+            alt="Playmaker Group"
+            class="logo-image"
+          />
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="navbar-stadium__menu" id="navMenu">
+          <li><a href="/" class="navbar-stadium__link">Home</a></li>
+          <li><a href="/graphics.html" class="navbar-stadium__link active">Graphics</a></li>
+          <li><a href="/videos.html" class="navbar-stadium__link">Videos</a></li>
+          <li><a href="/#services" class="navbar-stadium__link">Services</a></li>
+          <li><a href="/#about" class="navbar-stadium__link">About</a></li>
+          <li><a href="/#contact" class="navbar-stadium__link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section graphics-hero" id="home">
+      <!-- Animated Sports Background -->
+      <div class="hero-background">
+        <div class="stadium-grid"></div>
+        <div class="light-flare light-flare-1"></div>
+        <div class="light-flare light-flare-2"></div>
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+      </div>
+
+      <div class="hero-container">
+        <div class="hero-content-center">
+          <div class="hero-label">Graphics Portfolio</div>
+          <h1 class="hero-headline">
+            <span class="headline-main">Championship-Level</span>
+            <span class="headline-subtitle">Graphics Design</span>
+          </h1>
+          <p class="hero-subhead">
+            Dynamic visuals that capture the intensity, emotion, and glory of elite sports
+          </p>
+
+          <!-- Category Filters -->
+          <div class="hero-filters">
+            <button class="filter-chip active" data-filter="all">All Graphics</button>
+            <button class="filter-chip" data-filter="matchday">Match Day</button>
+            <button class="filter-chip" data-filter="social">Social Media</button>
+            <button class="filter-chip" data-filter="branding">Branding</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Portfolio Stats Bar -->
+    <section class="portfolio-stats-section">
+      <div class="container-stadium">
+        <div class="portfolio-stats">
+          <div class="stat-badge" data-fade-up>
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Graphics Created</span>
+          </div>
+          <div class="stat-badge" data-fade-up>
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Athletes Served</span>
+          </div>
+          <div class="stat-badge" data-fade-up>
+            <span class="stat-number">100M+</span>
+            <span class="stat-label">Total Impressions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Grid Section -->
+    <section class="portfolio-showcase-section">
+      <div class="container-stadium">
+
+        <div class="graphics-portfolio-grid" id="graphicsGrid">
+
+          <!-- Graphics Item 1 -->
+          <div class="portfolio-item" data-category="matchday" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery1.webp"
+                alt="Match Day Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Match Day Hype</h3>
+                  <p class="portfolio-category">Match Day</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 2 -->
+          <div class="portfolio-item" data-category="social" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery2.webp"
+                alt="Player Highlight Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Player Spotlight</h3>
+                  <p class="portfolio-category">Social Media</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 3 -->
+          <div class="portfolio-item" data-category="branding" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery3.webp"
+                alt="Championship Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Victory Celebration</h3>
+                  <p class="portfolio-category">Branding</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 4 -->
+          <div class="portfolio-item" data-category="social" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery5.webp"
+                alt="Stadium Nights Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Stadium Nights</h3>
+                  <p class="portfolio-category">Social Media</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 5 -->
+          <div class="portfolio-item" data-category="matchday" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery7.webp"
+                alt="Victory Moment Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Game Winner</h3>
+                  <p class="portfolio-category">Match Day</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 6 -->
+          <div class="portfolio-item" data-category="branding" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery8.webp"
+                alt="Team Spirit Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Team Unity</h3>
+                  <p class="portfolio-category">Branding</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 7 -->
+          <div class="portfolio-item" data-category="social" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery9.webp"
+                alt="Behind Scenes Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Behind the Scenes</h3>
+                  <p class="portfolio-category">Social Media</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 8 -->
+          <div class="portfolio-item" data-category="matchday" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery10.webp"
+                alt="Pre-Match Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Pre-Match Lineup</h3>
+                  <p class="portfolio-category">Match Day</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphics Item 9 -->
+          <div class="portfolio-item" data-category="social" data-fade-up>
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery11.webp"
+                alt="Stats Graphics"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <div class="overlay-content">
+                  <h3 class="portfolio-title">Season Stats</h3>
+                  <p class="portfolio-category">Social Media</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Load More Button -->
+        <div class="portfolio-load-more">
+          <button class="btn-primary btn-load-more" id="loadMoreBtn">
+            <span>Load More Graphics</span>
+            <i class="fas fa-arrow-down"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Graphics Categories Section -->
+    <section class="graphics-categories-section">
+      <div class="container-stadium">
+        <h2 class="section-title" data-fade-up>
+          Our <span class="gradient-text">Graphics Services</span>
+        </h2>
+        <p class="section-subtitle" data-fade-up>
+          Comprehensive design solutions for every aspect of your brand
+        </p>
+
+        <div class="categories-grid">
+
+          <div class="category-card" data-fade-up>
+            <div class="category-icon">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h3>Match Day Graphics</h3>
+            <p>Pre-match hype, lineup reveals, score updates, and post-match celebrations</p>
+          </div>
+
+          <div class="category-card" data-fade-up>
+            <div class="category-icon">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3>Player Highlights</h3>
+            <p>Showcase moments, performance stats, and career achievements</p>
+          </div>
+
+          <div class="category-card" data-fade-up>
+            <div class="category-icon">
+              <i class="fa-solid fa-hashtag"></i>
+            </div>
+            <h3>Social Media Posts</h3>
+            <p>Story templates, feed posts, carousel designs, and engagement content</p>
+          </div>
+
+          <div class="category-card" data-fade-up>
+            <div class="category-icon">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <h3>Brand Identity</h3>
+            <p>Logos, color schemes, visual guidelines, and brand consistency</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container-stadium">
+        <div class="cta-content" data-fade-up>
+          <h2 class="cta-title">
+            Ready to Elevate Your <span class="gradient-text">Visual Game</span>?
+          </h2>
+          <p class="cta-text">
+            Let's create graphics that make your brand unforgettable
+          </p>
+          <div class="cta-buttons">
+            <a href="/#contact" class="btn-hero-primary">Get Started</a>
+            <a href="/videos.html" class="btn-hero-secondary">View Videos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-particles"></div>
+      <div class="container-stadium text-center">
+        <h2 class="section-title" data-fade-up>
+          Contact <span class="gradient-text">Us</span>
+        </h2>
+
+        <p class="section-subtitle" data-fade-up>
+          Reach out via email or follow us on social media:
+        </p>
+
+        <!-- Email -->
+        <p class="contact-email" data-fade-up>
+          <i class="fas fa-envelope"></i>
+          <a
+            id="email-link"
+            href="mailto:contact@playmakergroup.com"
+            title="Email Playmaker Group"
+          >
+            contact@playmakergroup.com
+          </a>
+        </p>
+
+        <!-- Socials -->
+        <div class="social-links" data-fade-up>
+          <a
+            href="https://www.instagram.com/playmaker.group/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group Instagram"
+            title="Follow Playmaker Group on Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/@playmakergrp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group YouTube"
+            title="Subscribe to Playmaker Group YouTube"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a
+            href="https://www.behance.net/playmakergroup"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group Behance"
+            title="View Playmaker Group portfolio on Behance"
+          >
+            <i class="fab fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-stadium">
+      <div class="container-stadium">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img
+              src="images/logo/logo-white.png"
+              alt="Playmaker Group"
+              class="footer-logo"
+            />
+          </div>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/">Home</a>
+            <a href="/graphics.html">Graphics</a>
+            <a href="/videos.html">Videos</a>
+            <a href="/#services">Services</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+          </nav>
+          <p class="footer-copyright">
+            © 2025 Playmaker Group. All victories reserved.
+          </p>
+          <p class="dev-note">
+            Developed by
+            <a
+              href="https://jevta.site"
+              target="_blank"
+              rel="noopener"
+              class="jevta-link"
+              title="Website developer Jevta"
+            >
+              <span class="jevta-shine">Jevta</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-backdrop"></div>
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Next image">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-image-container">
+          <img id="lightboxImage" src="" alt="">
+          <div class="lightbox-info">
+            <h3 class="lightbox-title" id="lightboxTitle"></h3>
+            <p class="lightbox-category" id="lightboxCategory"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/graphics.js"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Graphics Portfolio - Playmaker Group",
+        "description": "Championship-level graphics design portfolio for elite athletes and sports brands",
+        "url": "https://playmakergroup.com/graphics.html",
+        "provider": {
+          "@type": "Organization",
+          "name": "Playmaker Group",
+          "url": "https://playmakergroup.com"
+        }
+      }
+    </script>
+  </body>
+</html>
