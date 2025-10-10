@@ -147,6 +147,14 @@ function updateActiveNavLink() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".navbar-stadium__link");
 
+  // Check if we're on a subpage (not the main page)
+  const isSubpage = window.location.pathname !== '/' && window.location.pathname !== '/index.html';
+
+  // If on a subpage, don't modify active states (keep HTML-defined active state)
+  if (isSubpage) {
+    return;
+  }
+
   let currentSection = "";
   const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 

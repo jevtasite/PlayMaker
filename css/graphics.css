@@ -1,0 +1,613 @@
+/* ==========================================================================
+   GRAPHICS PAGE STYLES
+   PlayMaker Group - Graphics Portfolio
+   ========================================================================== */
+
+/* ==========================================================================
+   GRAPHICS HERO SECTION
+   ========================================================================== */
+
+.graphics-hero {
+  min-height: 85vh;
+}
+
+.hero-content-center {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(244, 208, 63, 0.1);
+  border: 1px solid rgba(244, 208, 63, 0.3);
+  border-radius: 30px;
+  color: var(--stadium-gold);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-xl);
+}
+
+/* ==========================================================================
+   HERO FILTERS
+   ========================================================================== */
+
+.hero-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-2xl);
+}
+
+.filter-chip {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(244, 208, 63, 0.2);
+  border-radius: 30px;
+  color: var(--text-secondary);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-chip:hover {
+  background: rgba(244, 208, 63, 0.1);
+  border-color: rgba(244, 208, 63, 0.4);
+  color: var(--stadium-gold);
+  transform: translateY(-2px);
+}
+
+.filter-chip.active {
+  background: var(--money-gradient);
+  border-color: var(--stadium-gold);
+  color: var(--pregame-darkness);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   PORTFOLIO STATS SECTION
+   ========================================================================== */
+
+.portfolio-stats-section {
+  padding: var(--space-3xl) 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(244, 208, 63, 0.1);
+  border-bottom: 1px solid rgba(244, 208, 63, 0.1);
+}
+
+.portfolio-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3xl);
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.stat-badge .stat-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-headline);
+  background: var(--money-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.stat-badge .stat-label {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   PORTFOLIO GRID
+   ========================================================================== */
+
+.portfolio-showcase-section {
+  padding: var(--space-4xl) 0;
+}
+
+.graphics-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(244, 208, 63, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-8px);
+  border-color: rgba(244, 208, 63, 0.4);
+  box-shadow: 0 12px 40px rgba(244, 208, 63, 0.15);
+}
+
+.portfolio-image {
+  position: relative;
+  padding-bottom: 100%; /* Square aspect ratio */
+  overflow: hidden;
+}
+
+.portfolio-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item:hover .portfolio-image img {
+  transform: scale(1.1);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(26, 29, 41, 0.95) 0%,
+    rgba(26, 29, 41, 0.7) 50%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-xl);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  width: 100%;
+}
+
+.portfolio-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.portfolio-category {
+  font-size: var(--text-small);
+  color: var(--stadium-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   LOAD MORE BUTTON
+   ========================================================================== */
+
+.portfolio-load-more {
+  text-align: center;
+  margin-top: var(--space-3xl);
+}
+
+.btn-load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 16px 40px;
+  background: rgba(244, 208, 63, 0.1);
+  border: 2px solid rgba(244, 208, 63, 0.3);
+  border-radius: 50px;
+  color: var(--stadium-gold);
+  font-size: var(--text-base);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-load-more:hover {
+  background: var(--money-gradient);
+  border-color: var(--stadium-gold);
+  color: var(--pregame-darkness);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.3);
+}
+
+.btn-load-more i {
+  transition: transform 0.3s ease;
+}
+
+.btn-load-more:hover i {
+  transform: translateY(4px);
+}
+
+/* ==========================================================================
+   GRAPHICS CATEGORIES SECTION
+   ========================================================================== */
+
+.graphics-categories-section {
+  padding: var(--space-5xl) 0;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.category-card {
+  padding: var(--space-2xl);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(244, 208, 63, 0.15);
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(244, 208, 63, 0.4);
+  transform: translateY(-4px);
+}
+
+.category-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: var(--stadium-gold);
+  background: rgba(244, 208, 63, 0.1);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+
+.category-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.category-card p {
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   CTA SECTION
+   ========================================================================== */
+
+.cta-section {
+  padding: var(--space-5xl) 0;
+  text-align: center;
+  position: relative;
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-headline);
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  line-height: 1.2;
+}
+
+.cta-text {
+  font-size: 20px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   LIGHTBOX MODAL
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  z-index: 10000;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(244, 208, 63, 0.1);
+  border: 2px solid rgba(244, 208, 63, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stadium-gold);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10001;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--stadium-gold);
+  color: var(--pregame-darkness);
+  transform: scale(1.1);
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev {
+  left: -70px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: -70px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-image-container {
+  background: rgba(26, 29, 41, 0.5);
+  border: 2px solid rgba(244, 208, 63, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.lightbox-image-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+.lightbox-info {
+  padding: var(--space-xl);
+  background: rgba(26, 29, 41, 0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(244, 208, 63, 0.2);
+}
+
+.lightbox-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.lightbox-category {
+  font-size: var(--text-small);
+  color: var(--stadium-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   RESPONSIVE - TABLET (768px - 1024px)
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .graphics-portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-filters {
+    gap: var(--space-sm);
+  }
+
+  .filter-chip {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .stat-badge .stat-number {
+    font-size: 40px;
+  }
+
+  .cta-title {
+    font-size: 40px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE (<768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .graphics-hero {
+    min-height: 100vh;
+  }
+
+  .hero-content-center {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero-headline {
+    font-size: 40px;
+  }
+
+  .headline-main {
+    font-size: 40px;
+  }
+
+  .headline-subtitle {
+    font-size: 28px;
+  }
+
+  .hero-filters {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .filter-chip {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .portfolio-stats {
+    gap: var(--space-xl);
+  }
+
+  .stat-badge .stat-number {
+    font-size: 36px;
+  }
+
+  .graphics-portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-title {
+    font-size: 32px;
+  }
+
+  .cta-text {
+    font-size: 16px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .lightbox-content {
+    max-width: 95vw;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .lightbox-next {
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-info {
+    padding: var(--space-lg);
+  }
+
+  .lightbox-title {
+    font-size: 18px;
+  }
+}

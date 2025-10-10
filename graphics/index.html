@@ -70,6 +70,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/graphics.css" />
   </head>
   <body>
     <!-- Navigation -->
@@ -97,9 +98,17 @@
           <li><a href="/" class="navbar-stadium__link">Home</a></li>
           <li><a href="/graphics/" class="navbar-stadium__link active">Graphics</a></li>
           <li><a href="/videos/" class="navbar-stadium__link">Videos</a></li>
-          <li><a href="/#services" class="navbar-stadium__link">Services</a></li>
-          <li><a href="/#about" class="navbar-stadium__link">About</a></li>
-          <li><a href="/#contact" class="navbar-stadium__link">Contact</a></li>
+          <li class="navbar-dropdown">
+            <a href="javascript:void(0)" class="navbar-stadium__link navbar-dropdown__trigger">
+              Other <i class="fas fa-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="navbar-dropdown__menu">
+              <li><a href="/#work" class="navbar-dropdown__link">Work</a></li>
+              <li><a href="/#services" class="navbar-dropdown__link">Services</a></li>
+              <li><a href="/#about" class="navbar-dropdown__link">About</a></li>
+              <li><a href="/#contact" class="navbar-dropdown__link">Contact</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </nav>
@@ -115,22 +124,139 @@
       </div>
 
       <div class="hero-container">
-        <div class="hero-content-center">
-          <div class="hero-label">Graphics Portfolio</div>
-          <h1 class="hero-headline">
-            <span class="headline-main">Championship-Level</span>
-            <span class="headline-subtitle">Graphics Design</span>
-          </h1>
-          <p class="hero-subhead">
-            Dynamic visuals that capture the intensity, emotion, and glory of elite sports
-          </p>
+        <!-- Left Side: Content -->
+        <div class="hero-content-side">
+          <div class="hero-content">
+            <div class="hero-label">Graphics Portfolio</div>
+            <h1 class="hero-headline">
+              <span class="headline-main">Championship-Level</span>
+              <span class="headline-subtitle">Graphics Design</span>
+            </h1>
+            <p class="hero-subhead">
+              Dynamic visuals that capture the intensity, emotion, and glory of elite sports
+            </p>
+            <div class="hero-cta-group">
+              <a href="#graphicsGrid" class="btn-hero-primary">
+                <span>View Portfolio</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M5 12H19M19 12L12 5M19 12L12 19"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a href="/#contact" class="btn-hero-secondary"> Get Started </a>
+            </div>
+          </div>
+        </div>
 
-          <!-- Category Filters -->
-          <div class="hero-filters">
-            <button class="filter-chip active" data-filter="all">All Graphics</button>
-            <button class="filter-chip" data-filter="matchday">Match Day</button>
-            <button class="filter-chip" data-filter="social">Social Media</button>
-            <button class="filter-chip" data-filter="branding">Branding</button>
+        <!-- Right Side: Graphics Showcase -->
+        <div class="hero-showcase-side">
+          <div class="graphics-showcase-container">
+            <!-- 3D Graphics Stack -->
+            <div class="graphics-stack" id="graphicsStack">
+              <!-- Graphic Card 1 - Center Focus -->
+              <div class="graphics-card" data-index="0">
+                <div class="graphics-frame">
+                  <img
+                    src="../images/gallery/gallery1.webp"
+                    alt="Match Day Graphics"
+                    loading="eager"
+                  />
+                  <div class="graphics-overlay"></div>
+                </div>
+              </div>
+
+              <!-- Graphic Card 2 -->
+              <div class="graphics-card" data-index="1">
+                <div class="graphics-frame">
+                  <img
+                    src="../images/gallery/gallery2.webp"
+                    alt="Player Highlight Graphics"
+                    loading="eager"
+                  />
+                  <div class="graphics-overlay"></div>
+                </div>
+              </div>
+
+              <!-- Graphic Card 3 -->
+              <div class="graphics-card" data-index="2">
+                <div class="graphics-frame">
+                  <img
+                    src="../images/gallery/gallery3.webp"
+                    alt="Championship Graphics"
+                    loading="eager"
+                  />
+                  <div class="graphics-overlay"></div>
+                </div>
+              </div>
+
+              <!-- Graphic Card 4 -->
+              <div class="graphics-card" data-index="3">
+                <div class="graphics-frame">
+                  <img
+                    src="../images/gallery/gallery5.webp"
+                    alt="Stadium Nights Graphics"
+                    loading="eager"
+                  />
+                  <div class="graphics-overlay"></div>
+                </div>
+              </div>
+
+              <!-- Graphic Card 5 -->
+              <div class="graphics-card" data-index="4">
+                <div class="graphics-frame">
+                  <img
+                    src="../images/gallery/gallery7.webp"
+                    alt="Victory Moment Graphics"
+                    loading="eager"
+                  />
+                  <div class="graphics-overlay"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="showcase-controls">
+              <button
+                class="control-btn prev-btn"
+                id="prevGraphic"
+                aria-label="Previous graphic"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div class="control-counter">
+                <span class="current-number">1</span>
+                <span class="divider">/</span>
+                <span class="total-number">5</span>
+              </div>
+              <button
+                class="control-btn next-btn"
+                id="nextGraphic"
+                aria-label="Next graphic"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
