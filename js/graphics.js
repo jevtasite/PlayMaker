@@ -7,6 +7,232 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ==========================================================================
+// GALLERY WALL SHOWCASE
+// ==========================================================================
+
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryCards = document.querySelectorAll('.gallery-card');
+
+// Card data structure
+const cardData = [
+  { img: '../images/gallery/gallery1.webp', title: 'Match Day Hype', category: 'Game Day' },
+  { img: '../images/gallery/gallery2.webp', title: 'Player Spotlight', category: 'Social Content' },
+  { img: '../images/gallery/gallery3.webp', title: 'Victory Celebration', category: 'Branding' },
+  { img: '../images/gallery/gallery5.webp', title: 'Stadium Nights', category: 'Social Media' },
+  { img: '../images/gallery/gallery7.webp', title: 'Game Winner', category: 'Match Day' }
+];
+
+let currentCardPositions = [0, 1, 2, 3, 4]; // Track which card is in which position
+let autoRotateInterval;
+
+// Mobile gallery controls
+const mobileGalleryPrev = document.getElementById('mobileGalleryPrev');
+const mobileGalleryNext = document.getElementById('mobileGalleryNext');
+const mobileGalleryDots = document.querySelectorAll('.mobile-gallery-dot');
+
+// Position configurations
+const positions = {
+  center: { class: 'gallery-card-hero', attr: 'center' },
+  topLeft: { class: 'gallery-card-small', attr: 'top-left' },
+  topRight: { class: 'gallery-card-small', attr: 'top-right' },
+  bottomLeft: { class: 'gallery-card-small', attr: 'bottom-left' },
+  bottomRight: { class: 'gallery-card-small', attr: 'bottom-right' }
+};
+
+// Update active dot indicator
+function updateActiveDot() {
+  if (mobileGalleryDots.length === 0) return;
+
+  const currentCenterIndex = currentCardPositions.indexOf(0);
+  const currentCenterCard = galleryCards[currentCenterIndex];
+  const currentDataIndex = parseInt(currentCenterCard.getAttribute('data-index'));
+
+  mobileGalleryDots.forEach(dot => {
+    const dotIndex = parseInt(dot.getAttribute('data-dot-index'));
+    if (dotIndex === currentDataIndex) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+// Rotate cards to new positions
+function rotateCards() {
+  // Shift positions: last item moves to front
+  currentCardPositions.unshift(currentCardPositions.pop());
+
+  // Update each card's position and class
+  galleryCards.forEach((card, index) => {
+    const positionIndex = currentCardPositions[index];
+    const positionKeys = Object.keys(positions);
+    const newPosition = positions[positionKeys[positionIndex]];
+
+    // Remove all position classes
+    card.classList.remove('gallery-card-hero', 'gallery-card-small');
+
+    // Add new class
+    card.classList.add(newPosition.class);
+
+    // Update data-position attribute
+    card.setAttribute('data-position', newPosition.attr);
+
+    // Update info badge if it's the center card
+    if (positionIndex === 0) {
+      const badge = card.querySelector('.card-info-badge');
+      if (badge) {
+        const title = badge.querySelector('.badge-title');
+        const category = badge.querySelector('.badge-category');
+        const cardIndex = parseInt(card.getAttribute('data-index'));
+
+        if (title) title.textContent = cardData[cardIndex].title;
+        if (category) category.textContent = cardData[cardIndex].category;
+      }
+    }
+  });
+
+  // Update mobile dot indicator if it exists
+  if (typeof updateActiveDot === 'function') {
+    updateActiveDot();
+  }
+}
+
+// Auto-rotate functionality
+function startAutoRotate() {
+  autoRotateInterval = setInterval(() => {
+    rotateCards();
+  }, 4000);
+}
+
+function stopAutoRotate() {
+  if (autoRotateInterval) {
+    clearInterval(autoRotateInterval);
+  }
+}
+
+// Click handler for cards
+galleryCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    const clickedIndex = parseInt(card.getAttribute('data-index'));
+    const currentCenterIndex = currentCardPositions.indexOf(0);
+
+    // If clicked card is not in center, rotate until it is
+    if (clickedIndex !== currentCenterIndex) {
+      stopAutoRotate();
+
+      // Calculate how many rotations needed
+      const distance = (clickedIndex - currentCenterIndex + galleryCards.length) % galleryCards.length;
+
+      // Rotate the required number of times
+      for (let i = 0; i < distance; i++) {
+        setTimeout(() => {
+          rotateCards();
+        }, i * 300);
+      }
+
+      // Restart auto-rotate after interaction
+      setTimeout(startAutoRotate, 8000);
+    }
+  });
+});
+
+// Pause on hover
+if (galleryGrid) {
+  galleryGrid.addEventListener('mouseenter', stopAutoRotate);
+  galleryGrid.addEventListener('mouseleave', startAutoRotate);
+}
+
+// Start auto-rotate on load
+if (galleryCards.length > 0) {
+  startAutoRotate();
+}
+
+// ==========================================================================
+// MOBILE GALLERY CONTROLS - BUTTON EVENT LISTENERS
+// ==========================================================================
+
+// Previous button
+if (mobileGalleryPrev) {
+  mobileGalleryPrev.addEventListener('click', () => {
+    stopAutoRotate();
+    // Rotate backward (shift first to last)
+    currentCardPositions.push(currentCardPositions.shift());
+
+    // Update each card's position
+    galleryCards.forEach((card, index) => {
+      const positionIndex = currentCardPositions[index];
+      const positionKeys = Object.keys(positions);
+      const newPosition = positions[positionKeys[positionIndex]];
+
+      card.classList.remove('gallery-card-hero', 'gallery-card-small');
+      card.classList.add(newPosition.class);
+      card.setAttribute('data-position', newPosition.attr);
+
+      if (positionIndex === 0) {
+        const badge = card.querySelector('.card-info-badge');
+        if (badge) {
+          const title = badge.querySelector('.badge-title');
+          const category = badge.querySelector('.badge-category');
+          const cardIndex = parseInt(card.getAttribute('data-index'));
+
+          if (title) title.textContent = cardData[cardIndex].title;
+          if (category) category.textContent = cardData[cardIndex].category;
+        }
+      }
+    });
+
+    updateActiveDot();
+    setTimeout(startAutoRotate, 8000);
+  });
+}
+
+// Next button
+if (mobileGalleryNext) {
+  mobileGalleryNext.addEventListener('click', () => {
+    stopAutoRotate();
+    rotateCards();
+    updateActiveDot();
+    setTimeout(startAutoRotate, 8000);
+  });
+}
+
+// Dot navigation
+mobileGalleryDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const targetIndex = parseInt(dot.getAttribute('data-dot-index'));
+
+    // Find which card has this data-index
+    let clickedCardPosition = -1;
+    galleryCards.forEach((card, index) => {
+      if (parseInt(card.getAttribute('data-index')) === targetIndex) {
+        clickedCardPosition = index;
+      }
+    });
+
+    if (clickedCardPosition !== -1) {
+      const currentCenterIndex = currentCardPositions.indexOf(0);
+
+      if (clickedCardPosition !== currentCenterIndex) {
+        stopAutoRotate();
+        const distance = (clickedCardPosition - currentCenterIndex + galleryCards.length) % galleryCards.length;
+
+        for (let i = 0; i < distance; i++) {
+          setTimeout(() => {
+            rotateCards();
+            if (i === distance - 1) {
+              updateActiveDot();
+            }
+          }, i * 300);
+        }
+
+        setTimeout(startAutoRotate, 8000);
+      }
+    }
+  });
+});
+
+
+// ==========================================================================
 // PORTFOLIO FILTERING
 // ==========================================================================
 
@@ -338,21 +564,43 @@ gsap.utils.toArray('.category-card').forEach((card, index) => {
   );
 });
 
-// Filter chips animation
-gsap.fromTo('.filter-chip',
-  {
-    opacity: 0,
-    y: 20
-  },
-  {
-    opacity: 1,
-    y: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: 'power2.out',
-    delay: 0.5
-  }
-);
+// Gallery wall entrance animation
+if (galleryGrid) {
+  // Animate floating text card
+  gsap.fromTo('.floating-text-card',
+    {
+      opacity: 0,
+      x: -60,
+      y: 20
+    },
+    {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      duration: 1,
+      ease: 'power3.out',
+      delay: 0.2
+    }
+  );
+
+  // Animate gallery cards with stagger
+  gsap.fromTo('.gallery-card',
+    {
+      opacity: 0,
+      scale: 0.8,
+      y: 40
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'back.out(1.4)',
+      delay: 0.5
+    }
+  );
+}
 
 // Stats animation
 gsap.utils.toArray('.stat-badge').forEach((badge, index) => {

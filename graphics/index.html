@@ -113,151 +113,134 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section graphics-hero" id="home">
-      <!-- Animated Sports Background -->
-      <div class="hero-background">
-        <div class="stadium-grid"></div>
-        <div class="light-flare light-flare-1"></div>
-        <div class="light-flare light-flare-2"></div>
-        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    <!-- Hero Section - Gallery Wall -->
+    <section class="hero-section gallery-hero" id="home">
+
+      <!-- Gallery Background -->
+      <div class="gallery-background">
+        <div class="gallery-vignette"></div>
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
       </div>
 
-      <div class="hero-container">
-        <!-- Left Side: Content -->
-        <div class="hero-content-side">
-          <div class="hero-content">
-            <div class="hero-label">Graphics Portfolio</div>
-            <h1 class="hero-headline">
-              <span class="headline-main">Championship-Level</span>
-              <span class="headline-subtitle">Graphics Design</span>
-            </h1>
-            <p class="hero-subhead">
-              Dynamic visuals that capture the intensity, emotion, and glory of elite sports
-            </p>
-            <div class="hero-cta-group">
-              <a href="#graphicsGrid" class="btn-hero-primary">
-                <span>View Portfolio</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12H19M19 12L12 5M19 12L12 19"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </a>
-              <a href="/#contact" class="btn-hero-secondary"> Get Started </a>
+      <!-- Floating Text Overlay -->
+      <div class="floating-text-card">
+        <div class="text-card-inner">
+          <span class="page-badge">Graphics Portfolio</span>
+          <h1 class="gallery-title">Visual Excellence</h1>
+          <p class="gallery-tagline">Championship-level graphics that dominate the feed</p>
+          <a href="#graphicsGrid" class="btn-explore">
+            <span>Explore Work</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 17L17 7M17 7H7M17 7V17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+
+        <!-- Center Large Card (Hero) -->
+        <div class="gallery-card gallery-card-hero" data-position="center" data-index="0">
+          <div class="card-frame">
+            <img
+              src="../images/gallery/gallery1.webp"
+              alt="Match Day Graphics"
+              loading="eager"
+            />
+            <div class="card-info-badge">
+              <span class="badge-title">Match Day Hype</span>
+              <span class="badge-category">Game Day</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Side: Graphics Showcase -->
-        <div class="hero-showcase-side">
-          <div class="graphics-showcase-container">
-            <!-- 3D Graphics Stack -->
-            <div class="graphics-stack" id="graphicsStack">
-              <!-- Graphic Card 1 - Center Focus -->
-              <div class="graphics-card" data-index="0">
-                <div class="graphics-frame">
-                  <img
-                    src="../images/gallery/gallery1.webp"
-                    alt="Match Day Graphics"
-                    loading="eager"
-                  />
-                  <div class="graphics-overlay"></div>
-                </div>
-              </div>
-
-              <!-- Graphic Card 2 -->
-              <div class="graphics-card" data-index="1">
-                <div class="graphics-frame">
-                  <img
-                    src="../images/gallery/gallery2.webp"
-                    alt="Player Highlight Graphics"
-                    loading="eager"
-                  />
-                  <div class="graphics-overlay"></div>
-                </div>
-              </div>
-
-              <!-- Graphic Card 3 -->
-              <div class="graphics-card" data-index="2">
-                <div class="graphics-frame">
-                  <img
-                    src="../images/gallery/gallery3.webp"
-                    alt="Championship Graphics"
-                    loading="eager"
-                  />
-                  <div class="graphics-overlay"></div>
-                </div>
-              </div>
-
-              <!-- Graphic Card 4 -->
-              <div class="graphics-card" data-index="3">
-                <div class="graphics-frame">
-                  <img
-                    src="../images/gallery/gallery5.webp"
-                    alt="Stadium Nights Graphics"
-                    loading="eager"
-                  />
-                  <div class="graphics-overlay"></div>
-                </div>
-              </div>
-
-              <!-- Graphic Card 5 -->
-              <div class="graphics-card" data-index="4">
-                <div class="graphics-frame">
-                  <img
-                    src="../images/gallery/gallery7.webp"
-                    alt="Victory Moment Graphics"
-                    loading="eager"
-                  />
-                  <div class="graphics-overlay"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Navigation Controls -->
-            <div class="showcase-controls">
-              <button
-                class="control-btn prev-btn"
-                id="prevGraphic"
-                aria-label="Previous graphic"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M15 18L9 12L15 6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-              <div class="control-counter">
-                <span class="current-number">1</span>
-                <span class="divider">/</span>
-                <span class="total-number">5</span>
-              </div>
-              <button
-                class="control-btn next-btn"
-                id="nextGraphic"
-                aria-label="Next graphic"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
+        <!-- Top Left Card -->
+        <div class="gallery-card gallery-card-small" data-position="top-left" data-index="1">
+          <div class="card-frame">
+            <img
+              src="../images/gallery/gallery2.webp"
+              alt="Player Spotlight"
+              loading="eager"
+            />
+            <div class="card-hover-overlay">
+              <span class="hover-text">View</span>
             </div>
           </div>
+        </div>
+
+        <!-- Top Right Card -->
+        <div class="gallery-card gallery-card-small" data-position="top-right" data-index="2">
+          <div class="card-frame">
+            <img
+              src="../images/gallery/gallery3.webp"
+              alt="Victory Celebration"
+              loading="eager"
+            />
+            <div class="card-hover-overlay">
+              <span class="hover-text">View</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Left Card -->
+        <div class="gallery-card gallery-card-small" data-position="bottom-left" data-index="3">
+          <div class="card-frame">
+            <img
+              src="../images/gallery/gallery5.webp"
+              alt="Stadium Nights"
+              loading="eager"
+            />
+            <div class="card-hover-overlay">
+              <span class="hover-text">View</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Right Card -->
+        <div class="gallery-card gallery-card-small" data-position="bottom-right" data-index="4">
+          <div class="card-frame">
+            <img
+              src="../images/gallery/gallery7.webp"
+              alt="Game Winner"
+              loading="eager"
+            />
+            <div class="card-hover-overlay">
+              <span class="hover-text">View</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile Gallery Controls -->
+      <div class="mobile-gallery-controls">
+        <div class="mobile-nav-buttons">
+          <button class="mobile-nav-btn" id="mobileGalleryPrev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M15 18l-6-6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="mobile-nav-btn" id="mobileGalleryNext" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="mobile-gallery-dots">
+          <span class="mobile-gallery-dot active" data-dot-index="0"></span>
+          <span class="mobile-gallery-dot" data-dot-index="1"></span>
+          <span class="mobile-gallery-dot" data-dot-index="2"></span>
+          <span class="mobile-gallery-dot" data-dot-index="3"></span>
+          <span class="mobile-gallery-dot" data-dot-index="4"></span>
         </div>
       </div>
 

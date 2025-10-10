@@ -4,7 +4,8 @@
       "Bash(mkdir:*)",
       "Bash(start index.html)",
       "Bash(git add:*)",
-      "Bash(git revert:*)"
+      "Bash(git revert:*)",
+      "Bash(start graphics/index.html)"
     ],
     "deny": [],
     "ask": []
