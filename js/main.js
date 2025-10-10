@@ -42,9 +42,13 @@ menuToggle.addEventListener("click", (e) => {
     : "";
 });
 
-// Close menu when clicking a link
+// Close menu when clicking a link (except dropdown triggers)
 document.querySelectorAll(".navbar-stadium__link").forEach((link) => {
   link.addEventListener("click", () => {
+    // Don't close menu if it's a dropdown trigger
+    if (link.classList.contains("navbar-dropdown__trigger")) {
+      return;
+    }
     menuToggle.classList.remove("active");
     navMenu.classList.remove("active");
     document.body.style.overflow = "";
@@ -59,6 +63,61 @@ document.addEventListener("click", (e) => {
     navMenu.classList.remove("active");
     document.body.style.overflow = "";
   }
+});
+
+// ==========================================================================
+// DROPDOWN MENU FUNCTIONALITY
+// ==========================================================================
+
+const dropdownTriggers = document.querySelectorAll('.navbar-dropdown__trigger');
+const dropdowns = document.querySelectorAll('.navbar-dropdown');
+
+// Handle dropdown interactions
+dropdownTriggers.forEach(trigger => {
+  // Prevent Portfolio link from navigating on click
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // On mobile/tablet, toggle the dropdown
+    if (window.innerWidth <= 1024) {
+      const dropdown = trigger.closest('.navbar-dropdown');
+
+      // Close other dropdowns
+      dropdowns.forEach(d => {
+        if (d !== dropdown) {
+          d.classList.remove('active');
+        }
+      });
+
+      // Toggle current dropdown
+      dropdown.classList.toggle('active');
+    }
+    // On desktop, dropdown shows on hover, so click does nothing
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.navbar-dropdown')) {
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  }
+});
+
+// Close dropdown when clicking on a dropdown link
+document.querySelectorAll('.navbar-dropdown__link').forEach(link => {
+  link.addEventListener('click', () => {
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+    // Close mobile menu if open
+    if (navMenu && navMenu.classList.contains('active')) {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 });
 
 // ==========================================================================
