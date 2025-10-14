@@ -520,7 +520,7 @@ document.addEventListener("keydown", (e) => {
 updatePhoneStack();
 
 // ==========================================================================
-// ANIMATED SPORTS CANVAS BACKGROUND
+// ANIMATED SPORTS CANVAS BACKGROUND - DISABLED FOR PERFORMANCE
 // ==========================================================================
 
 // Function to check if mobile device for performance optimization
@@ -528,198 +528,15 @@ function checkIsMobile() {
   return window.innerWidth <= 575;
 }
 
-const canvas = document.getElementById("heroCanvas");
-if (canvas && !checkIsMobile()) {
-  const ctx = canvas.getContext("2d");
-  let animationId;
-
-  // Set canvas size
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  // Particle class for animated dots
-  class SportsParticle {
-    constructor() {
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.size = Math.random() * 3 + 1;
-      this.opacity = Math.random() * 0.5 + 0.2;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      // Wrap around screen
-      if (this.x < 0) this.x = canvas.width;
-      if (this.x > canvas.width) this.x = 0;
-      if (this.y < 0) this.y = canvas.height;
-      if (this.y > canvas.height) this.y = 0;
-    }
-
-    draw() {
-      ctx.fillStyle = `rgba(244, 208, 63, ${this.opacity})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  // Create particles
-  const particles = [];
-  const particleCount = 80;
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new SportsParticle());
-  }
-
-  // Animation loop
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw connecting lines between nearby particles
-    particles.forEach((particle, i) => {
-      particle.update();
-      particle.draw();
-
-      // Draw lines to nearby particles
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[j].x - particle.x;
-        const dy = particles[j].y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-          ctx.strokeStyle = `rgba(244, 208, 63, ${0.1 * (1 - distance / 150)})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-    });
-
-    animationId = requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // Cleanup on page unload
-  window.addEventListener("beforeunload", () => {
-    cancelAnimationFrame(animationId);
-  });
-}
+// Canvas particle effects disabled for performance optimization
+// Only floating upward particles remain active (see FLOATING PARTICLES SYSTEM section)
 
 // ==========================================================================
-// ABOUT SECTION CANVAS BACKGROUND
+// ABOUT SECTION CANVAS BACKGROUND - DISABLED FOR PERFORMANCE
 // ==========================================================================
 
-const aboutCanvas = document.getElementById("aboutCanvas");
-if (aboutCanvas && !checkIsMobile()) {
-  const aboutCtx = aboutCanvas.getContext("2d");
-  let aboutAnimationId;
-
-  // Set canvas size
-  function resizeAboutCanvas() {
-    const aboutSection = document.querySelector(".about-section");
-    if (aboutSection) {
-      aboutCanvas.width = aboutSection.offsetWidth;
-      aboutCanvas.height = aboutSection.offsetHeight;
-    }
-  }
-  resizeAboutCanvas();
-  window.addEventListener("resize", resizeAboutCanvas);
-
-  // Particle class for animated dots
-  class AboutParticle {
-    constructor() {
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * aboutCanvas.width;
-      this.y = Math.random() * aboutCanvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.size = Math.random() * 3 + 1;
-      this.opacity = Math.random() * 0.5 + 0.2;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      // Wrap around screen
-      if (this.x < 0) this.x = aboutCanvas.width;
-      if (this.x > aboutCanvas.width) this.x = 0;
-      if (this.y < 0) this.y = aboutCanvas.height;
-      if (this.y > aboutCanvas.height) this.y = 0;
-    }
-
-    draw() {
-      aboutCtx.fillStyle = `rgba(244, 208, 63, ${this.opacity})`;
-      aboutCtx.beginPath();
-      aboutCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      aboutCtx.fill();
-    }
-  }
-
-  // Create particles
-  const aboutParticles = [];
-  const aboutParticleCount = 80;
-
-  for (let i = 0; i < aboutParticleCount; i++) {
-    aboutParticles.push(new AboutParticle());
-  }
-
-  // Animation loop
-  function animateAbout() {
-    aboutCtx.clearRect(0, 0, aboutCanvas.width, aboutCanvas.height);
-
-    // Draw connecting lines between nearby particles
-    aboutParticles.forEach((particle, i) => {
-      particle.update();
-      particle.draw();
-
-      // Draw lines to nearby particles
-      for (let j = i + 1; j < aboutParticles.length; j++) {
-        const dx = aboutParticles[j].x - particle.x;
-        const dy = aboutParticles[j].y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-          aboutCtx.strokeStyle = `rgba(244, 208, 63, ${
-            0.1 * (1 - distance / 150)
-          })`;
-          aboutCtx.lineWidth = 1;
-          aboutCtx.beginPath();
-          aboutCtx.moveTo(particle.x, particle.y);
-          aboutCtx.lineTo(aboutParticles[j].x, aboutParticles[j].y);
-          aboutCtx.stroke();
-        }
-      }
-    });
-
-    aboutAnimationId = requestAnimationFrame(animateAbout);
-  }
-
-  animateAbout();
-
-  // Cleanup on page unload
-  window.addEventListener("beforeunload", () => {
-    cancelAnimationFrame(aboutAnimationId);
-  });
-}
+// About section canvas particle effects disabled for performance optimization
+// Only floating upward particles remain active (see FLOATING PARTICLES SYSTEM section)
 
 // ==========================================================================
 // INTRO SECTION ANIMATIONS
@@ -1365,21 +1182,12 @@ const testimonialSwiper = document.querySelector(".testimonials-swiper");
 
 if (testimonialSwiper) {
   const swiper = new Swiper(".testimonials-swiper", {
-    // Carousel settings
-    effect: "coverflow",
+    // Carousel settings - using slide effect for better performance
+    effect: "slide",
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
     loop: false,
-
-    // Coverflow effect for 3D look
-    coverflowEffect: {
-      rotate: 0,
-      stretch: 0,
-      depth: 100,
-      modifier: 2,
-      slideShadows: false,
-    },
 
     // Autoplay
     autoplay: {
@@ -1388,8 +1196,8 @@ if (testimonialSwiper) {
       pauseOnMouseEnter: true,
     },
 
-    // Speed
-    speed: 800,
+    // Speed - reduced for smoother transitions
+    speed: 500,
 
     // Navigation arrows
     navigation: {
@@ -1397,11 +1205,11 @@ if (testimonialSwiper) {
       prevEl: ".swiper-button-prev",
     },
 
-    // Pagination dots
+    // Pagination dots - static bullets for better performance
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
-      dynamicBullets: true,
+      dynamicBullets: false,
     },
 
     // Keyboard control
@@ -1414,34 +1222,26 @@ if (testimonialSwiper) {
     touchRatio: 1,
     touchAngle: 45,
 
+    // Performance optimizations
+    watchSlidesProgress: true,
+    preventInteractionOnTransition: true,
+
     // Responsive breakpoints
     breakpoints: {
       // Mobile
       320: {
         slidesPerView: 1,
         spaceBetween: 20,
-        coverflowEffect: {
-          depth: 50,
-          modifier: 1,
-        },
       },
       // Tablet
       768: {
         slidesPerView: "auto",
         spaceBetween: 30,
-        coverflowEffect: {
-          depth: 80,
-          modifier: 1.5,
-        },
       },
       // Desktop
       1024: {
         slidesPerView: "auto",
         spaceBetween: 40,
-        coverflowEffect: {
-          depth: 100,
-          modifier: 2,
-        },
       },
     },
   });
