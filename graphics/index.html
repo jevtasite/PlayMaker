@@ -118,7 +118,7 @@
       </div>
     </nav>
 
-    <!-- Hero Section - Gallery Wall -->
+    <!-- Hero Section - Graphics Showcase Slider -->
     <section class="hero-section gallery-hero" id="home">
       <!-- Gallery Background -->
       <div class="gallery-background">
@@ -128,161 +128,192 @@
         <div class="spotlight spotlight-3"></div>
       </div>
 
-      <!-- Floating Text Overlay -->
-      <div class="floating-text-card">
-        <div class="text-card-inner">
+      <!-- Hero Content Container -->
+      <div class="hero-content-wrapper">
+        <!-- Header Text -->
+        <div class="hero-header">
           <span class="page-badge">Graphics Portfolio</span>
-          <h1 class="gallery-title">Visual Excellence</h1>
-          <p class="gallery-tagline">
+          <h1 class="hero-main-title">
+            Visual <span class="gradient-text">Excellence</span>
+          </h1>
+          <p class="hero-subtitle">
             Championship-level graphics that dominate the feed
           </p>
-          <a href="#graphicsGrid" class="btn-explore">
-            <span>Explore Work</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M7 17L17 7M17 7H7M17 7V17"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
         </div>
-      </div>
 
-      <!-- Gallery Grid -->
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Center Large Card (Hero) -->
-        <div
-          class="gallery-card gallery-card-hero"
-          data-position="center"
-          data-index="0"
-        >
-          <div class="card-frame">
-            <img
-              src="../images/gallery/gallery1.webp"
-              alt="Match Day Graphics"
-              loading="eager"
-            />
-            <div class="card-info-badge">
-              <span class="badge-title">Match Day Hype</span>
-              <span class="badge-category">Game Day</span>
+        <!-- 3-Card Carousel Container -->
+        <div class="carousel-container">
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Card 1 -->
+              <div class="carousel-card" data-index="0">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery1.webp"
+                    alt="Match Day Graphics"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Match Day Hype</h3>
+                    <p class="card-category">Game Day</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="carousel-card" data-index="1">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery2.webp"
+                    alt="Player Spotlight"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Player Spotlight</h3>
+                    <p class="card-category">Social Content</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="carousel-card" data-index="2">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery3.webp"
+                    alt="Victory Celebration"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Victory Celebration</h3>
+                    <p class="card-category">Branding</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="carousel-card" data-index="3">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery5.webp"
+                    alt="Stadium Nights"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Stadium Nights</h3>
+                    <p class="card-category">Social Media</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="carousel-card" data-index="4">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery7.webp"
+                    alt="Game Winner"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Game Winner</h3>
+                    <p class="card-category">Match Day</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="carousel-card" data-index="5">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery8.webp"
+                    alt="Team Unity"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Team Unity</h3>
+                    <p class="card-category">Branding</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 7 -->
+              <div class="carousel-card" data-index="6">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery9.webp"
+                    alt="Behind the Scenes"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Behind the Scenes</h3>
+                    <p class="card-category">Social Media</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 8 -->
+              <div class="carousel-card" data-index="7">
+                <div class="card-inner">
+                  <img
+                    src="../images/gallery/gallery10.webp"
+                    alt="Pre-Match Lineup"
+                    loading="eager"
+                  />
+                  <div class="card-overlay">
+                    <h3 class="card-title">Pre-Match Lineup</h3>
+                    <p class="card-category">Match Day</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Top Left Card -->
-        <div
-          class="gallery-card gallery-card-small"
-          data-position="top-left"
-          data-index="1"
-        >
-          <div class="card-frame">
-            <img
-              src="../images/gallery/gallery2.webp"
-              alt="Player Spotlight"
-              loading="eager"
-            />
-            <div class="card-hover-overlay">
-              <span class="hover-text">View</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Top Right Card -->
-        <div
-          class="gallery-card gallery-card-small"
-          data-position="top-right"
-          data-index="2"
-        >
-          <div class="card-frame">
-            <img
-              src="../images/gallery/gallery3.webp"
-              alt="Victory Celebration"
-              loading="eager"
-            />
-            <div class="card-hover-overlay">
-              <span class="hover-text">View</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Left Card -->
-        <div
-          class="gallery-card gallery-card-small"
-          data-position="bottom-left"
-          data-index="3"
-        >
-          <div class="card-frame">
-            <img
-              src="../images/gallery/gallery5.webp"
-              alt="Stadium Nights"
-              loading="eager"
-            />
-            <div class="card-hover-overlay">
-              <span class="hover-text">View</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Right Card -->
-        <div
-          class="gallery-card gallery-card-small"
-          data-position="bottom-right"
-          data-index="4"
-        >
-          <div class="card-frame">
-            <img
-              src="../images/gallery/gallery7.webp"
-              alt="Game Winner"
-              loading="eager"
-            />
-            <div class="card-hover-overlay">
-              <span class="hover-text">View</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Gallery Controls -->
-      <div class="mobile-gallery-controls">
-        <div class="mobile-nav-buttons">
+          <!-- Navigation Buttons -->
           <button
-            class="mobile-nav-btn"
-            id="mobileGalleryPrev"
-            aria-label="Previous image"
+            class="carousel-nav-btn carousel-nav-prev"
+            id="graphicsCarouselPrev"
+            aria-label="Previous"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path
                 d="M15 18l-6-6 6-6"
-                stroke-width="2"
+                stroke-width="2.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
           </button>
           <button
-            class="mobile-nav-btn"
-            id="mobileGalleryNext"
-            aria-label="Next image"
+            class="carousel-nav-btn carousel-nav-next"
+            id="graphicsCarouselNext"
+            aria-label="Next"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path
                 d="M9 18l6-6-6-6"
-                stroke-width="2"
+                stroke-width="2.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
           </button>
-        </div>
-        <div class="mobile-gallery-dots">
-          <span class="mobile-gallery-dot active" data-dot-index="0"></span>
-          <span class="mobile-gallery-dot" data-dot-index="1"></span>
-          <span class="mobile-gallery-dot" data-dot-index="2"></span>
-          <span class="mobile-gallery-dot" data-dot-index="3"></span>
-          <span class="mobile-gallery-dot" data-dot-index="4"></span>
+
+          <!-- Pagination Dots -->
+          <div class="carousel-pagination" id="carouselPagination">
+            <span class="carousel-dot active" data-index="0"></span>
+            <span class="carousel-dot" data-index="1"></span>
+            <span class="carousel-dot" data-index="2"></span>
+            <span class="carousel-dot" data-index="3"></span>
+            <span class="carousel-dot" data-index="4"></span>
+            <span class="carousel-dot" data-index="5"></span>
+            <span class="carousel-dot" data-index="6"></span>
+            <span class="carousel-dot" data-index="7"></span>
+          </div>
+
+          <!-- Explore Button -->
+          <a href="#graphicsGrid" class="btn-explore-work">
+            <span>Explore Full Portfolio</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
         </div>
       </div>
 

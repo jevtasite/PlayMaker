@@ -1,10 +1,10 @@
 /* ==========================================================================
-   GRAPHICS PAGE STYLES
+   GRAPHICS PAGE STYLES - 3-CARD CAROUSEL
    PlayMaker Group - Graphics Portfolio
    ========================================================================== */
 
 /* ==========================================================================
-   GALLERY WALL HERO SECTION
+   HERO SECTION - GRAPHICS CAROUSEL
    ========================================================================== */
 
 .gallery-hero {
@@ -17,7 +17,7 @@
   padding: var(--space-3xl) var(--space-lg);
 }
 
-/* Gallery Background */
+/* Gallery Background - NO CHANGES */
 .gallery-background {
   position: absolute;
   top: 0;
@@ -93,187 +93,162 @@
   }
 }
 
-/* Floating Text Card */
-.floating-text-card {
-  position: absolute;
-  top: 120px;
-  left: 60px;
+/* ==========================================================================
+   HERO CONTENT WRAPPER
+   ========================================================================== */
+
+.hero-content-wrapper {
+  position: relative;
   z-index: 10;
-  max-width: 350px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3xl);
 }
 
-.text-card-inner {
-  background: rgba(26, 29, 41, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(244, 208, 63, 0.3);
-  border-radius: 20px;
-  padding: var(--space-2xl);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(244, 208, 63, 0.1);
+/* Header Text */
+.hero-header {
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
 }
 
 .page-badge {
   display: inline-block;
-  padding: 6px 16px;
+  padding: 8px 20px;
   background: rgba(244, 208, 63, 0.15);
   border: 1px solid rgba(244, 208, 63, 0.4);
-  border-radius: 20px;
+  border-radius: 30px;
   color: var(--stadium-gold);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
-.gallery-title {
-  font-size: 42px;
+.hero-main-title {
+  font-size: 64px;
   font-weight: 700;
   font-family: var(--font-headline);
   color: var(--text-primary);
   line-height: 1.1;
-  margin-bottom: var(--space-sm);
-  background: var(--money-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: var(--space-md);
 }
 
-.gallery-tagline {
-  font-size: 15px;
+.hero-subtitle {
+  font-size: 18px;
   color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.btn-explore {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: var(--money-gradient);
-  color: var(--pregame-darkness);
-  font-weight: 700;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(244, 208, 63, 0.3);
-}
-
-.btn-explore:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.5);
-  color: var(--pregame-darkness);
-}
-
-.btn-explore svg {
-  transition: transform 0.3s ease;
-}
-
-.btn-explore:hover svg {
-  transform: translate(2px, -2px);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
-   GALLERY GRID - 5 CARD LAYOUT
+   FEATURED CAROUSEL - CENTERED FOCUS
    ========================================================================== */
 
-.gallery-grid {
+.carousel-container {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  height: 700px;
   margin: 0 auto;
-  z-index: 5;
 }
 
-/* Gallery Cards Base */
-.gallery-card {
-  position: absolute;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  will-change: transform, opacity;
+.carousel-track-wrapper {
+  position: relative;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: var(--space-2xl) 0;
 }
 
-.card-frame {
+.carousel-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.carousel-card {
+  aspect-ratio: 9 / 16;
+  transition:
+    width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.8s ease-in-out,
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.8s ease-in-out;
+  flex-shrink: 0;
+  will-change: width, opacity, transform, filter;
+}
+
+/* Side cards (left and right) - smaller and dimmed */
+.carousel-card.side {
+  width: 200px;
+  opacity: 0.4;
+  transform: scale(0.85);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Featured card (center) - larger and prominent */
+.carousel-card.featured {
+  width: 320px;
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  background: rgba(26, 29, 41, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(26, 29, 41, 0.6);
+  backdrop-filter: blur(20px);
   border: 2px solid rgba(244, 208, 63, 0.2);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.7),
     0 0 40px rgba(244, 208, 63, 0.1);
-  transition: all 0.4s ease;
+  transition:
+    border-color 0.8s ease-in-out,
+    box-shadow 0.8s ease-in-out;
 }
 
-.gallery-card:hover .card-frame {
-  border-color: rgba(244, 208, 63, 0.6);
+.carousel-card.featured .card-inner {
+  border-color: rgba(244, 208, 63, 0.5);
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.8),
     0 0 60px rgba(244, 208, 63, 0.3);
-  transform: translateY(-8px);
 }
 
-.card-frame img {
+.card-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
 }
 
-.gallery-card:hover .card-frame img {
-  transform: scale(1.05);
-}
-
-/* Hero Card (Center Large) */
-.gallery-card-hero {
-  width: 400px;
-  aspect-ratio: 9 / 16;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-}
-
-/* Small Cards */
-.gallery-card-small {
-  width: 220px;
-  aspect-ratio: 9 / 16;
-  z-index: 4;
-}
-
-/* Card Positions */
-.gallery-card[data-position="top-left"] {
-  top: 50px;
-  left: 80px;
-}
-
-.gallery-card[data-position="top-right"] {
-  top: 50px;
-  right: 80px;
-}
-
-.gallery-card[data-position="bottom-left"] {
-  bottom: 50px;
-  left: 80px;
-}
-
-.gallery-card[data-position="bottom-right"] {
-  bottom: 50px;
-  right: 80px;
-}
-
-/* Card Info Badge (On Hero Card) */
-.card-info-badge {
+.card-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -285,58 +260,191 @@
     rgba(0, 0, 0, 0.7) 60%,
     transparent 100%
   );
-  transform: translateY(0);
-  transition: transform 0.4s ease;
-}
-
-.badge-title {
-  display: block;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: var(--font-headline);
-  margin-bottom: 4px;
-}
-
-.badge-category {
-  display: block;
-  font-size: 12px;
-  color: var(--stadium-gold);
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  font-weight: 600;
-}
-
-/* Hover Overlay (On Small Cards) */
-.card-hover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(244, 208, 63, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease-in-out;
 }
 
-.gallery-card-small:hover .card-hover-overlay {
+.carousel-card.featured .card-overlay {
   opacity: 1;
 }
 
-.hover-text {
-  font-size: 16px;
+.card-title {
+  font-size: 20px;
   font-weight: 700;
-  color: var(--pregame-darkness);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  color: var(--text-primary);
+  font-family: var(--font-headline);
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
-/* Mobile gallery controls - hidden on desktop */
-.mobile-gallery-controls {
-  display: none;
+.card-category {
+  font-size: 12px;
+  color: var(--stadium-gold);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   CAROUSEL NAVIGATION
+   ========================================================================== */
+
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(26, 29, 41, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(244, 208, 63, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stadium-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(244, 208, 63, 0.1);
+  border-color: var(--stadium-gold);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav-prev {
+  left: -80px;
+}
+
+.carousel-nav-next {
+  right: -80px;
+}
+
+.carousel-nav-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* ==========================================================================
+   CAROUSEL PAGINATION
+   ========================================================================== */
+
+.carousel-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: var(--space-2xl);
+  pointer-events: auto;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(244, 208, 63, 0.3);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.carousel-dot:hover {
+  background: rgba(244, 208, 63, 0.6);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  width: 32px;
+  border-radius: 6px;
+  background: var(--stadium-gold);
+  border-color: rgba(244, 208, 63, 0.5);
+}
+
+/* ==========================================================================
+   EXPLORE BUTTON
+   ========================================================================== */
+
+.btn-explore-work {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--money-gradient);
+  color: var(--pregame-darkness);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(244, 208, 63, 0.3);
+  margin-top: var(--space-xl);
+}
+
+.btn-explore-work:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(244, 208, 63, 0.5);
+  color: var(--pregame-darkness);
+}
+
+.btn-explore-work i {
+  transition: transform 0.3s ease;
+}
+
+.btn-explore-work:hover i {
+  transform: translateY(4px);
+}
+
+/* ==========================================================================
+   SCROLL INDICATOR
+   ========================================================================== */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 5;
+  animation: bounce 2s infinite;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(244, 208, 63, 0.6),
+    transparent
+  );
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
 }
 
 /* ==========================================================================
@@ -416,7 +524,7 @@
 
 .portfolio-image {
   position: relative;
-  padding-bottom: 100%; /* Square aspect ratio */
+  padding-bottom: 100%;
   overflow: hidden;
 }
 
@@ -743,62 +851,37 @@
    ========================================================================== */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .gallery-hero {
-    padding: var(--space-2xl) var(--space-lg);
+  .hero-main-title {
+    font-size: 48px;
   }
 
-  .floating-text-card {
-    top: 100px;
-    left: 40px;
-    max-width: 300px;
+  .hero-subtitle {
+    font-size: 16px;
   }
 
-  .gallery-title {
-    font-size: 36px;
+  .carousel-card.side {
+    width: 160px;
+    opacity: 0.35;
+    transform: scale(0.8);
   }
 
-  .gallery-tagline {
-    font-size: 14px;
+  .carousel-card.featured {
+    width: 280px;
   }
 
-  .gallery-grid {
-    max-width: 900px;
-    height: 600px;
+  .carousel-nav-prev {
+    left: 10px;
   }
 
-  .gallery-card-hero {
-    width: 320px;
+  .carousel-nav-next {
+    right: 10px;
   }
 
-  .gallery-card-small {
-    width: 180px;
-  }
-
-  .gallery-card[data-position="top-left"] {
-    top: 40px;
-    left: 60px;
-  }
-
-  .gallery-card[data-position="top-right"] {
-    top: 40px;
-    right: 60px;
-  }
-
-  .gallery-card[data-position="bottom-left"] {
-    bottom: 40px;
-    left: 60px;
-  }
-
-  .gallery-card[data-position="bottom-right"] {
-    bottom: 40px;
-    right: 60px;
-  }
-
-  .badge-title {
+  .card-title {
     font-size: 18px;
   }
 
-  .badge-category {
+  .card-category {
     font-size: 11px;
   }
 
@@ -835,155 +918,96 @@
 @media (max-width: 768px) {
   .gallery-hero {
     min-height: 100vh;
-    padding: calc(80px + var(--space-xl)) var(--space-md) var(--space-2xl);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    padding: calc(80px + var(--space-lg)) var(--space-md) var(--space-2xl);
   }
 
-  /* Move text card to top */
-  .floating-text-card {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin: 0 auto var(--space-2xl);
+  .hero-content-wrapper {
+    gap: var(--space-2xl);
+  }
+
+  .page-badge {
+    font-size: 10px;
+    padding: 6px 16px;
+  }
+
+  .hero-main-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .carousel-container {
     max-width: 100%;
-    z-index: 10;
   }
 
-  .text-card-inner {
-    text-align: center;
-    padding: var(--space-lg) var(--space-xl);
+  .carousel-track-wrapper {
+    height: 500px;
   }
 
-  .gallery-title {
-    font-size: 28px;
+  .carousel-track {
+    gap: var(--space-md);
   }
 
-  .gallery-tagline {
-    font-size: 13px;
-    margin: var(--space-sm) 0 var(--space-lg);
+  .carousel-card.side {
+    width: 120px;
+    opacity: 0.3;
+    transform: scale(0.75);
   }
 
-  .btn-explore {
-    width: 100%;
-    justify-content: center;
+  .carousel-card.featured {
+    width: 260px;
   }
 
-  /* Simplify gallery grid for mobile - show only center card */
-  .gallery-grid {
-    position: relative;
-    height: auto;
-    max-width: 100%;
-    width: 100%;
-    padding: 0 var(--space-md);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .carousel-nav-btn {
+    width: 50px;
+    height: 50px;
   }
 
-  .gallery-card-hero {
-    width: 90%;
-    max-width: 340px;
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    margin: 0 auto;
+  .carousel-nav-prev {
+    left: 10px;
   }
 
-  /* Hide corner cards on mobile */
-  .gallery-card-small {
-    display: none;
+  .carousel-nav-next {
+    right: 10px;
   }
 
-  /* Mobile navigation controls */
-  .mobile-gallery-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
+  .carousel-nav-btn svg {
+    width: 22px;
+    height: 22px;
   }
 
-  .mobile-nav-buttons {
-    display: flex;
-    gap: var(--space-lg);
-    align-items: center;
+  .card-overlay {
+    padding: var(--space-lg);
   }
 
-  .mobile-nav-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(26, 29, 41, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(244, 208, 63, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--stadium-gold);
+  .card-title {
+    font-size: 18px;
   }
 
-  .mobile-nav-btn:active {
-    transform: scale(0.95);
-    background: rgba(244, 208, 63, 0.1);
+  .card-category {
+    font-size: 11px;
   }
 
-  .mobile-nav-btn svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .mobile-gallery-dots {
-    display: flex;
-    gap: var(--space-sm);
-    align-items: center;
-  }
-
-  .mobile-gallery-dot {
+  .carousel-dot {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-    background: rgba(244, 208, 63, 0.3);
-    transition: all 0.3s ease;
-    cursor: pointer;
   }
 
-  .mobile-gallery-dot.active {
+  .carousel-dot.active {
     width: 24px;
-    border-radius: 4px;
-    background: var(--stadium-gold);
   }
 
-  /* Scroll indicator positioning */
+  .btn-explore-work {
+    padding: 12px 24px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
   .scroll-indicator {
-    position: absolute;
     bottom: var(--space-xl);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .card-info-badge {
-    padding: var(--space-md);
-  }
-
-  .badge-title {
-    font-size: 16px;
-  }
-
-  .badge-category {
-    font-size: 10px;
-  }
-
-  .hover-text {
-    font-size: 14px;
   }
 
   .portfolio-stats {
@@ -991,7 +1015,7 @@
   }
 
   .stat-badge .stat-number {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .graphics-portfolio-grid {
@@ -1004,7 +1028,7 @@
   }
 
   .cta-title {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .cta-text {

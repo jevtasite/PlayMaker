@@ -1,5 +1,5 @@
 // ==========================================================================
-// GRAPHICS PAGE JAVASCRIPT
+// GRAPHICS PAGE JAVASCRIPT - 3-CARD CAROUSEL
 // PlayMaker Group - Graphics Portfolio Interactions
 // ==========================================================================
 
@@ -7,49 +7,57 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ==========================================================================
-// GALLERY WALL SHOWCASE
+// FEATURED CAROUSEL - CENTERED FOCUS
 // ==========================================================================
 
-const galleryGrid = document.getElementById('galleryGrid');
-const galleryCards = document.querySelectorAll('.gallery-card');
+const graphicsCarouselTrack = document.getElementById('carouselTrack');
+const graphicsCarouselCards = document.querySelectorAll('.carousel-card');
+const graphicsCarouselPrevBtn = document.getElementById('graphicsCarouselPrev');
+const graphicsCarouselNextBtn = document.getElementById('graphicsCarouselNext');
+const graphicsCarouselDots = document.querySelectorAll('.carousel-dot');
 
-// Card data structure
-const cardData = [
-  { img: '../images/gallery/gallery1.webp', title: 'Match Day Hype', category: 'Game Day' },
-  { img: '../images/gallery/gallery2.webp', title: 'Player Spotlight', category: 'Social Content' },
-  { img: '../images/gallery/gallery3.webp', title: 'Victory Celebration', category: 'Branding' },
-  { img: '../images/gallery/gallery5.webp', title: 'Stadium Nights', category: 'Social Media' },
-  { img: '../images/gallery/gallery7.webp', title: 'Game Winner', category: 'Match Day' }
-];
+let graphicsFeaturedIndex = 0;
+const graphicsTotalCards = graphicsCarouselCards.length;
+let graphicsIsTransitioning = false;
+let graphicsAutoplayInterval;
 
-let currentCardPositions = [0, 1, 2, 3, 4]; // Track which card is in which position
-let autoRotateInterval;
+// Update which card is featured (centered)
+function updateFeaturedCard() {
+  if (!graphicsCarouselTrack || graphicsCarouselCards.length === 0) return;
 
-// Mobile gallery controls
-const mobileGalleryPrev = document.getElementById('mobileGalleryPrev');
-const mobileGalleryNext = document.getElementById('mobileGalleryNext');
-const mobileGalleryDots = document.querySelectorAll('.mobile-gallery-dot');
+  // Update all cards based on their position relative to featured index
+  graphicsCarouselCards.forEach((card, index) => {
+    // Remove all state classes
+    card.classList.remove('featured', 'side');
 
-// Position configurations
-const positions = {
-  center: { class: 'gallery-card-hero', attr: 'center' },
-  topLeft: { class: 'gallery-card-small', attr: 'top-left' },
-  topRight: { class: 'gallery-card-small', attr: 'top-right' },
-  bottomLeft: { class: 'gallery-card-small', attr: 'bottom-left' },
-  bottomRight: { class: 'gallery-card-small', attr: 'bottom-right' }
-};
+    // Set the order to maintain consistent positioning based on actual index
+    card.style.order = index;
 
-// Update active dot indicator
-function updateActiveDot() {
-  if (mobileGalleryDots.length === 0) return;
+    if (index === graphicsFeaturedIndex) {
+      // This is the featured (centered) card
+      card.classList.add('featured');
+      card.style.display = 'block';
+    } else if (index === graphicsFeaturedIndex - 1 || index === graphicsFeaturedIndex + 1) {
+      // These are the side cards (left and right of featured)
+      card.classList.add('side');
+      card.style.display = 'block';
+    } else {
+      // Hide all other cards
+      card.style.display = 'none';
+    }
+  });
 
-  const currentCenterIndex = currentCardPositions.indexOf(0);
-  const currentCenterCard = galleryCards[currentCenterIndex];
-  const currentDataIndex = parseInt(currentCenterCard.getAttribute('data-index'));
+  // Update dots
+  updateCarouselDots();
 
-  mobileGalleryDots.forEach(dot => {
-    const dotIndex = parseInt(dot.getAttribute('data-dot-index'));
-    if (dotIndex === currentDataIndex) {
+  // Update button states
+  updateButtonStates();
+}
+
+// Update active dot
+function updateCarouselDots() {
+  graphicsCarouselDots.forEach((dot, index) => {
+    if (index === graphicsFeaturedIndex) {
       dot.classList.add('active');
     } else {
       dot.classList.remove('active');
@@ -57,192 +65,185 @@ function updateActiveDot() {
   });
 }
 
-// Rotate cards to new positions
-function rotateCards() {
-  // Shift positions: last item moves to front
-  currentCardPositions.unshift(currentCardPositions.pop());
-
-  // Update each card's position and class
-  galleryCards.forEach((card, index) => {
-    const positionIndex = currentCardPositions[index];
-    const positionKeys = Object.keys(positions);
-    const newPosition = positions[positionKeys[positionIndex]];
-
-    // Remove all position classes
-    card.classList.remove('gallery-card-hero', 'gallery-card-small');
-
-    // Add new class
-    card.classList.add(newPosition.class);
-
-    // Update data-position attribute
-    card.setAttribute('data-position', newPosition.attr);
-
-    // Update info badge if it's the center card
-    if (positionIndex === 0) {
-      const badge = card.querySelector('.card-info-badge');
-      if (badge) {
-        const title = badge.querySelector('.badge-title');
-        const category = badge.querySelector('.badge-category');
-        const cardIndex = parseInt(card.getAttribute('data-index'));
-
-        if (title) title.textContent = cardData[cardIndex].title;
-        if (category) category.textContent = cardData[cardIndex].category;
-      }
+// Update button states (disable at ends)
+function updateButtonStates() {
+  if (graphicsCarouselPrevBtn) {
+    if (graphicsFeaturedIndex === 0) {
+      graphicsCarouselPrevBtn.style.opacity = '0.3';
+      graphicsCarouselPrevBtn.style.cursor = 'not-allowed';
+    } else {
+      graphicsCarouselPrevBtn.style.opacity = '1';
+      graphicsCarouselPrevBtn.style.cursor = 'pointer';
     }
-  });
+  }
 
-  // Update mobile dot indicator if it exists
-  if (typeof updateActiveDot === 'function') {
-    updateActiveDot();
+  if (graphicsCarouselNextBtn) {
+    if (graphicsFeaturedIndex === graphicsTotalCards - 1) {
+      graphicsCarouselNextBtn.style.opacity = '0.3';
+      graphicsCarouselNextBtn.style.cursor = 'not-allowed';
+    } else {
+      graphicsCarouselNextBtn.style.opacity = '1';
+      graphicsCarouselNextBtn.style.cursor = 'pointer';
+    }
   }
 }
 
-// Auto-rotate functionality
-function startAutoRotate() {
-  autoRotateInterval = setInterval(() => {
-    rotateCards();
-  }, 4000);
+// Go to next slide
+function goToNext() {
+  if (graphicsIsTransitioning) return;
+  if (graphicsFeaturedIndex >= graphicsTotalCards - 1) return; // No loop
+
+  graphicsIsTransitioning = true;
+  graphicsFeaturedIndex++;
+  updateFeaturedCard();
+
+  setTimeout(() => {
+    graphicsIsTransitioning = false;
+  }, 800);
 }
 
-function stopAutoRotate() {
-  if (autoRotateInterval) {
-    clearInterval(autoRotateInterval);
-  }
+// Go to previous slide
+function goToPrevious() {
+  if (graphicsIsTransitioning) return;
+  if (graphicsFeaturedIndex <= 0) return; // No loop
+
+  graphicsIsTransitioning = true;
+  graphicsFeaturedIndex--;
+  updateFeaturedCard();
+
+  setTimeout(() => {
+    graphicsIsTransitioning = false;
+  }, 800);
 }
 
-// Click handler for cards
-galleryCards.forEach((card) => {
-  card.addEventListener('click', () => {
-    const clickedIndex = parseInt(card.getAttribute('data-index'));
-    const currentCenterIndex = currentCardPositions.indexOf(0);
+// Go to specific index
+function goToSlide(index) {
+  if (graphicsIsTransitioning) return;
+  if (index < 0 || index >= graphicsTotalCards) return;
 
-    // If clicked card is not in center, rotate until it is
-    if (clickedIndex !== currentCenterIndex) {
-      stopAutoRotate();
+  graphicsIsTransitioning = true;
+  graphicsFeaturedIndex = index;
+  updateFeaturedCard();
 
-      // Calculate how many rotations needed
-      const distance = (clickedIndex - currentCenterIndex + galleryCards.length) % galleryCards.length;
+  setTimeout(() => {
+    graphicsIsTransitioning = false;
+  }, 800);
+}
 
-      // Rotate the required number of times
-      for (let i = 0; i < distance; i++) {
-        setTimeout(() => {
-          rotateCards();
-        }, i * 300);
-      }
+// Autoplay removed per user request
 
-      // Restart auto-rotate after interaction
-      setTimeout(startAutoRotate, 8000);
-    }
+// Event Listeners - Navigation Buttons
+if (graphicsCarouselPrevBtn) {
+  graphicsCarouselPrevBtn.addEventListener('click', () => {
+    goToPrevious();
   });
-});
 
-// Pause on hover
-if (galleryGrid) {
-  galleryGrid.addEventListener('mouseenter', stopAutoRotate);
-  galleryGrid.addEventListener('mouseleave', startAutoRotate);
+  graphicsCarouselPrevBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    goToPrevious();
+  }, { passive: false });
 }
 
-// Start auto-rotate on load
-if (galleryCards.length > 0) {
-  startAutoRotate();
-}
-
-// ==========================================================================
-// MOBILE GALLERY CONTROLS - BUTTON EVENT LISTENERS
-// ==========================================================================
-
-// Previous button
-if (mobileGalleryPrev) {
-  mobileGalleryPrev.addEventListener('click', () => {
-    stopAutoRotate();
-    // Rotate backward (shift first to last)
-    currentCardPositions.push(currentCardPositions.shift());
-
-    // Update each card's position
-    galleryCards.forEach((card, index) => {
-      const positionIndex = currentCardPositions[index];
-      const positionKeys = Object.keys(positions);
-      const newPosition = positions[positionKeys[positionIndex]];
-
-      card.classList.remove('gallery-card-hero', 'gallery-card-small');
-      card.classList.add(newPosition.class);
-      card.setAttribute('data-position', newPosition.attr);
-
-      if (positionIndex === 0) {
-        const badge = card.querySelector('.card-info-badge');
-        if (badge) {
-          const title = badge.querySelector('.badge-title');
-          const category = badge.querySelector('.badge-category');
-          const cardIndex = parseInt(card.getAttribute('data-index'));
-
-          if (title) title.textContent = cardData[cardIndex].title;
-          if (category) category.textContent = cardData[cardIndex].category;
-        }
-      }
-    });
-
-    updateActiveDot();
-    setTimeout(startAutoRotate, 8000);
+if (graphicsCarouselNextBtn) {
+  graphicsCarouselNextBtn.addEventListener('click', () => {
+    goToNext();
   });
+
+  graphicsCarouselNextBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    goToNext();
+  }, { passive: false });
 }
 
-// Next button
-if (mobileGalleryNext) {
-  mobileGalleryNext.addEventListener('click', () => {
-    stopAutoRotate();
-    rotateCards();
-    updateActiveDot();
-    setTimeout(startAutoRotate, 8000);
-  });
-}
-
-// Dot navigation
-mobileGalleryDots.forEach(dot => {
+// Event Listeners - Pagination Dots
+graphicsCarouselDots.forEach((dot, index) => {
   dot.addEventListener('click', () => {
-    const targetIndex = parseInt(dot.getAttribute('data-dot-index'));
-
-    // Find which card has this data-index
-    let clickedCardPosition = -1;
-    galleryCards.forEach((card, index) => {
-      if (parseInt(card.getAttribute('data-index')) === targetIndex) {
-        clickedCardPosition = index;
-      }
-    });
-
-    if (clickedCardPosition !== -1) {
-      const currentCenterIndex = currentCardPositions.indexOf(0);
-
-      if (clickedCardPosition !== currentCenterIndex) {
-        stopAutoRotate();
-        const distance = (clickedCardPosition - currentCenterIndex + galleryCards.length) % galleryCards.length;
-
-        for (let i = 0; i < distance; i++) {
-          setTimeout(() => {
-            rotateCards();
-            if (i === distance - 1) {
-              updateActiveDot();
-            }
-          }, i * 300);
-        }
-
-        setTimeout(startAutoRotate, 8000);
-      }
-    }
+    goToSlide(index);
   });
+
+  dot.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    goToSlide(index);
+  }, { passive: false });
 });
 
+// Touch Swipe Support
+let graphicsTouchStartX = 0;
+let graphicsTouchEndX = 0;
+
+if (graphicsCarouselTrack) {
+  graphicsCarouselTrack.addEventListener('touchstart', (e) => {
+    graphicsTouchStartX = e.changedTouches[0].screenX;
+  });
+
+  graphicsCarouselTrack.addEventListener('touchend', (e) => {
+    graphicsTouchEndX = e.changedTouches[0].screenX;
+    handleCarouselSwipe();
+  });
+}
+
+function handleCarouselSwipe() {
+  const swipeThreshold = 50;
+
+  if (graphicsTouchStartX - graphicsTouchEndX > swipeThreshold) {
+    // Swiped left - go to next
+    goToNext();
+  }
+
+  if (graphicsTouchEndX - graphicsTouchStartX > swipeThreshold) {
+    // Swiped right - go to previous
+    goToPrevious();
+  }
+}
+
+// Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+  // Only handle if we're not in a lightbox or other modal
+  const graphicsLightboxCheck = document.getElementById('lightbox');
+  if (graphicsLightboxCheck && graphicsLightboxCheck.classList.contains('active')) return;
+
+  if (e.key === 'ArrowLeft') {
+    goToPrevious();
+  } else if (e.key === 'ArrowRight') {
+    goToNext();
+  }
+});
+
+// Initialize carousel on load
+function initCarousel() {
+  updateFeaturedCard();
+}
+
+// Handle window resize
+let graphicsResizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(graphicsResizeTimeout);
+  graphicsResizeTimeout = setTimeout(() => {
+    updateFeaturedCard();
+  }, 250);
+});
+
+// Initialize on page load
+if (graphicsCarouselTrack && graphicsCarouselCards.length > 0) {
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+}
 
 // ==========================================================================
 // PORTFOLIO FILTERING
 // ==========================================================================
 
-const filterChips = document.querySelectorAll('.filter-chip');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+const graphicsFilterChips = document.querySelectorAll('.filter-chip');
+const graphicsPortfolioItems = document.querySelectorAll('.portfolio-item');
 
-filterChips.forEach(chip => {
+graphicsFilterChips.forEach(chip => {
   chip.addEventListener('click', () => {
     // Remove active class from all chips
-    filterChips.forEach(c => c.classList.remove('active'));
+    graphicsFilterChips.forEach(c => c.classList.remove('active'));
 
     // Add active class to clicked chip
     chip.classList.add('active');
@@ -251,7 +252,7 @@ filterChips.forEach(chip => {
     const filterValue = chip.getAttribute('data-filter');
 
     // Filter portfolio items
-    portfolioItems.forEach(item => {
+    graphicsPortfolioItems.forEach(item => {
       const itemCategory = item.getAttribute('data-category');
 
       if (filterValue === 'all' || itemCategory === filterValue) {
@@ -285,130 +286,146 @@ filterChips.forEach(chip => {
 // LIGHTBOX FUNCTIONALITY
 // ==========================================================================
 
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxTitle = document.getElementById('lightboxTitle');
-const lightboxCategory = document.getElementById('lightboxCategory');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const lightboxBackdrop = document.querySelector('.lightbox-backdrop');
+const graphicsLightbox = document.getElementById('lightbox');
+const graphicsLightboxImage = document.getElementById('lightboxImage');
+const graphicsLightboxTitle = document.getElementById('lightboxTitle');
+const graphicsLightboxCategory = document.getElementById('lightboxCategory');
+const graphicsLightboxClose = document.getElementById('lightboxClose');
+const graphicsLightboxPrev = document.getElementById('lightboxPrev');
+const graphicsLightboxNext = document.getElementById('lightboxNext');
+const graphicsLightboxBackdrop = document.querySelector('.lightbox-backdrop');
 
-let currentImageIndex = 0;
-const allImages = Array.from(portfolioItems);
+let graphicsCurrentImageIndex = 0;
 
 // Open lightbox when clicking on portfolio item
-portfolioItems.forEach((item, index) => {
+graphicsPortfolioItems.forEach((item, index) => {
   item.addEventListener('click', () => {
-    currentImageIndex = index;
-    openLightbox(item);
+    graphicsCurrentImageIndex = index;
+    openGraphicsLightbox(item);
   });
 });
 
-function openLightbox(item) {
+function openGraphicsLightbox(item) {
   const img = item.querySelector('.portfolio-image img');
   const title = item.querySelector('.portfolio-title').textContent;
   const category = item.querySelector('.portfolio-category').textContent;
 
-  lightboxImage.src = img.src;
-  lightboxTitle.textContent = title;
-  lightboxCategory.textContent = category;
+  if (graphicsLightboxImage && graphicsLightboxTitle && graphicsLightboxCategory) {
+    graphicsLightboxImage.src = img.src;
+    graphicsLightboxTitle.textContent = title;
+    graphicsLightboxCategory.textContent = category;
+  }
 
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  if (graphicsLightbox) {
+    graphicsLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
 
-  // Animate lightbox in
-  gsap.fromTo(lightbox.querySelector('.lightbox-content'),
-    { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
-  );
+    // Animate lightbox in
+    const lightboxContent = graphicsLightbox.querySelector('.lightbox-content');
+    if (lightboxContent) {
+      gsap.fromTo(lightboxContent,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
+      );
+    }
+  }
 }
 
-function closeLightbox() {
-  gsap.to(lightbox.querySelector('.lightbox-content'), {
-    opacity: 0,
-    scale: 0.9,
-    duration: 0.2,
-    ease: 'power2.in',
-    onComplete: () => {
-      lightbox.classList.remove('active');
+function closeGraphicsLightbox() {
+  const lightboxContent = graphicsLightbox.querySelector('.lightbox-content');
+  if (lightboxContent) {
+    gsap.to(lightboxContent, {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.2,
+      ease: 'power2.in',
+      onComplete: () => {
+        if (graphicsLightbox) {
+          graphicsLightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+  } else {
+    if (graphicsLightbox) {
+      graphicsLightbox.classList.remove('active');
       document.body.style.overflow = '';
     }
-  });
+  }
 }
 
 // Close lightbox
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxBackdrop.addEventListener('click', closeLightbox);
+if (graphicsLightboxClose) {
+  graphicsLightboxClose.addEventListener('click', closeGraphicsLightbox);
+}
+
+if (graphicsLightboxBackdrop) {
+  graphicsLightboxBackdrop.addEventListener('click', closeGraphicsLightbox);
+}
 
 // Navigate to previous image
-lightboxPrev.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const visibleItems = Array.from(portfolioItems).filter(item => {
-    return window.getComputedStyle(item).display !== 'none';
-  });
+if (graphicsLightboxPrev) {
+  graphicsLightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const visibleItems = Array.from(graphicsPortfolioItems).filter(item => {
+      return window.getComputedStyle(item).display !== 'none';
+    });
 
-  currentImageIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
-  const prevItem = visibleItems[currentImageIndex];
+    graphicsCurrentImageIndex = (graphicsCurrentImageIndex - 1 + visibleItems.length) % visibleItems.length;
+    const prevItem = visibleItems[graphicsCurrentImageIndex];
 
-  // Update lightbox content with animation
-  gsap.to(lightboxImage, {
-    opacity: 0,
-    duration: 0.2,
-    onComplete: () => {
-      const img = prevItem.querySelector('.portfolio-image img');
-      const title = prevItem.querySelector('.portfolio-title').textContent;
-      const category = prevItem.querySelector('.portfolio-category').textContent;
+    // Update lightbox content with animation
+    if (graphicsLightboxImage) {
+      gsap.to(graphicsLightboxImage, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          const img = prevItem.querySelector('.portfolio-image img');
+          const title = prevItem.querySelector('.portfolio-title').textContent;
+          const category = prevItem.querySelector('.portfolio-category').textContent;
 
-      lightboxImage.src = img.src;
-      lightboxTitle.textContent = title;
-      lightboxCategory.textContent = category;
+          graphicsLightboxImage.src = img.src;
+          if (graphicsLightboxTitle) graphicsLightboxTitle.textContent = title;
+          if (graphicsLightboxCategory) graphicsLightboxCategory.textContent = category;
 
-      gsap.to(lightboxImage, { opacity: 1, duration: 0.2 });
+          gsap.to(graphicsLightboxImage, { opacity: 1, duration: 0.2 });
+        }
+      });
     }
   });
-});
+}
 
 // Navigate to next image
-lightboxNext.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const visibleItems = Array.from(portfolioItems).filter(item => {
-    return window.getComputedStyle(item).display !== 'none';
-  });
+if (graphicsLightboxNext) {
+  graphicsLightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const visibleItems = Array.from(graphicsPortfolioItems).filter(item => {
+      return window.getComputedStyle(item).display !== 'none';
+    });
 
-  currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
-  const nextItem = visibleItems[currentImageIndex];
+    graphicsCurrentImageIndex = (graphicsCurrentImageIndex + 1) % visibleItems.length;
+    const nextItem = visibleItems[graphicsCurrentImageIndex];
 
-  // Update lightbox content with animation
-  gsap.to(lightboxImage, {
-    opacity: 0,
-    duration: 0.2,
-    onComplete: () => {
-      const img = nextItem.querySelector('.portfolio-image img');
-      const title = nextItem.querySelector('.portfolio-title').textContent;
-      const category = nextItem.querySelector('.portfolio-category').textContent;
+    // Update lightbox content with animation
+    if (graphicsLightboxImage) {
+      gsap.to(graphicsLightboxImage, {
+        opacity: 0,
+        duration: 0.2,
+        onComplete: () => {
+          const img = nextItem.querySelector('.portfolio-image img');
+          const title = nextItem.querySelector('.portfolio-title').textContent;
+          const category = nextItem.querySelector('.portfolio-category').textContent;
 
-      lightboxImage.src = img.src;
-      lightboxTitle.textContent = title;
-      lightboxCategory.textContent = category;
+          graphicsLightboxImage.src = img.src;
+          if (graphicsLightboxTitle) graphicsLightboxTitle.textContent = title;
+          if (graphicsLightboxCategory) graphicsLightboxCategory.textContent = category;
 
-      gsap.to(lightboxImage, { opacity: 1, duration: 0.2 });
+          gsap.to(graphicsLightboxImage, { opacity: 1, duration: 0.2 });
+        }
+      });
     }
   });
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
-
-  if (e.key === 'Escape') {
-    closeLightbox();
-  } else if (e.key === 'ArrowLeft') {
-    lightboxPrev.click();
-  } else if (e.key === 'ArrowRight') {
-    lightboxNext.click();
-  }
-});
+}
 
 // ==========================================================================
 // LOAD MORE FUNCTIONALITY
@@ -422,7 +439,7 @@ let initialItemsCount = 9;
 let currentVisibleCount = initialItemsCount;
 
 function initializeLoadMore() {
-  const allItems = Array.from(portfolioItems);
+  const allItems = Array.from(graphicsPortfolioItems);
 
   if (allItems.length <= initialItemsCount) {
     // If 9 or fewer items, hide the load more button
@@ -443,7 +460,7 @@ function initializeLoadMore() {
 
 if (loadMoreBtn) {
   loadMoreBtn.addEventListener('click', () => {
-    const hiddenItems = Array.from(portfolioItems).filter(item =>
+    const hiddenItems = Array.from(graphicsPortfolioItems).filter(item =>
       item.classList.contains('hidden-item')
     );
 
@@ -473,7 +490,7 @@ if (loadMoreBtn) {
     currentVisibleCount += itemsToShow.length;
 
     // Hide button if no more items
-    const remainingHidden = Array.from(portfolioItems).filter(item =>
+    const remainingHidden = Array.from(graphicsPortfolioItems).filter(item =>
       item.classList.contains('hidden-item')
     );
 
@@ -564,44 +581,6 @@ gsap.utils.toArray('.category-card').forEach((card, index) => {
   );
 });
 
-// Gallery wall entrance animation
-if (galleryGrid) {
-  // Animate floating text card
-  gsap.fromTo('.floating-text-card',
-    {
-      opacity: 0,
-      x: -60,
-      y: 20
-    },
-    {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.2
-    }
-  );
-
-  // Animate gallery cards with stagger
-  gsap.fromTo('.gallery-card',
-    {
-      opacity: 0,
-      scale: 0.8,
-      y: 40
-    },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'back.out(1.4)',
-      delay: 0.5
-    }
-  );
-}
-
 // Stats animation
 gsap.utils.toArray('.stat-badge').forEach((badge, index) => {
   gsap.fromTo(badge,
@@ -624,4 +603,4 @@ gsap.utils.toArray('.stat-badge').forEach((badge, index) => {
   );
 });
 
-console.log('Graphics page initialized');
+console.log('Graphics 3-card carousel initialized successfully');
