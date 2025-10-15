@@ -83,7 +83,8 @@
 }
 
 @keyframes pulse-spotlight {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
@@ -158,222 +159,93 @@
 }
 
 /* ==========================================================================
-   FEATURED CAROUSEL - CENTERED FOCUS
+   HERO SWIPER - 9:16 SOLID ASPECT RATIO
    ========================================================================== */
 
-.carousel-container {
+.hero-swiper {
   position: relative;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.carousel-track-wrapper {
-  position: relative;
-  height: 550px;
-  display: flex;
+.hero-swiper .swiper-wrapper {
   align-items: center;
-  justify-content: center;
-  overflow: visible;
-  padding: var(--space-2xl) 0;
 }
 
-.carousel-track {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-lg);
-  width: 100%;
-}
-
-.carousel-card {
+.hero-swiper .swiper-slide {
+  width: 280px;
   aspect-ratio: 9 / 16;
-  transition:
-    width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.8s ease-in-out,
-    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter 0.8s ease-in-out;
-  flex-shrink: 0;
-  will-change: width, opacity, transform, filter;
-}
-
-/* Side cards (left and right) - smaller and dimmed */
-.carousel-card.side {
-  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   opacity: 0.4;
-  transform: scale(0.85);
-  filter: blur(2px);
-  pointer-events: none;
+  filter: blur(3px);
 }
 
-/* Featured card (center) - larger and prominent */
-.carousel-card.featured {
-  width: 320px;
+.hero-swiper .swiper-slide-active {
   opacity: 1;
-  transform: scale(1);
   filter: blur(0);
   z-index: 10;
-  pointer-events: auto;
 }
 
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(26, 29, 41, 0.6);
-  backdrop-filter: blur(20px);
-  border: 2px solid rgba(244, 208, 63, 0.2);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(244, 208, 63, 0.1);
-  transition:
-    border-color 0.8s ease-in-out,
-    box-shadow 0.8s ease-in-out;
-}
-
-.carousel-card.featured .card-inner {
-  border-color: rgba(244, 208, 63, 0.5);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(244, 208, 63, 0.3);
-}
-
-.card-inner img {
+.hero-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  border-radius: 20px;
+  border: 2px solid rgba(244, 208, 63, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(244, 208, 63, 0.1);
+  transition: all 0.6s ease;
 }
 
-.card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--space-xl);
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 0.7) 60%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+.hero-swiper .swiper-slide-active img {
+  border-color: rgba(244, 208, 63, 0.5);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(244, 208, 63, 0.3);
 }
 
-.carousel-card.featured .card-overlay {
-  opacity: 1;
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-family: var(--font-headline);
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-
-.card-category {
-  font-size: 12px;
-  color: var(--stadium-gold);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-}
-
-/* ==========================================================================
-   CAROUSEL NAVIGATION
-   ========================================================================== */
-
-.carousel-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+/* Swiper Navigation Buttons */
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background: rgba(26, 29, 41, 0.95);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(244, 208, 63, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--stadium-gold);
-  cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 20;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
 }
 
-.carousel-nav-btn:hover {
+.hero-swiper .swiper-button-prev:after,
+.hero-swiper .swiper-button-next:after {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--stadium-gold);
+}
+
+.hero-swiper .swiper-button-prev:hover,
+.hero-swiper .swiper-button-next:hover {
   background: rgba(244, 208, 63, 0.1);
   border-color: var(--stadium-gold);
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
-.carousel-nav-btn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.carousel-nav-prev {
-  left: -80px;
-}
-
-.carousel-nav-next {
-  right: -80px;
-}
-
-.carousel-nav-btn svg {
-  width: 26px;
-  height: 26px;
-}
-
-/* ==========================================================================
-   CAROUSEL PAGINATION
-   ========================================================================== */
-
-.carousel-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: var(--space-2xl);
-  pointer-events: auto;
-}
-
-.carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(244, 208, 63, 0.3);
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-}
-
-.carousel-dot:hover {
-  background: rgba(244, 208, 63, 0.6);
-  transform: scale(1.2);
-}
-
-.carousel-dot.active {
-  width: 32px;
-  border-radius: 6px;
-  background: var(--stadium-gold);
-  border-color: rgba(244, 208, 63, 0.5);
+.hero-swiper .swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 /* ==========================================================================
    EXPLORE BUTTON
    ========================================================================== */
+
+.btn-explore-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .btn-explore-work {
   display: inline-flex;
@@ -390,7 +262,6 @@
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(244, 208, 63, 0.3);
-  margin-top: var(--space-xl);
 }
 
 .btn-explore-work:hover {
@@ -408,42 +279,203 @@
 }
 
 /* ==========================================================================
-   SCROLL INDICATOR
+   DESIGN PHILOSOPHY SECTION
    ========================================================================== */
 
-.scroll-indicator {
-  position: absolute;
-  bottom: var(--space-2xl);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-secondary);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  z-index: 5;
-  animation: bounce 2s infinite;
+.design-philosophy-section {
+  position: relative;
+  padding: var(--space-4xl) 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1a1d2e 0%, #0f1117 100%);
 }
 
-.scroll-line {
-  width: 1px;
-  height: 30px;
-  background: linear-gradient(
-    to bottom,
-    rgba(244, 208, 63, 0.6),
-    transparent
+.philosophy-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      ellipse at 20% 30%,
+      rgba(244, 208, 63, 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 70%,
+      rgba(244, 208, 63, 0.08) 0%,
+      transparent 50%
+    ),
+    linear-gradient(135deg, transparent 0%, rgba(244, 208, 63, 0.03) 100%);
+  z-index: 0;
+}
+
+.philosophy-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(15, 17, 23, 0.4) 70%,
+    rgba(15, 17, 23, 0.7) 100%
   );
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
+.philosophy-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.philosophy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  background: rgba(244, 208, 63, 0.1);
+  border: 2px solid rgba(244, 208, 63, 0.3);
+  border-radius: 50px;
+  color: var(--stadium-gold);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-xl);
+  backdrop-filter: blur(10px);
+}
+
+.philosophy-badge i {
+  font-size: 18px;
+}
+
+.philosophy-title {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-headline);
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--space-2xl);
+}
+
+.philosophy-text {
+  max-width: 800px;
+  margin: 0 auto var(--space-3xl);
+}
+
+.philosophy-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.philosophy-text p:last-child {
+  margin-bottom: 0;
+}
+
+.philosophy-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-2xl);
+  margin-top: var(--space-3xl);
+}
+
+.philosophy-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background: rgba(26, 29, 41, 0.6);
+  border: 2px solid rgba(244, 208, 63, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.philosophy-stat:hover {
+  border-color: rgba(244, 208, 63, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(244, 208, 63, 0.2);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--money-gradient);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.stat-icon i {
+  font-size: 28px;
+  color: var(--pregame-darkness);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stat-content .stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--font-headline);
+  color: var(--stadium-gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-content .stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .design-philosophy-section {
+    padding: var(--space-3xl) 0;
   }
-  50% {
-    transform: translateX(-50%) translateY(10px);
+
+  .philosophy-title {
+    font-size: 32px;
+  }
+
+  .philosophy-text p {
+    font-size: 16px;
+  }
+
+  .philosophy-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .philosophy-stat {
+    padding: var(--space-lg);
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .stat-icon i {
+    font-size: 24px;
+  }
+
+  .stat-content .stat-number {
+    font-size: 28px;
   }
 }
 
@@ -492,96 +524,70 @@
 }
 
 /* ==========================================================================
-   PORTFOLIO GRID
+   GRAPHICS GALLERY SECTION
    ========================================================================== */
 
-.portfolio-showcase-section {
+.graphics-gallery-section {
   padding: var(--space-4xl) 0;
+  background: var(--pregame-darkness);
 }
 
-.graphics-portfolio-grid {
+.graphics-gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
+  margin-top: var(--space-3xl);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.portfolio-item {
+.graphics-gallery-item {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(244, 208, 63, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(244, 208, 63, 0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
+  aspect-ratio: 9 / 16;
 }
 
-.portfolio-item:hover {
+.graphics-gallery-item:hover {
   transform: translateY(-8px);
   border-color: rgba(244, 208, 63, 0.4);
-  box-shadow: 0 12px 40px rgba(244, 208, 63, 0.15);
+  box-shadow: 0 12px 40px rgba(244, 208, 63, 0.2);
 }
 
-.portfolio-image {
-  position: relative;
-  padding-bottom: 100%;
-  overflow: hidden;
-}
-
-.portfolio-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
+.graphics-gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.portfolio-item:hover .portfolio-image img {
-  transform: scale(1.1);
+.graphics-gallery-item:hover img {
+  transform: scale(1.05);
 }
 
-.portfolio-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(26, 29, 41, 0.95) 0%,
-    rgba(26, 29, 41, 0.7) 50%,
-    transparent 100%
-  );
-  display: flex;
-  align-items: flex-end;
-  padding: var(--space-xl);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+/* Responsive */
+@media (max-width: 1024px) {
+  .graphics-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
 }
 
-.portfolio-item:hover .portfolio-overlay {
-  opacity: 1;
-}
+@media (max-width: 768px) {
+  .graphics-gallery-section {
+    padding: var(--space-3xl) 0;
+  }
 
-.overlay-content {
-  width: 100%;
-}
-
-.portfolio-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: var(--space-xs);
-}
-
-.portfolio-category {
-  font-size: var(--text-small);
-  color: var(--stadium-gold);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
+  .graphics-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
 }
 
 /* ==========================================================================

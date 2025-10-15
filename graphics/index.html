@@ -62,6 +62,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/graphics.css" />
@@ -141,372 +147,170 @@
           </p>
         </div>
 
-        <!-- 3-Card Carousel Container -->
-        <div class="carousel-container">
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carouselTrack">
-              <!-- Card 1 -->
-              <div class="carousel-card" data-index="0">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery1.webp"
-                    alt="Match Day Graphics"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Match Day Hype</h3>
-                    <p class="card-category">Game Day</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 2 -->
-              <div class="carousel-card" data-index="1">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery2.webp"
-                    alt="Player Spotlight"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Player Spotlight</h3>
-                    <p class="card-category">Social Content</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 3 -->
-              <div class="carousel-card" data-index="2">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery3.webp"
-                    alt="Victory Celebration"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Victory Celebration</h3>
-                    <p class="card-category">Branding</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 4 -->
-              <div class="carousel-card" data-index="3">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery5.webp"
-                    alt="Stadium Nights"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Stadium Nights</h3>
-                    <p class="card-category">Social Media</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 5 -->
-              <div class="carousel-card" data-index="4">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery7.webp"
-                    alt="Game Winner"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Game Winner</h3>
-                    <p class="card-category">Match Day</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 6 -->
-              <div class="carousel-card" data-index="5">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery8.webp"
-                    alt="Team Unity"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Team Unity</h3>
-                    <p class="card-category">Branding</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 7 -->
-              <div class="carousel-card" data-index="6">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery9.webp"
-                    alt="Behind the Scenes"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Behind the Scenes</h3>
-                    <p class="card-category">Social Media</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 8 -->
-              <div class="carousel-card" data-index="7">
-                <div class="card-inner">
-                  <img
-                    src="../images/gallery/gallery10.webp"
-                    alt="Pre-Match Lineup"
-                    loading="eager"
-                  />
-                  <div class="card-overlay">
-                    <h3 class="card-title">Pre-Match Lineup</h3>
-                    <p class="card-category">Match Day</p>
-                  </div>
-                </div>
-              </div>
+        <!-- Hero Swiper -->
+        <div class="hero-swiper graphicsSwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="../images/gallery/gallery1.webp"
+                alt="Match Day Graphics"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../images/gallery/gallery2.webp"
+                alt="Player Spotlight"
+                decoding="async"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../images/gallery/gallery3.webp"
+                alt="Victory Celebration"
+                decoding="async"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../images/gallery/gallery5.webp"
+                alt="Stadium Nights"
+                decoding="async"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../images/gallery/gallery7.webp"
+                alt="Game Winner"
+                decoding="async"
+              />
             </div>
           </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
 
-          <!-- Navigation Buttons -->
-          <button
-            class="carousel-nav-btn carousel-nav-prev"
-            id="graphicsCarouselPrev"
-            aria-label="Previous"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path
-                d="M15 18l-6-6 6-6"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            class="carousel-nav-btn carousel-nav-next"
-            id="graphicsCarouselNext"
-            aria-label="Next"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path
-                d="M9 18l6-6-6-6"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-
-          <!-- Pagination Dots -->
-          <div class="carousel-pagination" id="carouselPagination">
-            <span class="carousel-dot active" data-index="0"></span>
-            <span class="carousel-dot" data-index="1"></span>
-            <span class="carousel-dot" data-index="2"></span>
-            <span class="carousel-dot" data-index="3"></span>
-            <span class="carousel-dot" data-index="4"></span>
-            <span class="carousel-dot" data-index="5"></span>
-            <span class="carousel-dot" data-index="6"></span>
-            <span class="carousel-dot" data-index="7"></span>
-          </div>
-
-          <!-- Explore Button -->
+        <!-- Explore Button -->
+        <div class="btn-explore-container">
           <a href="#graphicsGrid" class="btn-explore-work">
-            <span>Explore Full Portfolio</span>
+            <span>SEE FULL GALLERY</span>
             <i class="fas fa-arrow-down"></i>
           </a>
         </div>
       </div>
-
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
     </section>
 
-    <!-- Portfolio Stats Bar -->
-    <section class="portfolio-stats-section">
+    <!-- Design Philosophy Section -->
+    <section class="design-philosophy-section">
+      <div class="philosophy-background">
+        <div class="philosophy-overlay"></div>
+      </div>
       <div class="container-stadium">
-        <div class="portfolio-stats">
-          <div class="stat-badge" data-fade-up>
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Graphics Created</span>
+        <div class="philosophy-content">
+          <div class="philosophy-badge" data-fade-up>
+            <i class="fas fa-lightbulb"></i>
+            <span>Our Philosophy</span>
           </div>
-          <div class="stat-badge" data-fade-up>
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Athletes Served</span>
+          <h2 class="philosophy-title" data-fade-up>
+            Designing for <span class="gradient-text">Impact</span>, Not Just
+            Aesthetics
+          </h2>
+          <div class="philosophy-text" data-fade-up>
+            <p>
+              We don't just create graphics—we craft moments that resonate.
+              Every design tells a story, captures emotion, and amplifies the
+              energy of competition. Our approach blends cutting-edge design
+              with deep sports storytelling, ensuring each piece doesn't just
+              look good—it performs.
+            </p>
+            <p>
+              From the roar of the crowd to the silence before a game-winning
+              shot, we translate those feelings into visuals that stop the
+              scroll, spark conversations, and build lasting connections with
+              your audience.
+            </p>
           </div>
-          <div class="stat-badge" data-fade-up>
-            <span class="stat-number">100M+</span>
-            <span class="stat-label">Total Impressions</span>
+          <div class="philosophy-stats" data-fade-up>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Graphics Delivered</span>
+              </div>
+            </div>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Athletes Empowered</span>
+              </div>
+            </div>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">100K+</span>
+                <span class="stat-label">Total Impressions</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Portfolio Grid Section -->
-    <section class="portfolio-showcase-section">
+    <!-- Graphics Gallery Section -->
+    <section class="graphics-gallery-section" id="graphicsGrid">
       <div class="container-stadium">
-        <div class="graphics-portfolio-grid" id="graphicsGrid">
-          <!-- Graphics Item 1 -->
-          <div class="portfolio-item" data-category="matchday" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery1.webp"
-                alt="Match Day Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Match Day Hype</h3>
-                  <p class="portfolio-category">Match Day</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <h2 class="section-title">
+          Championship <span class="gradient-text">Graphics</span>
+        </h2>
+        <p class="section-subtitle">
+          Explore our collection of game-changing designs
+        </p>
 
-          <!-- Graphics Item 2 -->
-          <div class="portfolio-item" data-category="social" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery2.webp"
-                alt="Player Highlight Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Player Spotlight</h3>
-                  <p class="portfolio-category">Social Media</p>
-                </div>
-              </div>
-            </div>
+        <div class="graphics-gallery-grid">
+          <div class="graphics-gallery-item">
+            <img
+              src="../images/gallery/gallery1.webp"
+              alt="Match Day Graphics"
+            />
           </div>
-
-          <!-- Graphics Item 3 -->
-          <div class="portfolio-item" data-category="branding" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery3.webp"
-                alt="Championship Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Victory Celebration</h3>
-                  <p class="portfolio-category">Branding</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery2.webp" alt="Player Spotlight" />
           </div>
-
-          <!-- Graphics Item 4 -->
-          <div class="portfolio-item" data-category="social" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery5.webp"
-                alt="Stadium Nights Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Stadium Nights</h3>
-                  <p class="portfolio-category">Social Media</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img
+              src="../images/gallery/gallery3.webp"
+              alt="Victory Celebration"
+            />
           </div>
-
-          <!-- Graphics Item 5 -->
-          <div class="portfolio-item" data-category="matchday" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery7.webp"
-                alt="Victory Moment Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Game Winner</h3>
-                  <p class="portfolio-category">Match Day</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery4.webp" alt="Stadium Nights" />
           </div>
-
-          <!-- Graphics Item 6 -->
-          <div class="portfolio-item" data-category="branding" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery8.webp"
-                alt="Team Spirit Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Team Unity</h3>
-                  <p class="portfolio-category">Branding</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery5.webp" alt="Game Winner" />
           </div>
-
-          <!-- Graphics Item 7 -->
-          <div class="portfolio-item" data-category="social" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery9.webp"
-                alt="Behind Scenes Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Behind the Scenes</h3>
-                  <p class="portfolio-category">Social Media</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery6.webp" alt="Team Unity" />
           </div>
-
-          <!-- Graphics Item 8 -->
-          <div class="portfolio-item" data-category="matchday" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery10.webp"
-                alt="Pre-Match Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Pre-Match Lineup</h3>
-                  <p class="portfolio-category">Match Day</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img
+              src="../images/gallery/gallery7.webp"
+              alt="Behind the Scenes"
+            />
           </div>
-
-          <!-- Graphics Item 9 -->
-          <div class="portfolio-item" data-category="social" data-fade-up>
-            <div class="portfolio-image">
-              <img
-                src="../images/gallery/gallery11.webp"
-                alt="Stats Graphics"
-                loading="lazy"
-              />
-              <div class="portfolio-overlay">
-                <div class="overlay-content">
-                  <h3 class="portfolio-title">Season Stats</h3>
-                  <p class="portfolio-category">Social Media</p>
-                </div>
-              </div>
-            </div>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery8.webp" alt="Pre-Match Lineup" />
           </div>
-        </div>
-
-        <!-- Load More Button -->
-        <div class="portfolio-load-more">
-          <button class="btn-primary btn-load-more" id="loadMoreBtn">
-            <span>Load More Graphics</span>
-            <i class="fas fa-arrow-down"></i>
-          </button>
+          <div class="graphics-gallery-item">
+            <img src="../images/gallery/gallery9.webp" alt="Season Stats" />
+          </div>
         </div>
       </div>
     </section>
@@ -702,10 +506,6 @@
         </button>
         <div class="lightbox-image-container">
           <img id="lightboxImage" src="" alt="" />
-          <div class="lightbox-info">
-            <h3 class="lightbox-title" id="lightboxTitle"></h3>
-            <p class="lightbox-category" id="lightboxCategory"></p>
-          </div>
         </div>
       </div>
     </div>
@@ -719,6 +519,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/graphics.js"></script>
 
