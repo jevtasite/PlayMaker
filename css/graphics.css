@@ -4,6 +4,20 @@
    ========================================================================== */
 
 /* ==========================================================================
+   NAVBAR - ENSURE TRANSPARENT ON LOAD
+   ========================================================================== */
+
+.navbar-stadium {
+  background: transparent !important;
+}
+
+.navbar-stadium.scrolled {
+  background: rgba(26, 29, 41, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ==========================================================================
    HERO SECTION - GRAPHICS CAROUSEL
    ========================================================================== */
 
@@ -167,6 +181,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .hero-swiper .swiper-wrapper {
@@ -180,14 +195,15 @@
   align-items: center;
   justify-content: center;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  opacity: 0.4;
-  filter: blur(3px);
+  opacity: 0.5;
+  filter: blur(2px);
 }
 
 .hero-swiper .swiper-slide-active {
   opacity: 1;
   filter: blur(0);
   z-index: 10;
+  transform: scale(1.1);
 }
 
 .hero-swiper .swiper-slide img {
@@ -301,7 +317,7 @@
 
 /* Stadium Grid - Same as hero section */
 .philosophy-background::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -462,39 +478,86 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .design-philosophy-section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .philosophy-content {
+    max-width: 100%;
+    padding: 0 var(--space-sm);
+  }
+
+  .philosophy-badge {
+    font-size: 11px;
+    padding: 8px 16px;
+    gap: 6px;
+  }
+
+  .philosophy-badge i {
+    font-size: 14px;
   }
 
   .philosophy-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: var(--space-md);
+    line-height: 1.3;
+  }
+
+  .philosophy-text {
+    margin-bottom: var(--space-xl);
   }
 
   .philosophy-text p {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
   }
 
   .philosophy-stats {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
+    margin-top: var(--space-xl);
   }
 
   .philosophy-stat {
     padding: var(--space-lg);
+    gap: var(--space-lg);
+    flex-direction: row;
+    align-items: center;
+    border-radius: 12px;
+  }
+
+  .philosophy-stat:hover {
+    transform: translateY(-3px);
   }
 
   .stat-icon {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    flex-shrink: 0;
   }
 
   .stat-icon i {
     font-size: 24px;
   }
 
+  .stat-content {
+    flex: 1;
+    text-align: left;
+  }
+
   .stat-content .stat-number {
     font-size: 28px;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+
+  .stat-content .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
 }
 
@@ -633,13 +696,18 @@
 }
 
 .btn-graphics-see-more::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(244, 208, 63, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -670,21 +738,51 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .graphics-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
+/* Tablet - See More Button */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .graphics-see-more-container {
+    margin-top: var(--space-2xl);
+  }
+
+  .btn-graphics-see-more {
+    padding: 14px 32px;
+    font-size: 14px;
   }
 }
 
-@media (max-width: 768px) {
+/* Small tablets and large phones */
+@media (max-width: 767px) {
   .graphics-gallery-section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-3xl) var(--space-md);
   }
 
   .graphics-gallery-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
+  }
+
+  /* See More Button - Mobile Optimization */
+  .graphics-see-more-container {
+    margin-top: var(--space-xl);
+    padding: 0 var(--space-sm);
+  }
+
+  .btn-graphics-see-more {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    justify-content: center;
+  }
+
+  .btn-graphics-see-more span {
+    flex: 1;
+    text-align: center;
+  }
+
+  .btn-graphics-see-more i {
+    flex-shrink: 0;
   }
 }
 
@@ -731,66 +829,270 @@
 }
 
 /* ==========================================================================
-   GRAPHICS CATEGORIES SECTION
+   PRESS CONFERENCE FAQ SECTION
    ========================================================================== */
 
-.graphics-categories-section {
-  padding: var(--space-5xl) 0;
-  background: rgba(0, 0, 0, 0.2);
+.faq-section {
   position: relative;
+  padding: var(--space-5xl) 0;
+  background: var(--pregame-darkness);
+  overflow: hidden;
 }
 
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
-  margin-top: var(--space-3xl);
+.faq-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.category-card {
-  padding: var(--space-2xl);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(244, 208, 63, 0.15);
-  border-radius: 12px;
+/* Stadium Grid */
+.faq-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      rgba(244, 208, 63, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(244, 208, 63, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  animation: grid-move 20s linear infinite;
+  z-index: 1;
+}
+
+/* Vignette Overlay - Same as Philosophy Section */
+.faq-background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(10, 10, 10, 0.3) 70%,
+    rgba(10, 10, 10, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+.faq-header {
   text-align: center;
+  margin-bottom: var(--space-4xl);
+  position: relative;
+  z-index: 2;
+}
+
+.press-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  background: rgba(244, 208, 63, 0.1);
+  border: 2px solid rgba(244, 208, 63, 0.3);
+  border-radius: 50px;
+  color: var(--stadium-gold);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-xl);
+  backdrop-filter: blur(10px);
+}
+
+.press-badge i {
+  font-size: 18px;
+}
+
+.live-indicator {
+  position: relative;
+  padding-left: 20px;
+}
+
+.live-indicator::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #ff4444;
+  border-radius: 50%;
+  animation: pulse-live 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-live {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 8px rgba(255, 68, 68, 0);
+  }
+}
+
+.faq-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.faq-item {
+  background: rgba(26, 29, 41, 0.6);
+  border: 2px solid rgba(244, 208, 63, 0.1);
+  border-radius: 12px;
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.category-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(244, 208, 63, 0.4);
-  transform: translateY(-4px);
+.faq-item:hover {
+  border-color: rgba(244, 208, 63, 0.3);
+  transform: translateX(8px);
 }
 
-.category-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-lg);
+.faq-item.active {
+  border-color: rgba(244, 208, 63, 0.6);
+  box-shadow: 0 0 30px rgba(244, 208, 63, 0.2);
+  background: rgba(26, 29, 41, 0.8);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.faq-question:hover {
+  background: rgba(244, 208, 63, 0.05);
+}
+
+.question-badge {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  color: var(--stadium-gold);
-  background: rgba(244, 208, 63, 0.1);
+  background: var(--money-gradient);
   border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pregame-darkness);
+  font-family: var(--font-headline);
+}
+
+.question-text {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.question-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stadium-gold);
+  font-size: 20px;
   transition: transform 0.3s ease;
 }
 
-.category-card:hover .category-icon {
-  transform: scale(1.1);
+.faq-item.active .question-icon {
+  transform: rotate(180deg);
 }
 
-.category-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: var(--space-sm);
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
 }
 
-.category-card p {
-  font-size: var(--text-small);
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  opacity: 1;
+  padding: 0 var(--space-xl) var(--space-xl)
+    calc(var(--space-xl) + 50px + var(--space-lg));
+}
+
+.faq-answer p {
+  font-size: 16px;
+  line-height: 1.8;
   color: var(--text-secondary);
-  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: var(--space-4xl) 0;
+  }
+
+  .faq-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .press-badge {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+
+  .faq-question {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+
+  .question-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .question-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 0 var(--space-lg) var(--space-lg)
+      calc(var(--space-lg) + 40px + var(--space-md));
+  }
+
+  .faq-answer p {
+    font-size: 14px;
+  }
+
+  .faq-item:hover {
+    transform: translateX(4px);
+  }
 }
 
 /* ==========================================================================
@@ -801,11 +1103,34 @@
   padding: var(--space-5xl) 0;
   text-align: center;
   position: relative;
+  background: var(--pregame-darkness);
+  overflow: hidden;
+}
+
+/* Diagonal Stripe Background - Same as intro section */
+.cta-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 35px,
+    rgba(244, 208, 63, 0.02) 35px,
+    rgba(244, 208, 63, 0.02) 70px
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .cta-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-title {
@@ -951,6 +1276,24 @@
 }
 
 /* ==========================================================================
+   CONTACT SECTION - TOGGLE FUNCTIONALITY
+   ========================================================================== */
+
+.contact-section {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-section.visible {
+  max-height: 2000px;
+  opacity: 1;
+  padding: var(--space-3xl) 0;
+}
+
+/* ==========================================================================
    RESPONSIVE - TABLET (768px - 1024px)
    ========================================================================== */
 
@@ -998,12 +1341,76 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Philosophy Section - Tablet Optimization */
+  .philosophy-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    max-width: 100%;
+  }
+
+  .philosophy-stat {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .stat-icon i {
+    font-size: 24px;
+  }
+
+  .stat-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-content .stat-number {
+    font-size: 30px;
+  }
+
+  .stat-content .stat-label {
+    font-size: 12px;
+  }
+
+  /* Make the 3rd card span both columns and center it */
+  .philosophy-stat:nth-child(3) {
+    grid-column: 1 / -1;
+    width: calc(50% - var(--space-lg) / 2);
+    margin: 0 auto;
+  }
+
   .stat-badge .stat-number {
     font-size: 40px;
   }
 
+  /* CTA Section - Tablet Optimization */
+  .cta-section {
+    padding: var(--space-4xl) var(--space-lg);
+  }
+
+  .cta-content {
+    max-width: 700px;
+    padding: 0 var(--space-md);
+  }
+
   .cta-title {
     font-size: 40px;
+    margin-bottom: var(--space-md);
+  }
+
+  .cta-text {
+    font-size: 18px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-buttons {
+    gap: var(--space-md);
   }
 
   .lightbox-prev {
@@ -1131,16 +1538,40 @@
     grid-template-columns: 1fr;
   }
 
+  /* CTA Section - Mobile Optimization */
+  .cta-section {
+    padding: var(--space-3xl) var(--space-md);
+  }
+
+  .cta-content {
+    max-width: 100%;
+    padding: 0 var(--space-sm);
+  }
+
   .cta-title {
-    font-size: 28px;
+    font-size: 26px;
+    margin-bottom: var(--space-sm);
+    line-height: 1.3;
   }
 
   .cta-text {
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
   }
 
   .cta-buttons {
     flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+  }
+
+  .cta-buttons .btn-hero-primary,
+  .cta-buttons .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 14px;
   }
 
   .lightbox-content {
