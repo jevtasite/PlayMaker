@@ -44,8 +44,8 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
     slideShadows: false,
   },
 
-  // No looping
-  loop: false,
+  // Enable looping for desktop
+  loop: true,
 
   // Smooth transitions
   speed: 800,
@@ -65,36 +65,43 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
   // Pagination (optional)
   autoplay: false,
 
-  // Breakpoints for responsive design
+  // Breakpoints for responsive design - Optimized for mobile/tablet performance
   breakpoints: {
-    // Mobile
+    // Mobile - Maximum Performance
     320: {
+      effect: "slide", // Switch to slide effect for better performance
       slidesPerView: 1,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-      },
+      loop: false, // Disable loop to reduce DOM nodes
+      speed: 400, // Faster transitions
+      grabCursor: false, // Disable on mobile
     },
-    // Tablet
+    // Tablet - Balanced Performance
     768: {
+      effect: "coverflow",
       slidesPerView: "auto",
+      loop: false, // Disable loop
+      speed: 600,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
-        depth: 100,
-        modifier: 1.5,
+        depth: 80, // Reduced depth
+        modifier: 1, // Lighter effect
+        slideShadows: false,
       },
     },
-    // Desktop
-    1024: {
+    // Desktop - Full Effects (>1024px)
+    1025: {
+      effect: "coverflow",
       slidesPerView: "auto",
+      loop: true, // Enable loop on desktop
+      speed: 800,
+      grabCursor: true,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
         depth: 100,
         modifier: 2,
+        slideShadows: false,
       },
     },
   },
@@ -409,10 +416,10 @@ if (graphicsShowLessBtn && hiddenGalleryItems.length > 0) {
 }
 
 // ==========================================================================
-// SCROLL ANIMATIONS
+// SCROLL ANIMATIONS - OPTIMIZED FOR PERFORMANCE
 // ==========================================================================
 
-// Fade up animations for elements
+// Fade up animations for elements - Only run once for performance
 gsap.utils.toArray("[data-fade-up]").forEach((element) => {
   gsap.fromTo(
     element,
@@ -428,13 +435,13 @@ gsap.utils.toArray("[data-fade-up]").forEach((element) => {
       scrollTrigger: {
         trigger: element,
         start: "top 85%",
-        toggleActions: "play none none none",
+        once: true, // Only trigger once for better performance
       },
     }
   );
 });
 
-// Graphics gallery items animation on scroll
+// Graphics gallery items animation on scroll - Optimized
 gsap.utils.toArray(".graphics-gallery-item").forEach((item, index) => {
   gsap.fromTo(
     item,
@@ -453,13 +460,13 @@ gsap.utils.toArray(".graphics-gallery-item").forEach((item, index) => {
       scrollTrigger: {
         trigger: item,
         start: "top 90%",
-        toggleActions: "play none none none",
+        once: true, // Only trigger once
       },
     }
   );
 });
 
-// Category cards animation
+// Category cards animation - Optimized
 gsap.utils.toArray(".category-card").forEach((card, index) => {
   gsap.fromTo(
     card,
@@ -476,13 +483,13 @@ gsap.utils.toArray(".category-card").forEach((card, index) => {
       scrollTrigger: {
         trigger: card,
         start: "top 85%",
-        toggleActions: "play none none none",
+        once: true, // Only trigger once
       },
     }
   );
 });
 
-// Stats animation
+// Stats animation - Optimized
 gsap.utils.toArray(".stat-badge").forEach((badge, index) => {
   gsap.fromTo(
     badge,
@@ -499,7 +506,7 @@ gsap.utils.toArray(".stat-badge").forEach((badge, index) => {
       scrollTrigger: {
         trigger: badge,
         start: "top 85%",
-        toggleActions: "play none none none",
+        once: true, // Only trigger once
       },
     }
   );
