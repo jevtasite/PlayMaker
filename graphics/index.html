@@ -275,6 +275,7 @@
         </p>
 
         <div class="graphics-gallery-grid">
+          <!-- First Row - Visible -->
           <div class="graphics-gallery-item">
             <img
               src="../images/gallery/gallery1.webp"
@@ -290,80 +291,203 @@
               alt="Victory Celebration"
             />
           </div>
-          <div class="graphics-gallery-item">
+
+          <!-- Hidden Rows - Initially Hidden -->
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img src="../images/gallery/gallery4.webp" alt="Stadium Nights" />
           </div>
-          <div class="graphics-gallery-item">
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img src="../images/gallery/gallery5.webp" alt="Game Winner" />
           </div>
-          <div class="graphics-gallery-item">
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img src="../images/gallery/gallery6.webp" alt="Team Unity" />
           </div>
-          <div class="graphics-gallery-item">
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img
               src="../images/gallery/gallery7.webp"
               alt="Behind the Scenes"
             />
           </div>
-          <div class="graphics-gallery-item">
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img src="../images/gallery/gallery8.webp" alt="Pre-Match Lineup" />
           </div>
-          <div class="graphics-gallery-item">
+          <div class="graphics-gallery-item gallery-item-hidden">
             <img src="../images/gallery/gallery9.webp" alt="Season Stats" />
           </div>
+        </div>
+
+        <!-- See More / Show Less Buttons -->
+        <div class="graphics-see-more-container">
+          <button class="btn-graphics-see-more" id="graphicsSeeMoreBtn">
+            <span>See More Graphics</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <button class="btn-graphics-see-more hidden" id="graphicsShowLessBtn">
+            <span>Show Less</span>
+            <i class="fas fa-chevron-up"></i>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Graphics Categories Section -->
-    <section class="graphics-categories-section">
+    <!-- Press Conference FAQ Section -->
+    <section class="faq-section">
+      <div class="faq-background"></div>
       <div class="container-stadium">
-        <h2 class="section-title" data-fade-up>
-          Our <span class="gradient-text">Graphics Services</span>
-        </h2>
-        <p class="section-subtitle" data-fade-up>
-          Comprehensive design solutions for every aspect of your brand
-        </p>
+        <!-- Press Conference Header -->
+        <div class="faq-header">
+          <div class="press-badge">
+            <i class="fas fa-microphone"></i>
+            <span class="live-indicator">LIVE</span>
+          </div>
+          <h2 class="section-title">
+            The <span class="gradient-text">Press Conference</span>
+          </h2>
+          <p class="section-subtitle">
+            Your questions answered, straight from the source
+          </p>
+        </div>
 
-        <div class="categories-grid">
-          <div class="category-card" data-fade-up>
-            <div class="category-icon">
-              <i class="fa-solid fa-calendar-check"></i>
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" data-faq="1">
+            <div class="faq-question">
+              <div class="question-badge">Q1</div>
+              <h3 class="question-text">What's your typical turnaround time?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
             </div>
-            <h3>Match Day Graphics</h3>
-            <p>
-              Pre-match hype, lineup reveals, score updates, and post-match
-              celebrations
-            </p>
+            <div class="faq-answer">
+              <p>
+                We typically deliver graphics within 24-48 hours for standard
+                requests. For match day graphics or time-sensitive content, we
+                offer same-day rush delivery. Larger branding packages may take
+                3-5 days depending on scope.
+              </p>
+            </div>
           </div>
 
-          <div class="category-card" data-fade-up>
-            <div class="category-icon">
-              <i class="fa-solid fa-trophy"></i>
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" data-faq="2">
+            <div class="faq-question">
+              <div class="question-badge">Q2</div>
+              <h3 class="question-text">What file formats do you provide?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
             </div>
-            <h3>Player Highlights</h3>
-            <p>Showcase moments, performance stats, and career achievements</p>
+            <div class="faq-answer">
+              <p>
+                All graphics are delivered in high-resolution PNG (with
+                transparent background), JPG, and source files (PSD/AI) upon
+                request. We also provide social media-optimized formats for
+                Instagram Stories, Posts, and Twitter.
+              </p>
+            </div>
           </div>
 
-          <div class="category-card" data-fade-up>
-            <div class="category-icon">
-              <i class="fa-solid fa-hashtag"></i>
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" data-faq="3">
+            <div class="faq-question">
+              <div class="question-badge">Q3</div>
+              <h3 class="question-text">How many revisions are included?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
             </div>
-            <h3>Social Media Posts</h3>
-            <p>
-              Story templates, feed posts, carousel designs, and engagement
-              content
-            </p>
+            <div class="faq-answer">
+              <p>
+                Every project includes up to 3 rounds of revisions at no extra
+                cost. We want you to be completely satisfied with the final
+                result. Additional revisions beyond that are available at a
+                minimal fee.
+              </p>
+            </div>
           </div>
 
-          <div class="category-card" data-fade-up>
-            <div class="category-icon">
-              <i class="fa-solid fa-palette"></i>
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" data-faq="4">
+            <div class="faq-question">
+              <div class="question-badge">Q4</div>
+              <h3 class="question-text">Can you match my existing brand?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
             </div>
-            <h3>Brand Identity</h3>
-            <p>
-              Logos, color schemes, visual guidelines, and brand consistency
-            </p>
+            <div class="faq-answer">
+              <p>
+                Absolutely! Send us your brand guidelines, colors, fonts, and
+                logos. We'll seamlessly integrate them into all designs while
+                maintaining consistency with your existing visual identity.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item" data-faq="5">
+            <div class="faq-question">
+              <div class="question-badge">Q5</div>
+              <h3 class="question-text">Do you offer rush delivery?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes! We offer same-day rush delivery for urgent requests like
+                match day graphics, breaking news, or last-minute announcements.
+                Contact us ASAP and we'll make it happen.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item" data-faq="6">
+            <div class="faq-question">
+              <div class="question-badge">Q6</div>
+              <h3 class="question-text">
+                What platforms can I use these on?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Full commercial usage rights are included! Use your graphics
+                across all social media platforms (Instagram, Twitter, Facebook,
+                TikTok), websites, print materials, merchandise, and anywhere
+                else you need them.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-item" data-faq="7">
+            <div class="faq-question">
+              <div class="question-badge">Q7</div>
+              <h3 class="question-text">
+                How does the collaboration process work?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Simple: 1) Brief us on your vision and requirements, 2) We
+                create initial concepts within 24-48 hours, 3) You provide
+                feedback, 4) We refine and deliver finals. Communication happens
+                via email, WhatsApp, or your preferred platform.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 8 -->
+          <div class="faq-item" data-faq="8">
+            <div class="faq-question">
+              <div class="question-badge">Q8</div>
+              <h3 class="question-text">
+                What makes your graphics different?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                We combine sports storytelling with cutting-edge design. Every
+                graphic isn't just visually stunning—it's engineered to stop the
+                scroll, spark engagement, and amplify your brand's energy. We
+                don't just design; we create moments.
+              </p>
+            </div>
           </div>
         </div>
       </div>

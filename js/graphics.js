@@ -190,6 +190,177 @@ if (graphicsLightboxNext) {
 }
 
 // ==========================================================================
+// SEE MORE / SHOW LESS BUTTON FUNCTIONALITY
+// ==========================================================================
+
+const graphicsSeeMoreBtn = document.getElementById('graphicsSeeMoreBtn');
+const graphicsShowLessBtn = document.getElementById('graphicsShowLessBtn');
+const hiddenGalleryItems = document.querySelectorAll('.gallery-item-hidden');
+
+// See More Button - Reveal hidden items with dynamic animation
+if (graphicsSeeMoreBtn && hiddenGalleryItems.length > 0) {
+  graphicsSeeMoreBtn.addEventListener('click', () => {
+    // Hide "See More" button with upward fade
+    gsap.to(graphicsSeeMoreBtn, {
+      opacity: 0,
+      y: -30,
+      scale: 0.9,
+      duration: 0.4,
+      ease: 'back.in(1.7)',
+      onComplete: () => {
+        graphicsSeeMoreBtn.style.display = 'none';
+      }
+    });
+
+    // Animate each hidden item with impressive 3D wave effect
+    hiddenGalleryItems.forEach((item, index) => {
+      // Calculate staggered delay with wave pattern
+      const delay = 0.3 + (index * 0.08);
+      const isEvenRow = Math.floor(index / 3) % 2 === 0;
+
+      // Set initial 3D transform
+      gsap.set(item, {
+        display: 'block',
+        perspective: 1000,
+        transformStyle: 'preserve-3d'
+      });
+
+      // Animate with 3D flip and bounce effect
+      gsap.fromTo(item,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.7,
+          rotateX: -20,
+          rotateY: isEvenRow ? -15 : 15,
+          transformOrigin: 'center bottom'
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.8,
+          delay: delay,
+          ease: 'elastic.out(1, 0.6)',
+          onComplete: () => {
+            item.classList.remove('gallery-item-hidden');
+            item.classList.add('revealed');
+          }
+        }
+      );
+
+      // Add subtle bounce on image
+      gsap.fromTo(item.querySelector('img'),
+        { scale: 1.2 },
+        {
+          scale: 1,
+          duration: 0.8,
+          delay: delay + 0.2,
+          ease: 'back.out(1.7)'
+        }
+      );
+    });
+
+    // Show "Show Less" button after animation
+    setTimeout(() => {
+      gsap.set(graphicsShowLessBtn, { display: 'inline-flex' });
+      gsap.fromTo(graphicsShowLessBtn,
+        { opacity: 0, y: 20, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'back.out(1.7)'
+        }
+      );
+    }, 1200);
+
+    // Update lightbox for newly revealed items
+    setTimeout(() => {
+      const allGalleryItems = document.querySelectorAll('.graphics-gallery-item');
+      allGalleryItems.forEach((item, index) => {
+        if (!item.dataset.lightboxAdded) {
+          item.addEventListener('click', () => {
+            graphicsCurrentImageIndex = index;
+            openGraphicsLightbox(item);
+          });
+          item.dataset.lightboxAdded = 'true';
+        }
+      });
+    }, 1500);
+  });
+}
+
+// Show Less Button - Hide items and return to initial state
+if (graphicsShowLessBtn && hiddenGalleryItems.length > 0) {
+  graphicsShowLessBtn.addEventListener('click', () => {
+    // Hide "Show Less" button
+    gsap.to(graphicsShowLessBtn, {
+      opacity: 0,
+      y: 20,
+      scale: 0.9,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        graphicsShowLessBtn.style.display = 'none';
+      }
+    });
+
+    // Animate items out in reverse order with cascade effect
+    const reversedItems = Array.from(hiddenGalleryItems).reverse();
+    reversedItems.forEach((item, index) => {
+      const delay = index * 0.05;
+
+      gsap.to(item, {
+        opacity: 0,
+        y: 40,
+        scale: 0.8,
+        rotateX: -15,
+        duration: 0.4,
+        delay: delay,
+        ease: 'power2.in',
+        onComplete: () => {
+          if (index === reversedItems.length - 1) {
+            // After all items are hidden, reset them
+            hiddenGalleryItems.forEach(hiddenItem => {
+              gsap.set(hiddenItem, { display: 'none' });
+              hiddenItem.classList.add('gallery-item-hidden');
+              hiddenItem.classList.remove('revealed');
+            });
+          }
+        }
+      });
+    });
+
+    // Scroll to gallery section smoothly
+    setTimeout(() => {
+      const gallerySection = document.getElementById('graphicsGrid');
+      if (gallerySection) {
+        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 200);
+
+    // Show "See More" button again
+    setTimeout(() => {
+      gsap.set(graphicsSeeMoreBtn, { display: 'inline-flex' });
+      gsap.fromTo(graphicsSeeMoreBtn,
+        { opacity: 0, y: 30, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'back.out(1.7)'
+        }
+      );
+    }, 600);
+  });
+}
+
+// ==========================================================================
 // SCROLL ANIMATIONS
 // ==========================================================================
 
