@@ -745,35 +745,44 @@ function closeLightbox() {
   document.body.style.overflow = "";
 }
 
-lightboxClose.addEventListener("click", closeLightbox);
-lightboxBackdrop.addEventListener("click", closeLightbox);
+if (lightboxClose) {
+  lightboxClose.addEventListener("click", closeLightbox);
+}
+
+if (lightboxBackdrop) {
+  lightboxBackdrop.addEventListener("click", closeLightbox);
+}
 
 // Navigate to previous image
-lightboxPrev.addEventListener("click", (e) => {
-  e.stopPropagation();
-  currentImageIndex =
-    (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
-  const img = visibleImages[currentImageIndex].querySelector("img");
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt;
-});
+if (lightboxPrev) {
+  lightboxPrev.addEventListener("click", (e) => {
+    e.stopPropagation();
+    currentImageIndex =
+      (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+    const img = visibleImages[currentImageIndex].querySelector("img");
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+  });
+}
 
 // Navigate to next image
-lightboxNext.addEventListener("click", (e) => {
-  e.stopPropagation();
-  currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
-  const img = visibleImages[currentImageIndex].querySelector("img");
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt;
-});
+if (lightboxNext) {
+  lightboxNext.addEventListener("click", (e) => {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+    const img = visibleImages[currentImageIndex].querySelector("img");
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+  });
+}
 
 // Keyboard navigation
 document.addEventListener("keydown", (e) => {
-  if (!lightbox.classList.contains("active")) return;
+  if (!lightbox || !lightbox.classList.contains("active")) return;
 
   if (e.key === "Escape") closeLightbox();
-  if (e.key === "ArrowLeft") lightboxPrev.click();
-  if (e.key === "ArrowRight") lightboxNext.click();
+  if (e.key === "ArrowLeft" && lightboxPrev) lightboxPrev.click();
+  if (e.key === "ArrowRight" && lightboxNext) lightboxNext.click();
 });
 
 // ==========================================================================

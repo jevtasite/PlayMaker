@@ -662,76 +662,38 @@ console.log("Press Conference FAQ initialized successfully");
 
 const getStartedBtn = document.querySelector(".cta-buttons .btn-hero-primary");
 const contactSection = document.querySelector(".contact-section");
-let isContactVisible = false;
 
 if (getStartedBtn && contactSection) {
-  getStartedBtn.addEventListener("click", (e) => {
+  getStartedBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    isContactVisible = !isContactVisible;
+    // Toggle contact section visibility
+    const isVisible = contactSection.classList.contains("visible");
 
-    if (isContactVisible) {
-      // Show contact section immediately
+    if (!isVisible) {
+      // Show contact section
       contactSection.classList.add("visible");
 
-      // Update button text
-      getStartedBtn.innerHTML = '<i class="fas fa-times"></i> Close Contact';
-
-      // Fast animate section in
-      gsap.to(contactSection, {
-        maxHeight: 2000,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-        onStart: () => {
-          // Scroll to contact section immediately
-          setTimeout(() => {
-            contactSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }, 50);
-        },
-      });
-
-      // Animate contact elements quickly
-      const contactElements = contactSection.querySelectorAll("[data-fade-up]");
-      gsap.fromTo(
-        contactElements,
-        { opacity: 0, y: 15 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.3,
-          delay: 0.15,
-          stagger: 0.05,
-          ease: "power2.out",
-        }
-      );
+      // Smooth scroll to contact section after a short delay
+      setTimeout(() => {
+        const offset = 80;
+        const elementPosition =
+          contactSection.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      }, 300);
     } else {
-      // Hide contact section quickly
-      const contactElements = contactSection.querySelectorAll("[data-fade-up]");
-
-      // Fade out elements first
-      gsap.to(contactElements, {
-        opacity: 0,
-        y: -10,
-        duration: 0.2,
-        ease: "power2.in",
+      // Hide contact section and scroll to CTA
+      window.scrollTo({
+        top: document.querySelector(".cta-section").offsetTop - 80,
+        behavior: "smooth",
       });
 
-      // Collapse section immediately after
-      gsap.to(contactSection, {
-        maxHeight: 0,
-        opacity: 0,
-        duration: 0.3,
-        delay: 0.1,
-        ease: "power2.in",
-        onComplete: () => {
-          contactSection.classList.remove("visible");
-          getStartedBtn.innerHTML = "Get Started";
-        },
-      });
+      setTimeout(() => {
+        contactSection.classList.remove("visible");
+      }, 500);
     }
   });
 }

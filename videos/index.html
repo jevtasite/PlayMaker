@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Video Portfolio | Playmaker Group</title>
+    <meta
+      name="description"
+      content="Explore our championship-level video portfolio - cinematic highlights, promotional content, and storytelling that captures the essence of competition."
+    />
+    <meta
+      name="keywords"
+      content="sports video production, highlight reels, promotional videos, athlete content, sports cinematography, video portfolio"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://playmakergroup.com/videos/" />
+    <meta property="og:title" content="Video Portfolio | Playmaker Group" />
+    <meta
+      property="og:description"
+      content="Championship-level video production for elite athletes and sports brands. View our portfolio of highlight reels, promotional content, and cinematic storytelling."
+    />
+    <meta
+      property="og:image"
+      content="https://playmakergroup.com/images/og-image-videos.jpg"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Video Portfolio | Playmaker Group" />
+    <meta
+      name="twitter:description"
+      content="Championship-level video production for elite athletes and sports brands."
+    />
+    <meta
+      name="twitter:image"
+      content="https://playmakergroup.com/images/twitter-image-videos.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Oswald:wght@600;700&family=Inter:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Plyr CSS for Video Player -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.plyr.io/3.7.8/plyr.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/videos.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar-stadium" id="navbar">
+      <div class="navbar-content">
+        <a href="/" class="navbar-stadium__logo">
+          <img
+            src="../images/logo/logo-white.png"
+            alt="Playmaker Group"
+            class="logo-image"
+          />
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <ul class="navbar-stadium__menu" id="navMenu">
+          <li><a href="/" class="navbar-stadium__link">Home</a></li>
+          <li>
+            <a href="/graphics/" class="navbar-stadium__link">Graphics</a>
+          </li>
+          <li><a href="/videos/" class="navbar-stadium__link active">Videos</a></li>
+          <li class="navbar-dropdown">
+            <a
+              href="javascript:void(0)"
+              class="navbar-stadium__link navbar-dropdown__trigger"
+            >
+              Other <i class="fas fa-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="navbar-dropdown__menu">
+              <li>
+                <a href="#videosGrid" class="navbar-dropdown__link">Work</a>
+              </li>
+              <li>
+                <a href="/#services" class="navbar-dropdown__link">Services</a>
+              </li>
+              <li><a href="/#about" class="navbar-dropdown__link">About</a></li>
+              <li>
+                <a href="#contact" class="navbar-dropdown__link">Contact</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section - Video Showcase -->
+    <section class="hero-section video-hero" id="home">
+      <!-- Video Background -->
+      <div class="video-background">
+        <div class="video-vignette"></div>
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+      </div>
+
+      <!-- Hero Content Container -->
+      <div class="hero-content-wrapper">
+        <!-- Header Text -->
+        <div class="hero-header">
+          <span class="page-badge">Video Portfolio</span>
+          <h1 class="hero-main-title">
+            Cinematic <span class="gradient-text">Stories</span>
+          </h1>
+          <p class="hero-subtitle">
+            Championship moments captured in motion
+          </p>
+        </div>
+
+        <!-- Hero Video Swiper -->
+        <div class="hero-swiper videosSwiper">
+          <div class="swiper-wrapper">
+            <!-- Video Slide 1 -->
+            <div class="swiper-slide">
+              <div class="video-container">
+                <div class="video-thumbnail">
+                  <img
+                    src="../images/gallery/gallery1.webp"
+                    alt="Highlight Reel"
+                    fetchpriority="high"
+                  />
+                  <div class="play-overlay">
+                    <button class="play-button" aria-label="Play video">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <span class="video-duration">2:45</span>
+                  </div>
+                </div>
+                <div class="video-player" style="display: none;">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+                    title="Highlight Reel"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Slide 2 -->
+            <div class="swiper-slide">
+              <div class="video-container">
+                <div class="video-thumbnail">
+                  <img
+                    src="../images/gallery/gallery2.webp"
+                    alt="Player Feature"
+                    loading="lazy"
+                  />
+                  <div class="play-overlay">
+                    <button class="play-button" aria-label="Play video">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <span class="video-duration">3:20</span>
+                  </div>
+                </div>
+                <div class="video-player" style="display: none;">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+                    title="Player Feature"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Slide 3 -->
+            <div class="swiper-slide">
+              <div class="video-container">
+                <div class="video-thumbnail">
+                  <img
+                    src="../images/gallery/gallery3.webp"
+                    alt="Game Day Promo"
+                    loading="lazy"
+                  />
+                  <div class="play-overlay">
+                    <button class="play-button" aria-label="Play video">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <span class="video-duration">1:30</span>
+                  </div>
+                </div>
+                <div class="video-player" style="display: none;">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+                    title="Game Day Promo"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Slide 4 -->
+            <div class="swiper-slide">
+              <div class="video-container">
+                <div class="video-thumbnail">
+                  <img
+                    src="../images/gallery/gallery5.webp"
+                    alt="Behind the Scenes"
+                    loading="lazy"
+                  />
+                  <div class="play-overlay">
+                    <button class="play-button" aria-label="Play video">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <span class="video-duration">4:15</span>
+                  </div>
+                </div>
+                <div class="video-player" style="display: none;">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+                    title="Behind the Scenes"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video Slide 5 -->
+            <div class="swiper-slide">
+              <div class="video-container">
+                <div class="video-thumbnail">
+                  <img
+                    src="../images/gallery/gallery7.webp"
+                    alt="Championship Recap"
+                    loading="lazy"
+                  />
+                  <div class="play-overlay">
+                    <button class="play-button" aria-label="Play video">
+                      <i class="fas fa-play"></i>
+                    </button>
+                    <span class="video-duration">5:00</span>
+                  </div>
+                </div>
+                <div class="video-player" style="display: none;">
+                  <iframe
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1"
+                    title="Championship Recap"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+
+        <!-- Explore Button -->
+        <div class="btn-explore-container">
+          <a href="#videosGrid" class="btn-explore-work">
+            <span>SEE FULL REEL</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Production Philosophy Section -->
+    <section class="design-philosophy-section production-philosophy-section">
+      <div class="philosophy-background">
+        <div class="philosophy-overlay"></div>
+      </div>
+      <div class="container-stadium">
+        <div class="philosophy-content">
+          <div class="philosophy-badge" data-fade-up>
+            <i class="fas fa-video"></i>
+            <span>Our Approach</span>
+          </div>
+          <h2 class="philosophy-title" data-fade-up>
+            Crafting <span class="gradient-text">Narratives</span>, Not Just Clips
+          </h2>
+          <div class="philosophy-text" data-fade-up>
+            <p>
+              We don't just record moments—we tell stories that move people.
+              Every frame is carefully crafted to capture the raw emotion, the
+              intensity, and the triumph of athletic competition. Our cinematic
+              approach transforms highlights into narratives that resonate long
+              after the final whistle.
+            </p>
+            <p>
+              From the pre-game tension to the explosive celebration, we weave
+              together visuals, sound, and pacing to create videos that don't
+              just document—they captivate, inspire, and leave a lasting impact
+              on everyone who watches.
+            </p>
+          </div>
+          <div class="philosophy-stats" data-fade-up>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-film"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">200+</span>
+                <span class="stat-label">Videos Produced</span>
+              </div>
+            </div>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">500K+</span>
+                <span class="stat-label">Total Views</span>
+              </div>
+            </div>
+            <div class="philosophy-stat">
+              <div class="stat-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div class="stat-content">
+                <span class="stat-number">24-48h</span>
+                <span class="stat-label">Average Turnaround</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section class="videos-gallery-section" id="videosGrid">
+      <div class="container-stadium">
+        <h2 class="section-title">
+          Championship <span class="gradient-text">Reels</span>
+        </h2>
+        <p class="section-subtitle">
+          Explore our collection of cinematic storytelling
+        </p>
+
+        <div class="videos-gallery-grid">
+          <!-- Video 1 -->
+          <div class="video-gallery-item" data-category="highlights">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery1.webp"
+                alt="Season Highlights"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="0">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">3:45</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Season Highlights 2024</h3>
+                <span class="video-category">Highlights</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="video-gallery-item" data-category="promos">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery2.webp"
+                alt="Game Day Promo"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="1">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">1:30</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Championship Promo</h3>
+                <span class="video-category">Promos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="video-gallery-item" data-category="highlights">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery3.webp"
+                alt="Player Spotlight"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="2">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">2:15</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Player Spotlight</h3>
+                <span class="video-category">Highlights</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 4 -->
+          <div class="video-gallery-item" data-category="bts">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery4.webp"
+                alt="Behind the Scenes"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="3">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">4:20</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Training Day BTS</h3>
+                <span class="video-category">Behind the Scenes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 5 -->
+          <div class="video-gallery-item" data-category="social">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery5.webp"
+                alt="Social Media Reel"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="4">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">0:45</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Game Day Hype</h3>
+                <span class="video-category">Social</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 6 -->
+          <div class="video-gallery-item" data-category="promos">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery6.webp"
+                alt="Team Announcement"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="5">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">1:00</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Roster Reveal</h3>
+                <span class="video-category">Promos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden Videos -->
+          <div class="video-gallery-item video-item-hidden" data-category="highlights">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery7.webp"
+                alt="Playoff Moments"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="6">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">3:10</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Playoff Moments</h3>
+                <span class="video-category">Highlights</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-gallery-item video-item-hidden" data-category="bts">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery8.webp"
+                alt="Locker Room Talk"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="7">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">2:30</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Locker Room Talk</h3>
+                <span class="video-category">Behind the Scenes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-gallery-item video-item-hidden" data-category="social">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery9.webp"
+                alt="Victory Celebration"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="8">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">1:15</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Championship Win</h3>
+                <span class="video-category">Social</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-gallery-item video-item-hidden" data-category="promos">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery1.webp"
+                alt="Season Opener"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="9">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">2:00</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Season Opener Promo</h3>
+                <span class="video-category">Promos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-gallery-item video-item-hidden" data-category="highlights">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery2.webp"
+                alt="Top 10 Plays"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="10">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">4:50</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Top 10 Plays</h3>
+                <span class="video-category">Highlights</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-gallery-item video-item-hidden" data-category="bts">
+            <div class="video-thumbnail-wrapper">
+              <img
+                src="../images/gallery/gallery3.webp"
+                alt="Film Session"
+              />
+              <div class="video-overlay">
+                <button class="video-play-btn" data-video-id="11">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="video-duration-badge">3:35</span>
+              </div>
+              <div class="video-info">
+                <h3 class="video-title">Film Session Breakdown</h3>
+                <span class="video-category">Behind the Scenes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- See More / Show Less Buttons -->
+        <div class="videos-see-more-container">
+          <button class="btn-videos-see-more" id="videosSeeMoreBtn">
+            <span>See More</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <button class="btn-videos-see-more hidden" id="videosShowLessBtn">
+            <span>See Less</span>
+            <i class="fas fa-chevron-up"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Film Room FAQ Section -->
+    <section class="faq-section film-room-section">
+      <div class="faq-background"></div>
+      <div class="container-stadium">
+        <!-- Film Room Header -->
+        <div class="faq-header">
+          <div class="press-badge film-badge">
+            <i class="fas fa-film"></i>
+            <span class="live-indicator replay-indicator">REPLAY</span>
+          </div>
+          <h2 class="section-title">
+            The <span class="gradient-text">Film Room</span>
+          </h2>
+          <p class="section-subtitle">
+            Breaking down the game plan
+          </p>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion">
+          <!-- FAQ Item 1 -->
+          <div class="faq-item" data-faq="1">
+            <div class="faq-question">
+              <div class="question-badge">Q1</div>
+              <h3 class="question-text">
+                What's your typical video turnaround time?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Most highlight reels and promotional videos are delivered within
+                24-48 hours. For same-day urgent content like game day recaps, we
+                offer rush delivery. Longer-form documentaries or cinematic pieces
+                may take 5-7 days depending on complexity and scope.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item" data-faq="2">
+            <div class="faq-question">
+              <div class="question-badge">Q2</div>
+              <h3 class="question-text">What video formats do you deliver?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                All videos are delivered in high-resolution MP4 (H.264) optimized
+                for web and social media. We provide multiple aspect ratios (16:9
+                for YouTube, 9:16 for Stories/Reels, 1:1 for Instagram feed) and
+                can deliver in any format you need (MOV, ProRes, etc.).
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item" data-faq="3">
+            <div class="faq-question">
+              <div class="question-badge">Q3</div>
+              <h3 class="question-text">Do you provide raw footage?</h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes! Raw footage and project files can be provided upon request.
+                We typically deliver edited videos, but if you need the source
+                files for future edits or archival purposes, we're happy to include
+                them in your package.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item" data-faq="4">
+            <div class="faq-question">
+              <div class="question-badge">Q4</div>
+              <h3 class="question-text">
+                Can you add music and sound effects?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Absolutely! Every video includes professional sound design with
+                royalty-free music, sound effects, and audio mixing. If you have
+                specific tracks or licensing for certain music, we can incorporate
+                those as well.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item" data-faq="5">
+            <div class="faq-question">
+              <div class="question-badge">Q5</div>
+              <h3 class="question-text">
+                What if I need revisions after delivery?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Every project includes 2 rounds of revisions at no extra cost. If
+                you need changes to pacing, color grading, music, or any other
+                element, just let us know and we'll refine it until it's perfect.
+                Additional revisions can be added if needed.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item" data-faq="6">
+            <div class="faq-question">
+              <div class="question-badge">Q6</div>
+              <h3 class="question-text">
+                What makes your videos stand out?
+              </h3>
+              <i class="fas fa-chevron-down question-icon"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                We don't just edit clips—we craft cinematic narratives. Every
+                video is storyboarded with intentional pacing, color grading, and
+                sound design that captures emotion and energy. Our background in
+                sports storytelling ensures your content isn't just watched—it's
+                felt and remembered.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container-stadium">
+        <div class="cta-content" data-fade-up>
+          <h2 class="cta-title">
+            Ready to Tell Your
+            <span class="gradient-text">Story</span>?
+          </h2>
+          <p class="cta-text">
+            Let's create videos that capture your championship moments
+          </p>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn-hero-primary btn-contact-toggle">Get Started</a>
+            <a href="/graphics/" class="btn-hero-secondary">View Graphics</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-particles"></div>
+      <div class="container-stadium text-center">
+        <h2 class="section-title" data-fade-up>
+          Contact <span class="gradient-text">Us</span>
+        </h2>
+
+        <p class="section-subtitle" data-fade-up>
+          Reach out via email or follow us on social media:
+        </p>
+
+        <!-- Email -->
+        <p class="contact-email" data-fade-up>
+          <i class="fas fa-envelope"></i>
+          <a
+            id="email-link"
+            href="mailto:contact@playmakergroup.com"
+            title="Email Playmaker Group"
+          >
+            contact@playmakergroup.com
+          </a>
+        </p>
+
+        <!-- Socials -->
+        <div class="social-links" data-fade-up>
+          <a
+            href="https://www.instagram.com/playmaker.group/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group Instagram"
+            title="Follow Playmaker Group on Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.youtube.com/@playmakergrp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group YouTube"
+            title="Subscribe to Playmaker Group YouTube"
+          >
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a
+            href="https://www.behance.net/playmakergroup"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Playmaker Group Behance"
+            title="View Playmaker Group portfolio on Behance"
+          >
+            <i class="fab fa-behance"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-stadium">
+      <div class="container-stadium">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img
+              src="../images/logo/logo-white.png"
+              alt="Playmaker Group"
+              class="footer-logo"
+            />
+          </div>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/">Home</a>
+            <a href="/graphics/">Graphics</a>
+            <a href="/videos/">Videos</a>
+            <a href="/#services">Services</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+          </nav>
+          <p class="footer-copyright">
+            © 2025 Playmaker Group. All victories reserved.
+          </p>
+          <p class="dev-note">
+            Developed by
+            <a
+              href="https://jevta.site"
+              target="_blank"
+              rel="noopener"
+              class="jevta-link"
+              title="Website developer Jevta"
+            >
+              <span class="jevta-shine">Jevta</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Video Lightbox Modal -->
+    <div id="videoLightbox" class="video-lightbox">
+      <div class="video-lightbox-backdrop"></div>
+      <div class="video-lightbox-content">
+        <button
+          class="video-lightbox-close"
+          id="videoLightboxClose"
+          aria-label="Close video"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="video-lightbox-player">
+          <iframe
+            id="lightboxVideoPlayer"
+            src=""
+            title="Video Player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/videos.js"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Video Portfolio - Playmaker Group",
+        "description": "Championship-level video production portfolio for elite athletes and sports brands",
+        "url": "https://playmakergroup.com/videos/",
+        "provider": {
+          "@type": "Organization",
+          "name": "Playmaker Group",
+          "url": "https://playmakergroup.com"
+        }
+      }
+    </script>
+  </body>
+</html>
