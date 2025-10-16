@@ -185,7 +185,7 @@
 }
 
 .hero-swiper .swiper-slide {
-  width: 700px;
+  width: 400px; /* Narrower for vertical 9:16 videos */
   max-width: 90vw;
   display: flex;
   align-items: center;
@@ -202,11 +202,11 @@
   transform: scale(1.1);
 }
 
-/* Video Container */
+/* Video Container - 9:16 Vertical Format */
 .video-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 177.78%; /* 9:16 Aspect Ratio (vertical) */
   border-radius: 20px;
   overflow: hidden;
   background: #000;
@@ -584,18 +584,21 @@
   margin-bottom: var(--space-3xl);
 }
 
-/* Video Gallery Grid */
+/* Video Gallery Grid - Optimized for 9:16 vertical videos - 3 columns layout */
 .videos-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for centered layout */
   gap: var(--space-xl);
   margin-bottom: var(--space-3xl);
+  justify-items: center;
 }
 
 .video-gallery-item {
   position: relative;
   opacity: 1;
   transition: all 0.4s ease;
+  width: 100%;
+  max-width: 350px; /* Limit width for better vertical video display */
 }
 
 .video-gallery-item.video-item-hidden {
@@ -609,7 +612,7 @@
 .video-thumbnail-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 177.78%; /* 9:16 Aspect Ratio (vertical) */
   border-radius: 16px;
   overflow: hidden;
   background: #000;
@@ -1097,7 +1100,9 @@
 .video-lightbox-player {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 */
+  max-width: 600px; /* Limit width for vertical videos */
+  margin: 0 auto;
+  padding-bottom: 177.78%; /* 9:16 (vertical) */
   background: #000;
   border-radius: 12px;
   overflow: hidden;
@@ -1152,15 +1157,19 @@
     font-size: 32px;
   }
 
-  /* Video Gallery - 2 columns */
+  /* Video Gallery - 3 columns on tablet for vertical videos */
   .videos-gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
   }
 
-  /* Hero Video Swiper */
+  .video-gallery-item {
+    max-width: 280px; /* Smaller max-width on tablet */
+  }
+
+  /* Hero Video Swiper - Tablet */
   .hero-swiper .swiper-slide {
-    width: 600px;
+    width: 350px; /* Adjusted for vertical 9:16 videos */
   }
 
   /* CTA Section - Tablet Optimization */
@@ -1349,9 +1358,15 @@
   }
 
   .videos-gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column on mobile - videos stacked vertically */
     gap: var(--space-lg);
     margin-bottom: var(--space-2xl);
+    justify-items: center;
+  }
+
+  .video-gallery-item {
+    max-width: 100%; /* Full width on mobile */
+    width: 100%;
   }
 
   .video-play-btn {
