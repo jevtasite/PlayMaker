@@ -381,12 +381,15 @@
           <div class="portfolio-item" data-category="video">
             <div class="portfolio-image">
               <img
-                src="images/gallery/gallery4.webp"
-                alt="Training Day Series"
+                src="images/gallery/gallery1.webp"
+                alt="Showcase Video 1"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">See full image</p>
+                <button class="portfolio-play-btn" data-video-id="0">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
               </div>
             </div>
           </div>
@@ -409,12 +412,15 @@
           <div class="portfolio-item" data-category="video">
             <div class="portfolio-image">
               <img
-                src="images/gallery/gallery6.webp"
-                alt="Hype Reel Video"
+                src="images/gallery/gallery2.webp"
+                alt="Showcase Video 2"
                 loading="lazy"
               />
               <div class="portfolio-overlay">
-                <p class="portfolio-category">See full image</p>
+                <button class="portfolio-play-btn" data-video-id="1">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
               </div>
             </div>
           </div>
@@ -483,6 +489,126 @@
               />
               <div class="portfolio-overlay">
                 <p class="portfolio-category">See full image</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 11 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery3.webp"
+                alt="Showcase Video 3"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="2">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 12 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery4.webp"
+                alt="Showcase Video 4"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="3">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 13 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery5.webp"
+                alt="Showcase Video 5"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="4">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 14 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery6.webp"
+                alt="Showcase Video 6"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="5">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 15 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery7.webp"
+                alt="Showcase Video 7"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="6">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Item 16 - Video (Hidden Initially) -->
+          <div
+            class="portfolio-item portfolio-item-more"
+            data-category="video"
+          >
+            <div class="portfolio-image">
+              <img
+                src="images/gallery/gallery8.webp"
+                alt="Showcase Video 8"
+                loading="lazy"
+              />
+              <div class="portfolio-overlay">
+                <button class="portfolio-play-btn" data-video-id="7">
+                  <i class="fas fa-play"></i>
+                </button>
+                <span class="portfolio-duration">0:00</span>
               </div>
             </div>
           </div>
@@ -562,6 +688,31 @@
           />
         </svg>
       </button>
+    </div>
+
+    <!-- Video Lightbox Modal -->
+    <div class="video-lightbox" id="videoLightbox">
+      <div class="lightbox-backdrop"></div>
+      <button
+        class="lightbox-close"
+        id="videoLightboxClose"
+        aria-label="Close video"
+      >
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+      <div class="video-lightbox-content">
+        <video id="portfolioVideoPlayer" controls autoplay>
+          <source src="" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
 
     <!-- Services Section -->

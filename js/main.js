@@ -69,53 +69,53 @@ document.addEventListener("click", (e) => {
 // DROPDOWN MENU FUNCTIONALITY
 // ==========================================================================
 
-const dropdownTriggers = document.querySelectorAll('.navbar-dropdown__trigger');
-const dropdowns = document.querySelectorAll('.navbar-dropdown');
+const dropdownTriggers = document.querySelectorAll(".navbar-dropdown__trigger");
+const dropdowns = document.querySelectorAll(".navbar-dropdown");
 
 // Handle dropdown interactions
-dropdownTriggers.forEach(trigger => {
+dropdownTriggers.forEach((trigger) => {
   // Prevent Portfolio link from navigating on click
-  trigger.addEventListener('click', (e) => {
+  trigger.addEventListener("click", (e) => {
     e.preventDefault();
 
     // On mobile/tablet, toggle the dropdown
     if (window.innerWidth <= 1024) {
-      const dropdown = trigger.closest('.navbar-dropdown');
+      const dropdown = trigger.closest(".navbar-dropdown");
 
       // Close other dropdowns
-      dropdowns.forEach(d => {
+      dropdowns.forEach((d) => {
         if (d !== dropdown) {
-          d.classList.remove('active');
+          d.classList.remove("active");
         }
       });
 
       // Toggle current dropdown
-      dropdown.classList.toggle('active');
+      dropdown.classList.toggle("active");
     }
     // On desktop, dropdown shows on hover, so click does nothing
   });
 });
 
 // Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.navbar-dropdown')) {
-    dropdowns.forEach(dropdown => {
-      dropdown.classList.remove('active');
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".navbar-dropdown")) {
+    dropdowns.forEach((dropdown) => {
+      dropdown.classList.remove("active");
     });
   }
 });
 
 // Close dropdown when clicking on a dropdown link
-document.querySelectorAll('.navbar-dropdown__link').forEach(link => {
-  link.addEventListener('click', () => {
-    dropdowns.forEach(dropdown => {
-      dropdown.classList.remove('active');
+document.querySelectorAll(".navbar-dropdown__link").forEach((link) => {
+  link.addEventListener("click", () => {
+    dropdowns.forEach((dropdown) => {
+      dropdown.classList.remove("active");
     });
     // Close mobile menu if open
-    if (navMenu && navMenu.classList.contains('active')) {
-      menuToggle.classList.remove('active');
-      navMenu.classList.remove('active');
-      document.body.style.overflow = '';
+    if (navMenu && navMenu.classList.contains("active")) {
+      menuToggle.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.body.style.overflow = "";
     }
   });
 });
@@ -148,7 +148,9 @@ function updateActiveNavLink() {
   const navLinks = document.querySelectorAll(".navbar-stadium__link");
 
   // Check if we're on a subpage (not the main page)
-  const isSubpage = window.location.pathname !== '/' && window.location.pathname !== '/index.html';
+  const isSubpage =
+    window.location.pathname !== "/" &&
+    window.location.pathname !== "/index.html";
 
   // If on a subpage, don't modify active states (keep HTML-defined active state)
   if (isSubpage) {
@@ -156,14 +158,18 @@ function updateActiveNavLink() {
   }
 
   let currentSection = "";
-  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollPosition =
+    window.pageYOffset || document.documentElement.scrollTop;
 
   // Find which section is currently in view
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 100; // Offset for navbar height
     const sectionHeight = section.offsetHeight;
 
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionTop + sectionHeight
+    ) {
       currentSection = section.getAttribute("id");
     }
   });
@@ -415,14 +421,16 @@ function prevPhone() {
 }
 
 // Button controls
-if (nextBtn) nextBtn.addEventListener("click", () => {
-  stopAutoRotate();
-  nextPhone();
-});
-if (prevBtn) prevBtn.addEventListener("click", () => {
-  stopAutoRotate();
-  prevPhone();
-});
+if (nextBtn)
+  nextBtn.addEventListener("click", () => {
+    stopAutoRotate();
+    nextPhone();
+  });
+if (prevBtn)
+  prevBtn.addEventListener("click", () => {
+    stopAutoRotate();
+    prevPhone();
+  });
 
 // Mouse/Touch drag interaction
 if (phoneStack) {
@@ -1245,12 +1253,12 @@ if (testimonialSwiper) {
       },
       // Tablet
       768: {
-        slidesPerView: "auto",
+        slidesPerView: "2",
         spaceBetween: 30,
       },
       // Desktop
       1024: {
-        slidesPerView: "auto",
+        slidesPerView: "2",
         spaceBetween: 40,
       },
     },
