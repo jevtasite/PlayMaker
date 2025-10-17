@@ -115,29 +115,24 @@ document.addEventListener("DOMContentLoaded", function () {
       const videoContainer = this.closest(".video-container");
       const thumbnail = videoContainer.querySelector(".video-thumbnail");
       const player = videoContainer.querySelector(".video-player");
-      const iframe = player.querySelector("iframe");
+      const video = player.querySelector("video");
 
-      // Lazy load iframe if not already loaded
-      const dataSrc = iframe.getAttribute("data-src");
-      if (dataSrc && !iframe.getAttribute("src")) {
-        iframe.setAttribute("src", dataSrc + "&autoplay=1");
-      } else {
-        // If already loaded, just add autoplay parameter
-        const src = iframe.getAttribute("src");
-        if (src && src.indexOf("autoplay=1") === -1) {
-          iframe.setAttribute(
-            "src",
-            src + (src.indexOf("?") > -1 ? "&" : "?") + "autoplay=1"
-          );
-        }
+      // Lazy load video if not already loaded
+      const dataSrc = video.getAttribute("data-src");
+      if (dataSrc && !video.getAttribute("src")) {
+        video.src = dataSrc;
+        video.load();
       }
+
+      // Play the video
+      video.play().catch(err => console.log("Video play error:", err));
 
       // Hide thumbnail and show video player
       thumbnail.style.display = "none";
       player.style.display = "block";
 
       // Track currently playing video
-      currentlyPlayingVideo = { container: videoContainer, iframe };
+      currentlyPlayingVideo = { container: videoContainer, video };
     });
   });
 
@@ -145,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
   videosSwiper.on("slideChange", function () {
     // Only process if there's a video currently playing
     if (currentlyPlayingVideo) {
-      const { container, iframe } = currentlyPlayingVideo;
+      const { container, video } = currentlyPlayingVideo;
 
       // Reset to thumbnail view
       const thumbnail = container.querySelector(".video-thumbnail");
@@ -154,12 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
       player.style.display = "none";
       thumbnail.style.display = "block";
 
-      // Stop video by removing src (forces unload)
-      const src = iframe.getAttribute("src");
-      if (src) {
-        iframe.setAttribute("src", "");
-        iframe.setAttribute("data-src", src.replace(/[?&]autoplay=1/g, ""));
-      }
+      // Stop video
+      video.pause();
+      video.currentTime = 0;
 
       // Clear the reference
       currentlyPlayingVideo = null;
@@ -781,6 +773,91 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ==========================================================================
+  // HERO VIDEOS - DYNAMIC THUMBNAILS & DURATIONS
+  // ==========================================================================
+
+  // Load hero video thumbnails and durations
+  function loadHeroVideoMetadata() {
+    const heroVideos = document.querySelectorAll(".hero-swiper .swiper-slide");
+
+    // Hero video URLs
+    const heroVideoUrls = [
+      "../vid/hero1.mp4",
+      "../vid/hero2.mp4",
+      "../vid/hero3.mp4",
+      "../vid/hero4.mp4",
+      "../vid/hero5.mp4",
+      "../vid/hero6.mp4",
+    ];
+
+    heroVideos.forEach((slide, index) => {
+      const imgElement = slide.querySelector(".video-thumbnail img");
+      const durationBadge = slide.querySelector(".video-duration");
+      const videoUrl = heroVideoUrls[index];
+
+      if (!videoUrl) return;
+
+      // Create hidden video element to extract metadata
+      const videoElement = document.createElement("video");
+      videoElement.preload = "metadata";
+      videoElement.muted = true;
+      videoElement.playsInline = true;
+      videoElement.style.display = "none";
+      videoElement.crossOrigin = "anonymous";
+
+      // When metadata is loaded
+      videoElement.addEventListener("loadedmetadata", function () {
+        // Update duration badge with real duration
+        if (durationBadge && this.duration) {
+          durationBadge.textContent = formatDuration(this.duration);
+        }
+
+        // Generate thumbnail from first frame
+        this.currentTime = 0.5; // Seek to 0.5 seconds for better frame
+      });
+
+      // When seeked to frame
+      videoElement.addEventListener("seeked", function () {
+        // Create canvas to capture frame
+        const canvas = document.createElement("canvas");
+        canvas.width = this.videoWidth;
+        canvas.height = this.videoHeight;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+        // Convert canvas to blob and create object URL
+        canvas.toBlob((blob) => {
+          if (blob && imgElement) {
+            const thumbnailUrl = URL.createObjectURL(blob);
+            imgElement.src = thumbnailUrl;
+          }
+
+          // Clean up video element
+          this.remove();
+        }, "image/jpeg", 0.85);
+      });
+
+      // Handle errors gracefully
+      videoElement.addEventListener("error", function () {
+        console.warn(`Could not load metadata for hero video ${index + 1}`);
+        this.remove();
+      });
+
+      // Set video source to trigger loading
+      videoElement.src = videoUrl;
+
+      // Append to body (hidden)
+      document.body.appendChild(videoElement);
+    });
+  }
+
+  // Load hero video metadata on page load
+  if (document.querySelector(".hero-swiper")) {
+    setTimeout(loadHeroVideoMetadata, 500);
+  }
+
+  // ==========================================================================
   // CONSOLE LOG - PAGE LOADED
   // ==========================================================================
 
@@ -789,4 +866,5 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("🎯 Category Filters Active");
   console.log("🎞️ Lightbox Player Ready");
   console.log("🖼️ Dynamic Thumbnails Enabled");
+  console.log("🎥 Hero Video Thumbnails Loading");
 });

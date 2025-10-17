@@ -252,10 +252,43 @@
   object-fit: cover;
 }
 
-.video-player iframe {
+.video-player iframe,
+.video-player video {
   width: 100%;
   height: 100%;
   transform: translateZ(0); /* Force GPU rendering for smooth playback */
+}
+
+/* Hero Fullscreen Button */
+.hero-fullscreen-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(244, 208, 63, 0.5);
+  color: var(--stadium-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.hero-fullscreen-btn:hover {
+  background: var(--stadium-gold);
+  color: var(--pregame-darkness);
+  border-color: var(--stadium-gold);
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.4);
+}
+
+.hero-fullscreen-btn i {
+  font-size: 16px;
 }
 
 /* Play Overlay */
