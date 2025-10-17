@@ -45,7 +45,7 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
   },
 
   // Enable looping for desktop
-  loop: true,
+  loop: false,
 
   // Smooth transitions
   speed: 800,
@@ -70,7 +70,7 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
     // Mobile - Maximum Performance
     320: {
       effect: "slide", // Switch to slide effect for better performance
-      slidesPerView: 1,
+      slidesPerView: "auto",
       loop: false, // Disable loop to reduce DOM nodes
       speed: 400, // Faster transitions
       grabCursor: false, // Disable on mobile
@@ -93,7 +93,7 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
     1025: {
       effect: "coverflow",
       slidesPerView: "auto",
-      loop: true, // Enable loop on desktop
+      loop: false, // Enable loop on desktop
       speed: 800,
       grabCursor: true,
       coverflowEffect: {
@@ -715,14 +715,17 @@ setTimeout(() => {
   );
 
   // Animate swiper navigation buttons
-  gsap.to(".hero-swiper .swiper-button-next, .hero-swiper .swiper-button-prev", {
-    opacity: 1,
-    scale: 1,
-    duration: 0.6,
-    delay: 1.6,
-    stagger: 0.1,
-    ease: "back.out(1.7)",
-  });
+  gsap.to(
+    ".hero-swiper .swiper-button-next, .hero-swiper .swiper-button-prev",
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      delay: 1.6,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+    }
+  );
 
   // Animate explore button
   gsap.fromTo(

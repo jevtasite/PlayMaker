@@ -258,30 +258,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const lightboxClose = document.getElementById("videoLightboxClose");
   const videoPlayButtons = document.querySelectorAll(".video-play-btn");
 
-  // Video URLs (Replace with actual video URLs)
+  // Video URLs - Local MP4 files from vid/ folder
   const videoUrls = [
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
-    "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0",
+    "../vid/showcase1.mp4",
+    "../vid/showcase2.mp4",
+    "../vid/showcase3.mp4",
+    "../vid/showcase4.mp4",
+    "../vid/showcase5.mp4",
+    "../vid/showcase6.mp4",
+    "../vid/showcase7.mp4",
+    "../vid/showcase8.mp4",
+    "../vid/showcase9.mp4",
   ];
 
-  // Open lightbox
+  // Open lightbox with HTML5 video
   videoPlayButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
       e.preventDefault();
       const videoId = this.getAttribute("data-video-id");
       const videoUrl = videoUrls[videoId] || videoUrls[0];
 
-      lightboxPlayer.setAttribute("src", videoUrl);
+      // Get the video element and set source
+      const videoElement = document.getElementById("lightboxVideoPlayer");
+      if (videoElement) {
+        videoElement.src = videoUrl;
+        videoElement.load(); // Force reload of the video
+      }
+
       videoLightbox.classList.add("active");
       document.body.style.overflow = "hidden";
 
@@ -297,7 +300,11 @@ document.addEventListener("DOMContentLoaded", function () {
       duration: 0.3,
       onComplete: () => {
         videoLightbox.classList.remove("active");
-        lightboxPlayer.setAttribute("src", "");
+        const videoElement = document.getElementById("lightboxVideoPlayer");
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.src = "";
+        }
         document.body.style.overflow = "";
       },
     });
@@ -675,6 +682,105 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 100);
 
   // ==========================================================================
+  // DYNAMIC VIDEO THUMBNAILS & DURATION EXTRACTION
+  // ==========================================================================
+
+  // Format seconds to MM:SS
+  function formatDuration(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  }
+
+  // Load video metadata and generate thumbnails
+  function loadVideoMetadata() {
+    const galleryItems = document.querySelectorAll(".video-gallery-item");
+
+    galleryItems.forEach((item, index) => {
+      const imgElement = item.querySelector("img");
+      const durationBadge = item.querySelector(".video-duration-badge");
+      const videoId = item.querySelector(".video-play-btn")?.getAttribute("data-video-id");
+
+      if (!videoId || !videoUrls[videoId]) return;
+
+      // Create hidden video element to extract metadata
+      const videoElement = document.createElement("video");
+      videoElement.preload = "metadata";
+      videoElement.muted = true;
+      videoElement.playsInline = true;
+      videoElement.style.display = "none";
+      videoElement.crossOrigin = "anonymous";
+
+      // When metadata is loaded
+      videoElement.addEventListener("loadedmetadata", function () {
+        // Update duration badge with real duration
+        if (durationBadge && this.duration) {
+          durationBadge.textContent = formatDuration(this.duration);
+        }
+
+        // Generate thumbnail from first frame
+        this.currentTime = 0.1; // Seek to 0.1 seconds
+      });
+
+      // When seeked to frame
+      videoElement.addEventListener("seeked", function () {
+        // Create canvas to capture frame
+        const canvas = document.createElement("canvas");
+        canvas.width = this.videoWidth;
+        canvas.height = this.videoHeight;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+        // Convert canvas to blob and create object URL
+        canvas.toBlob((blob) => {
+          if (blob && imgElement) {
+            const thumbnailUrl = URL.createObjectURL(blob);
+            imgElement.src = thumbnailUrl;
+          }
+
+          // Clean up video element
+          this.remove();
+        }, "image/jpeg", 0.85);
+      });
+
+      // Handle errors gracefully
+      videoElement.addEventListener("error", function () {
+        console.warn(`Could not load metadata for video ${index + 1}`);
+        this.remove();
+      });
+
+      // Set video source to trigger loading
+      videoElement.src = videoUrls[videoId];
+
+      // Append to body (hidden)
+      document.body.appendChild(videoElement);
+    });
+  }
+
+  // Use Intersection Observer to only load thumbnails when gallery is visible
+  const gallerySection = document.querySelector(".videos-gallery-section");
+  if (gallerySection && "IntersectionObserver" in window) {
+    const galleryObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Load metadata when gallery becomes visible
+            loadVideoMetadata();
+            galleryObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    galleryObserver.observe(gallerySection);
+  } else {
+    // Fallback: load after short delay if IntersectionObserver not supported
+    setTimeout(loadVideoMetadata, 1000);
+  }
+
+  // ==========================================================================
   // CONSOLE LOG - PAGE LOADED
   // ==========================================================================
 
@@ -682,4 +788,5 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("📹 Video Swiper Initialized");
   console.log("🎯 Category Filters Active");
   console.log("🎞️ Lightbox Player Ready");
+  console.log("🖼️ Dynamic Thumbnails Enabled");
 });

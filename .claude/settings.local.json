@@ -5,7 +5,9 @@
       "Bash(start index.html)",
       "Bash(git add:*)",
       "Bash(git revert:*)",
-      "Bash(start graphics/index.html)"
+      "Bash(start graphics/index.html)",
+      "Bash(start videos/index.html)",
+      "Bash(node --version:*)"
     ],
     "deny": [],
     "ask": []

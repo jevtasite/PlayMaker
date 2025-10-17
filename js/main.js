@@ -1198,15 +1198,15 @@ if (testimonialSwiper) {
     slidesPerView: "auto",
     loop: false,
 
-    // Autoplay
+    // Autoplay - increased delay for fewer transitions
     autoplay: {
-      delay: 5000,
+      delay: 6000,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
 
-    // Speed - reduced for smoother transitions
-    speed: 500,
+    // Speed - optimized for smooth, snappy transitions
+    speed: 400,
 
     // Navigation arrows
     navigation: {
@@ -1232,8 +1232,9 @@ if (testimonialSwiper) {
     touchAngle: 45,
 
     // Performance optimizations
-    watchSlidesProgress: true,
+    watchSlidesProgress: false,
     preventInteractionOnTransition: true,
+    lazy: true,
 
     // Responsive breakpoints
     breakpoints: {
