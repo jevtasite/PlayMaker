@@ -97,8 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ==========================================================================
-  // HERO VIDEO PLAY FUNCTIONALITY
+  // HERO VIDEO PLAY FUNCTIONALITY - OPTIMIZED WITH LAZY LOADING
   // ==========================================================================
+
+  // Track currently playing video
+  let currentlyPlayingVideo = null;
 
   // Handle play button clicks in hero swiper
   const heroPlayButtons = document.querySelectorAll(
@@ -112,44 +115,55 @@ document.addEventListener("DOMContentLoaded", function () {
       const videoContainer = this.closest(".video-container");
       const thumbnail = videoContainer.querySelector(".video-thumbnail");
       const player = videoContainer.querySelector(".video-player");
+      const iframe = player.querySelector("iframe");
+
+      // Lazy load iframe if not already loaded
+      const dataSrc = iframe.getAttribute("data-src");
+      if (dataSrc && !iframe.getAttribute("src")) {
+        iframe.setAttribute("src", dataSrc + "&autoplay=1");
+      } else {
+        // If already loaded, just add autoplay parameter
+        const src = iframe.getAttribute("src");
+        if (src && src.indexOf("autoplay=1") === -1) {
+          iframe.setAttribute(
+            "src",
+            src + (src.indexOf("?") > -1 ? "&" : "?") + "autoplay=1"
+          );
+        }
+      }
 
       // Hide thumbnail and show video player
       thumbnail.style.display = "none";
       player.style.display = "block";
 
-      // Auto-play the video by adding autoplay parameter
-      const iframe = player.querySelector("iframe");
-      const src = iframe.getAttribute("src");
-      if (src.indexOf("autoplay=1") === -1) {
-        iframe.setAttribute(
-          "src",
-          src + (src.indexOf("?") > -1 ? "&" : "?") + "autoplay=1"
-        );
-      }
+      // Track currently playing video
+      currentlyPlayingVideo = { container: videoContainer, iframe };
     });
   });
 
-  // Pause video when slide changes
+  // Optimized: Only stop currently playing video when slide changes
   videosSwiper.on("slideChange", function () {
-    // Get all video players
-    const allPlayers = document.querySelectorAll(".hero-swiper .video-player");
-    const allThumbnails = document.querySelectorAll(
-      ".hero-swiper .video-thumbnail"
-    );
+    // Only process if there's a video currently playing
+    if (currentlyPlayingVideo) {
+      const { container, iframe } = currentlyPlayingVideo;
 
-    // Reset all videos to thumbnail view
-    allPlayers.forEach((player, index) => {
+      // Reset to thumbnail view
+      const thumbnail = container.querySelector(".video-thumbnail");
+      const player = container.querySelector(".video-player");
+
       player.style.display = "none";
-      allThumbnails[index].style.display = "block";
+      thumbnail.style.display = "block";
 
-      // Stop video by resetting iframe src
-      const iframe = player.querySelector("iframe");
+      // Stop video by removing src (forces unload)
       const src = iframe.getAttribute("src");
-      iframe.setAttribute(
-        "src",
-        src.replace("&autoplay=1", "").replace("?autoplay=1", "")
-      );
-    });
+      if (src) {
+        iframe.setAttribute("src", "");
+        iframe.setAttribute("data-src", src.replace(/[?&]autoplay=1/g, ""));
+      }
+
+      // Clear the reference
+      currentlyPlayingVideo = null;
+    }
   });
 
   // ==========================================================================
@@ -570,6 +584,95 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // ==========================================================================
+  // HERO SECTION INTRO ANIMATIONS
+  // ==========================================================================
+
+  // Initialize hero animations - Run immediately after DOM ready
+  setTimeout(() => {
+    // Animate page badge
+    gsap.to(".page-badge", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: "power3.out",
+    });
+
+    // Animate main title
+    gsap.fromTo(
+      ".hero-main-title",
+      { y: 40, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1,
+        delay: 0.4,
+        ease: "power3.out",
+      }
+    );
+
+    // Animate subtitle
+    gsap.fromTo(
+      ".hero-subtitle",
+      { y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.6,
+        ease: "power3.out",
+      }
+    );
+
+    // Animate swiper with blur reveal effect
+    gsap.fromTo(
+      ".hero-swiper",
+      {
+        y: 60,
+        filter: "blur(20px)",
+        scale: 0.9,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1.2,
+        delay: 0.8,
+        ease: "power3.out",
+      }
+    );
+
+    // Animate swiper navigation buttons
+    gsap.to(
+      ".hero-swiper .swiper-button-next, .hero-swiper .swiper-button-prev",
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        delay: 1.6,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+      }
+    );
+
+    // Animate explore button
+    gsap.fromTo(
+      ".btn-explore-work",
+      { y: 30, scale: 0.9 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        delay: 1.4,
+        ease: "back.out(1.7)",
+      }
+    );
+  }, 100);
 
   // ==========================================================================
   // CONSOLE LOG - PAGE LOADED

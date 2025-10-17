@@ -653,6 +653,92 @@ gsap.utils.toArray(".faq-item").forEach((item, index) => {
   );
 });
 
+// ==========================================================================
+// HERO SECTION INTRO ANIMATIONS
+// ==========================================================================
+
+// Initialize hero animations - Run immediately after DOM ready
+setTimeout(() => {
+  // Animate page badge
+  gsap.to(".page-badge", {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 0.2,
+    ease: "power3.out",
+  });
+
+  // Animate main title
+  gsap.fromTo(
+    ".hero-main-title",
+    { y: 40, scale: 0.95 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 1,
+      delay: 0.4,
+      ease: "power3.out",
+    }
+  );
+
+  // Animate subtitle
+  gsap.fromTo(
+    ".hero-subtitle",
+    { y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.6,
+      ease: "power3.out",
+    }
+  );
+
+  // Animate swiper with blur reveal effect
+  gsap.fromTo(
+    ".hero-swiper",
+    {
+      y: 60,
+      filter: "blur(20px)",
+      scale: 0.9,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      scale: 1,
+      duration: 1.2,
+      delay: 0.8,
+      ease: "power3.out",
+    }
+  );
+
+  // Animate swiper navigation buttons
+  gsap.to(".hero-swiper .swiper-button-next, .hero-swiper .swiper-button-prev", {
+    opacity: 1,
+    scale: 1,
+    duration: 0.6,
+    delay: 1.6,
+    stagger: 0.1,
+    ease: "back.out(1.7)",
+  });
+
+  // Animate explore button
+  gsap.fromTo(
+    ".btn-explore-work",
+    { y: 30, scale: 0.9 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.8,
+      delay: 1.4,
+      ease: "back.out(1.7)",
+    }
+  );
+}, 100);
+
 console.log("Graphics 3-card carousel initialized successfully");
 console.log("Press Conference FAQ initialized successfully");
 

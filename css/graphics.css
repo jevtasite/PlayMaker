@@ -18,6 +18,20 @@
 }
 
 /* ==========================================================================
+   HERO INTRO ANIMATION - HIDE ELEMENTS INITIALLY
+   ========================================================================== */
+
+.page-badge,
+.hero-main-title,
+.hero-subtitle,
+.hero-swiper,
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev,
+.btn-explore-work {
+  opacity: 0;
+}
+
+/* ==========================================================================
    HERO SECTION - GRAPHICS CAROUSEL
    ========================================================================== */
 
@@ -278,6 +292,9 @@
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 6px 20px rgba(244, 208, 63, 0.3);
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
 }
 
 .btn-explore-work:hover {
@@ -1305,6 +1322,12 @@
 
   .hero-subtitle {
     font-size: 16px;
+  }
+
+  /* Explore Button - Tablet */
+  .btn-explore-work {
+    padding: 14px 32px;
+    font-size: 14px;
   }
 
   .carousel-card.side {

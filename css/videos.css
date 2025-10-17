@@ -18,6 +18,20 @@
 }
 
 /* ==========================================================================
+   HERO INTRO ANIMATION - HIDE ELEMENTS INITIALLY
+   ========================================================================== */
+
+.page-badge,
+.hero-main-title,
+.hero-subtitle,
+.hero-swiper,
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev,
+.btn-explore-work {
+  opacity: 0;
+}
+
+/* ==========================================================================
    HERO SECTION - VIDEO CAROUSEL
    ========================================================================== */
 
@@ -185,14 +199,16 @@
 }
 
 .hero-swiper .swiper-slide {
-  width: 400px; /* Narrower for vertical 9:16 videos */
-  max-width: 90vw;
+  width: 280px;
+  aspect-ratio: 9 / 16;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   opacity: 0.5;
   filter: blur(2px);
+  will-change: transform, opacity, filter; /* GPU acceleration hint */
+  transform: translateZ(0); /* Force GPU layer */
 }
 
 .hero-swiper .swiper-slide-active {
@@ -206,13 +222,14 @@
 .video-container {
   position: relative;
   width: 100%;
-  padding-bottom: 177.78%; /* 9:16 Aspect Ratio (vertical) */
+  height: 100%;
   border-radius: 20px;
   overflow: hidden;
   background: #000;
   border: 2px solid rgba(244, 208, 63, 0.2);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(244, 208, 63, 0.1);
   transition: all 0.6s ease;
+  will-change: transform, box-shadow; /* GPU acceleration for hover effects */
 }
 
 .hero-swiper .swiper-slide-active .video-container {
@@ -238,6 +255,7 @@
 .video-player iframe {
   width: 100%;
   height: 100%;
+  transform: translateZ(0); /* Force GPU rendering for smooth playback */
 }
 
 /* Play Overlay */
@@ -332,45 +350,43 @@
 /* Explore Button */
 .btn-explore-container {
   margin-top: var(--space-lg);
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .btn-explore-work {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl);
-  background: transparent;
-  border: 2px solid var(--stadium-gold);
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--money-gradient);
+  color: var(--pregame-darkness);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   border-radius: 50px;
-  font-family: var(--font-subhead);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
-  color: var(--stadium-gold);
   text-decoration: none;
   transition: all 0.3s ease;
-  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(244, 208, 63, 0.3);
+  width: 100%;
+  max-width: 280px;
+  justify-content: center;
 }
 
 .btn-explore-work:hover {
-  background: var(--stadium-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(244, 208, 63, 0.5);
   color: var(--pregame-darkness);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.4);
 }
 
 .btn-explore-work i {
-  animation: bounce-arrow 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
 }
 
-@keyframes bounce-arrow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
-  }
+.btn-explore-work:hover i {
+  transform: translateY(4px);
 }
 
 /* ==========================================================================
@@ -413,10 +429,10 @@
 
 @keyframes grid-move {
   0% {
-    transform: perspective(500px) rotateX(60deg) translateY(0);
+    transform: translateY(0);
   }
   100% {
-    transform: perspective(500px) rotateX(60deg) translateY(100px);
+    transform: translateY(100px);
   }
 }
 
@@ -622,8 +638,7 @@
 
 .video-thumbnail-wrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8),
-    0 0 24px rgba(244, 208, 63, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(244, 208, 63, 0.2);
 }
 
 .video-thumbnail-wrapper img {
@@ -727,28 +742,61 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-2xl);
-  background: transparent;
-  border: 2px solid var(--stadium-gold);
+  padding: 16px 40px;
+  background: rgba(244, 208, 63, 0.1);
+  border: 2px solid rgba(244, 208, 63, 0.3);
   border-radius: 50px;
-  font-family: var(--font-subhead);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
   color: var(--stadium-gold);
+  font-size: var(--text-base);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-videos-see-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(244, 208, 63, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-videos-see-more:hover::before {
+  left: 100%;
 }
 
 .btn-videos-see-more:hover {
-  background: var(--stadium-gold);
+  background: var(--money-gradient);
+  border-color: var(--stadium-gold);
   color: var(--pregame-darkness);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.4);
+  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.3);
+}
+
+.btn-videos-see-more i {
+  transition: transform 0.3s ease;
+}
+
+.btn-videos-see-more:hover i {
+  transform: translateY(4px);
 }
 
 .btn-videos-see-more.hidden {
   display: none;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 /* ==========================================================================
@@ -1122,7 +1170,13 @@
    ========================================================================== */
 
 /* Tablet Devices (768px - 1024px) */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Explore Button - Tablet */
+  .btn-explore-work {
+    padding: 14px 32px;
+    font-size: 14px;
+  }
+
   /* Philosophy Stats - 2 columns with 3rd centered */
   .philosophy-stats {
     grid-template-columns: repeat(2, 1fr);
@@ -1165,11 +1219,6 @@
 
   .video-gallery-item {
     max-width: 280px; /* Smaller max-width on tablet */
-  }
-
-  /* Hero Video Swiper - Tablet */
-  .hero-swiper .swiper-slide {
-    width: 350px; /* Adjusted for vertical 9:16 videos */
   }
 
   /* CTA Section - Tablet Optimization */
@@ -1391,6 +1440,33 @@
 
   .video-category {
     font-size: 12px;
+  }
+
+  /* Explore Button - Mobile */
+  .btn-explore-work {
+    padding: 12px 24px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* See More Button - Mobile */
+  .btn-videos-see-more {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    justify-content: center;
+  }
+
+  .btn-videos-see-more span {
+    flex: 1;
+    text-align: center;
+  }
+
+  .btn-videos-see-more i {
+    flex-shrink: 0;
   }
 
   /* FAQ Section */
