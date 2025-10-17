@@ -2551,6 +2551,16 @@ textarea.form-input {
   color: #1a1d29 !important;
 }
 
+/* Hide back to top button when lightbox is active */
+.lightbox.active ~ .back-to-top,
+.video-lightbox.active ~ .back-to-top,
+body:has(.lightbox.active) .back-to-top,
+body:has(.video-lightbox.active) .back-to-top {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   * {

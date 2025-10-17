@@ -1203,6 +1203,14 @@
   height: 100%;
 }
 
+/* Hide back to top button when video lightbox is active */
+.video-lightbox.active ~ .back-to-top,
+body:has(.video-lightbox.active) .back-to-top {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
