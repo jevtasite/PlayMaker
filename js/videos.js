@@ -695,11 +695,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!videoId || !videoUrls[videoId]) return;
 
-      // Hide placeholder image initially
-      if (imgElement) {
-        imgElement.style.opacity = "0";
-      }
-
       // Create hidden video element to extract metadata
       const videoElement = document.createElement("video");
       videoElement.preload = "metadata";
@@ -734,15 +729,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (blob && imgElement) {
             const thumbnailUrl = URL.createObjectURL(blob);
             imgElement.src = thumbnailUrl;
-
-            // Fade in the thumbnail once loaded
-            imgElement.onload = () => {
-              gsap.to(imgElement, {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out"
-              });
-            };
+            // CSS transition will handle the fade-in automatically
           }
 
           // Clean up video element
@@ -753,15 +740,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Handle errors gracefully
       videoElement.addEventListener("error", function () {
         console.warn(`Could not load metadata for video ${index + 1}`);
-
-        // Show placeholder with reduced opacity on error
-        if (imgElement) {
-          gsap.to(imgElement, {
-            opacity: 0.3,
-            duration: 0.3
-          });
-        }
-
         this.remove();
       });
 
@@ -820,11 +798,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!videoUrl) return;
 
-      // Hide placeholder image initially
-      if (imgElement) {
-        imgElement.style.opacity = "0";
-      }
-
       // Create hidden video element to extract metadata
       const videoElement = document.createElement("video");
       videoElement.preload = "metadata";
@@ -859,15 +832,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (blob && imgElement) {
             const thumbnailUrl = URL.createObjectURL(blob);
             imgElement.src = thumbnailUrl;
-
-            // Fade in the thumbnail once loaded
-            imgElement.onload = () => {
-              gsap.to(imgElement, {
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out"
-              });
-            };
+            // CSS transition will handle the fade-in automatically
           }
 
           // Clean up video element
@@ -878,15 +843,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Handle errors gracefully
       videoElement.addEventListener("error", function () {
         console.warn(`Could not load metadata for hero video ${index + 1}`);
-
-        // Show placeholder with reduced opacity on error
-        if (imgElement) {
-          gsap.to(imgElement, {
-            opacity: 0.3,
-            duration: 0.3
-          });
-        }
-
         this.remove();
       });
 
