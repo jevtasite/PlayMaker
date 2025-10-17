@@ -651,15 +651,11 @@ filterButtons.forEach((button) => {
     filterButtons.forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
 
-    // Show/hide the show more button based on filter
+    // Show/hide the show more button (always visible for both filters)
     const showMoreBtn = document.getElementById("showMoreBtn");
     const showMoreContainer = document.querySelector(".portfolio-show-more");
     if (showMoreContainer) {
-      if (filter === "graphics") {
-        showMoreContainer.style.display = "flex";
-      } else {
-        showMoreContainer.style.display = "none";
-      }
+      showMoreContainer.style.display = "flex";
     }
 
     // Reset show more state when switching filters
@@ -724,15 +720,22 @@ const lightboxBackdrop = document.querySelector(".lightbox-backdrop");
 let currentImageIndex = 0;
 let visibleImages = [];
 
-// Open lightbox when clicking on portfolio images
+// Open lightbox when clicking on portfolio images (but not videos)
 portfolioItems.forEach((item) => {
   const image = item.querySelector("img");
   if (image) {
     item.style.cursor = "pointer";
     item.addEventListener("click", () => {
-      // Get all visible (non-hidden) portfolio items
+      // Don't open image lightbox for video items
+      if (item.dataset.category === "video") {
+        return;
+      }
+
+      // Get all visible (non-hidden) portfolio items (excluding videos)
       visibleImages = Array.from(portfolioItems).filter(
-        (item) => !item.classList.contains("hidden")
+        (item) =>
+          !item.classList.contains("hidden") &&
+          item.dataset.category !== "video"
       );
       currentImageIndex = visibleImages.indexOf(item);
 
@@ -794,6 +797,102 @@ document.addEventListener("keydown", (e) => {
 });
 
 // ==========================================================================
+// VIDEO LIGHTBOX FUNCTIONALITY FOR PORTFOLIO
+// ==========================================================================
+
+const videoLightbox = document.getElementById("videoLightbox");
+const videoLightboxClose = document.getElementById("videoLightboxClose");
+const videoLightboxBackdrop = videoLightbox
+  ? videoLightbox.querySelector(".lightbox-backdrop")
+  : null;
+const portfolioVideoPlayer = document.getElementById("portfolioVideoPlayer");
+const portfolioPlayButtons = document.querySelectorAll(".portfolio-play-btn");
+
+// Portfolio video URLs
+const portfolioVideoUrls = [
+  "vid/showcase1.mp4",
+  "vid/showcase2.mp4",
+  "vid/showcase3.mp4",
+  "vid/showcase4.mp4",
+  "vid/showcase5.mp4",
+  "vid/showcase6.mp4",
+  "vid/showcase7.mp4",
+  "vid/showcase8.mp4",
+];
+
+// Open video lightbox when clicking play button
+portfolioPlayButtons.forEach((button) => {
+  button.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent triggering the portfolio item click
+    const videoId = parseInt(this.getAttribute("data-video-id"));
+    const videoUrl = portfolioVideoUrls[videoId];
+
+    if (portfolioVideoPlayer && videoUrl) {
+      portfolioVideoPlayer.src = videoUrl;
+      portfolioVideoPlayer.load();
+    }
+
+    if (videoLightbox) {
+      // Animate lightbox opening
+      gsap.set(videoLightbox, { display: "flex" });
+      gsap.to(videoLightbox, {
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+        onStart: () => {
+          videoLightbox.classList.add("active");
+          document.body.style.overflow = "hidden";
+        },
+      });
+
+      // Scale animation for content
+      gsap.fromTo(
+        ".video-lightbox-content",
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" }
+      );
+    }
+  });
+});
+
+// Close video lightbox
+function closeVideoLightbox() {
+  if (!videoLightbox) return;
+
+  gsap.to(videoLightbox, {
+    opacity: 0,
+    duration: 0.3,
+    ease: "power2.in",
+    onComplete: () => {
+      videoLightbox.classList.remove("active");
+      videoLightbox.style.display = "none";
+      document.body.style.overflow = "";
+
+      // Stop video playback
+      if (portfolioVideoPlayer) {
+        portfolioVideoPlayer.pause();
+        portfolioVideoPlayer.src = "";
+      }
+    },
+  });
+}
+
+if (videoLightboxClose) {
+  videoLightboxClose.addEventListener("click", closeVideoLightbox);
+}
+
+if (videoLightboxBackdrop) {
+  videoLightboxBackdrop.addEventListener("click", closeVideoLightbox);
+}
+
+// Keyboard navigation for video lightbox
+document.addEventListener("keydown", (e) => {
+  if (videoLightbox && videoLightbox.classList.contains("active")) {
+    if (e.key === "Escape") closeVideoLightbox();
+  }
+});
+
+// ==========================================================================
 // SHOW MORE BUTTON FUNCTIONALITY
 // ==========================================================================
 
@@ -811,12 +910,23 @@ if (showMoreBtn) {
   showMoreBtn.addEventListener("click", () => {
     window.isShowingMore = !window.isShowingMore;
 
+    // Get current active filter
+    const activeFilter = document.querySelector(".filter-btn.active");
+    const currentCategory = activeFilter
+      ? activeFilter.dataset.filter
+      : "graphics";
+
+    // Get only the "more" items for the current category
+    const currentMoreItems = Array.from(portfolioMoreItems).filter(
+      (item) => item.dataset.category === currentCategory
+    );
+
     if (window.isShowingMore) {
       // Show more items
       showMoreText.textContent = "Show Less";
       showMoreBtn.classList.add("active");
 
-      portfolioMoreItems.forEach((item, index) => {
+      currentMoreItems.forEach((item, index) => {
         item.style.display = "block";
         item.classList.remove("hidden");
         gsap.to(item, {
@@ -834,7 +944,7 @@ if (showMoreBtn) {
       showMoreBtn.classList.remove("active");
 
       // Reverse order for smooth closing
-      const itemsArray = Array.from(portfolioMoreItems).reverse();
+      const itemsArray = currentMoreItems.reverse();
 
       itemsArray.forEach((item, index) => {
         gsap.to(item, {
@@ -1421,6 +1531,87 @@ window.addEventListener("load", () => {
 });
 
 // ==========================================================================
+// PORTFOLIO VIDEO THUMBNAILS AND DURATIONS
+// ==========================================================================
+
+// Format duration from seconds to MM:SS
+function formatDuration(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
+// Load video metadata and generate thumbnails for portfolio videos
+function loadPortfolioVideoMetadata() {
+  const videoItems = document.querySelectorAll(
+    '.portfolio-item[data-category="video"]'
+  );
+
+  videoItems.forEach((item, index) => {
+    const imgElement = item.querySelector("img");
+    const durationBadge = item.querySelector(".portfolio-duration");
+    const videoUrl = portfolioVideoUrls[index];
+
+    if (!imgElement || !durationBadge || !videoUrl) return;
+
+    // Create hidden video element to extract metadata
+    const videoElement = document.createElement("video");
+    videoElement.preload = "metadata";
+    videoElement.muted = true;
+    videoElement.style.display = "none";
+    document.body.appendChild(videoElement);
+
+    // Extract duration
+    videoElement.addEventListener("loadedmetadata", function () {
+      durationBadge.textContent = formatDuration(this.duration);
+
+      // Seek to 0.5 seconds to capture thumbnail
+      this.currentTime = 0.5;
+    });
+
+    // Capture thumbnail frame
+    videoElement.addEventListener("seeked", function () {
+      const canvas = document.createElement("canvas");
+      canvas.width = this.videoWidth;
+      canvas.height = this.videoHeight;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+
+      // Convert canvas to blob and set as image source
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const thumbnailUrl = URL.createObjectURL(blob);
+            imgElement.src = thumbnailUrl;
+
+            // Clean up
+            document.body.removeChild(videoElement);
+          }
+        },
+        "image/jpeg",
+        0.85
+      );
+    });
+
+    // Handle errors
+    videoElement.addEventListener("error", function () {
+      console.warn(`Failed to load video metadata for: ${videoUrl}`);
+      document.body.removeChild(videoElement);
+    });
+
+    // Start loading
+    videoElement.src = videoUrl;
+  });
+}
+
+// Load portfolio video metadata after page load
+window.addEventListener("load", () => {
+  // Small delay to ensure all other resources are loaded first
+  setTimeout(loadPortfolioVideoMetadata, 300);
+});
+
+// ==========================================================================
 // CONSOLE EASTER EGG
 // ==========================================================================
 
@@ -1433,7 +1624,7 @@ console.log(
   "font-size: 14px; color: #C8C6C6;"
 );
 console.log(
-  "%cInterested in how we built this? Let's talk: hello@playmakergroup.com",
+  "%cInterested in how we built this? Let's talk: jevta.site@gmail.com",
   "font-size: 12px; color: #F4D03F;"
 );
 

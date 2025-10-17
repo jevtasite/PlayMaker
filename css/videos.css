@@ -539,55 +539,52 @@
   margin-bottom: 0;
 }
 
-/* Philosophy Stats */
-.philosophy-stats {
+/* Philosophy YouTube Videos Grid */
+.philosophy-videos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
   margin-top: var(--space-3xl);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.philosophy-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
-  padding: var(--space-xl);
+.philosophy-video-card {
   background: rgba(26, 29, 41, 0.6);
   border: 1px solid rgba(244, 208, 63, 0.2);
   border-radius: 16px;
+  padding: 16px;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.philosophy-stat:hover {
+.philosophy-video-card:hover {
   background: rgba(26, 29, 41, 0.8);
   border-color: rgba(244, 208, 63, 0.4);
   transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(244, 208, 63, 0.2);
 }
 
-.stat-icon {
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--money-gradient);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(244, 208, 63, 0.3);
+.video-embed-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 70%; /* Taller for bigger video display */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.stat-icon i {
-  font-size: 28px;
-  color: var(--pregame-darkness);
+.video-embed-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
-.stat-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
+/* Legacy stat styles */
 .stat-number {
   font-family: var(--font-headline);
   font-size: 36px;
@@ -1218,38 +1215,17 @@
     font-size: 14px;
   }
 
-  /* Philosophy Stats - 2 columns with 3rd centered */
-  .philosophy-stats {
+  /* Philosophy Videos - 2 columns with 3rd centered on tablet */
+  .philosophy-videos-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
     max-width: 100%;
   }
 
-  .philosophy-stat {
-    padding: var(--space-lg);
-    gap: var(--space-md);
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .philosophy-stat:nth-child(3) {
+  .philosophy-video-card:nth-child(3) {
     grid-column: 1 / -1;
     width: calc(50% - var(--space-lg) / 2);
     margin: 0 auto;
-  }
-
-  .stat-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .stat-icon i {
-    font-size: 24px;
-  }
-
-  .stat-number {
-    font-size: 32px;
   }
 
   /* Video Gallery - 3 columns on tablet for vertical videos */
@@ -1381,55 +1357,19 @@
     margin-bottom: var(--space-md);
   }
 
-  .philosophy-stats {
+  .philosophy-videos-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
     margin-top: var(--space-xl);
   }
 
-  .philosophy-stat {
-    padding: var(--space-lg);
-    gap: var(--space-lg);
-    flex-direction: row;
-    align-items: center;
-    border-radius: 12px;
+  .philosophy-video-card {
+    padding: 10px;
   }
 
-  .philosophy-stat:hover {
-    transform: translateY(-3px);
-  }
-
-  .philosophy-stat:nth-child(3) {
+  .philosophy-video-card:nth-child(3) {
     grid-column: auto;
     width: 100%;
-  }
-
-  .stat-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 12px;
-    flex-shrink: 0;
-  }
-
-  .stat-icon i {
-    font-size: 24px;
-  }
-
-  .stat-content {
-    flex: 1;
-    text-align: left;
-  }
-
-  .stat-content .stat-number {
-    font-size: 28px;
-    margin-bottom: 4px;
-    line-height: 1;
-  }
-
-  .stat-content .stat-label {
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
   }
 
   /* Video Gallery Section */
