@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Play the video
-      video.play().catch(err => console.log("Video play error:", err));
+      video.play().catch((err) => console.log("Video play error:", err));
 
       // Hide thumbnail and show video player
       thumbnail.style.display = "none";
@@ -333,22 +333,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
   faqItems.forEach((item) => {
     const question = item.querySelector(".faq-question");
+    const answer = item.querySelector(".faq-answer");
 
-    question.addEventListener("click", function () {
+    question.addEventListener("click", () => {
       const isActive = item.classList.contains("active");
 
-      // Close all items
-      faqItems.forEach((faqItem) => {
-        faqItem.classList.remove("active");
-        const answer = faqItem.querySelector(".faq-answer");
-        answer.style.maxHeight = null;
+      // Close all other FAQ items
+      faqItems.forEach((otherItem) => {
+        if (otherItem !== item && otherItem.classList.contains("active")) {
+          otherItem.classList.remove("active");
+          const otherAnswer = otherItem.querySelector(".faq-answer");
+
+          gsap.to(otherAnswer, {
+            maxHeight: 0,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+          });
+        }
       });
 
-      // Open clicked item if it wasn't active
-      if (!isActive) {
+      // Toggle current item
+      if (isActive) {
+        // Close current item
+        item.classList.remove("active");
+
+        gsap.to(answer, {
+          maxHeight: 0,
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.in",
+        });
+      } else {
+        // Open current item
         item.classList.add("active");
-        const answer = item.querySelector(".faq-answer");
-        answer.style.maxHeight = answer.scrollHeight + "px";
+
+        gsap.to(answer, {
+          maxHeight: 800,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        });
       }
     });
   });
@@ -691,7 +716,9 @@ document.addEventListener("DOMContentLoaded", function () {
     galleryItems.forEach((item, index) => {
       const imgElement = item.querySelector("img");
       const durationBadge = item.querySelector(".video-duration-badge");
-      const videoId = item.querySelector(".video-play-btn")?.getAttribute("data-video-id");
+      const videoId = item
+        .querySelector(".video-play-btn")
+        ?.getAttribute("data-video-id");
 
       if (!videoId || !videoUrls[videoId]) return;
 
@@ -725,16 +752,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
 
         // Convert canvas to blob and create object URL
-        canvas.toBlob((blob) => {
-          if (blob && imgElement) {
-            const thumbnailUrl = URL.createObjectURL(blob);
-            imgElement.src = thumbnailUrl;
-            // CSS transition will handle the fade-in automatically
-          }
+        canvas.toBlob(
+          (blob) => {
+            if (blob && imgElement) {
+              const thumbnailUrl = URL.createObjectURL(blob);
+              imgElement.src = thumbnailUrl;
+              // CSS transition will handle the fade-in automatically
+            }
 
-          // Clean up video element
-          this.remove();
-        }, "image/jpeg", 0.85);
+            // Clean up video element
+            this.remove();
+          },
+          "image/jpeg",
+          0.85
+        );
       });
 
       // Handle errors gracefully
@@ -828,16 +859,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
 
         // Convert canvas to blob and create object URL
-        canvas.toBlob((blob) => {
-          if (blob && imgElement) {
-            const thumbnailUrl = URL.createObjectURL(blob);
-            imgElement.src = thumbnailUrl;
-            // CSS transition will handle the fade-in automatically
-          }
+        canvas.toBlob(
+          (blob) => {
+            if (blob && imgElement) {
+              const thumbnailUrl = URL.createObjectURL(blob);
+              imgElement.src = thumbnailUrl;
+              // CSS transition will handle the fade-in automatically
+            }
 
-          // Clean up video element
-          this.remove();
-        }, "image/jpeg", 0.85);
+            // Clean up video element
+            this.remove();
+          },
+          "image/jpeg",
+          0.85
+        );
       });
 
       // Handle errors gracefully

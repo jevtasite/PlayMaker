@@ -746,7 +746,7 @@ console.log("Graphics 3-card carousel initialized successfully");
 console.log("Press Conference FAQ initialized successfully");
 
 // ==========================================================================
-// CONTACT SECTION TOGGLE
+// SMOOTH SCROLL TO CONTACT SECTION
 // ==========================================================================
 
 const getStartedBtn = document.querySelector(".cta-buttons .btn-hero-primary");
@@ -756,35 +756,15 @@ if (getStartedBtn && contactSection) {
   getStartedBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    // Toggle contact section visibility
-    const isVisible = contactSection.classList.contains("visible");
-
-    if (!isVisible) {
-      // Show contact section
-      contactSection.classList.add("visible");
-
-      // Smooth scroll to contact section after a short delay
-      setTimeout(() => {
-        const offset = 80;
-        const elementPosition =
-          contactSection.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: "smooth",
-        });
-      }, 300);
-    } else {
-      // Hide contact section and scroll to CTA
-      window.scrollTo({
-        top: document.querySelector(".cta-section").offsetTop - 80,
-        behavior: "smooth",
-      });
-
-      setTimeout(() => {
-        contactSection.classList.remove("visible");
-      }, 500);
-    }
+    // Smooth scroll to contact section
+    const offset = 80;
+    const elementPosition =
+      contactSection.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({
+      top: elementPosition - offset,
+      behavior: "smooth",
+    });
   });
 }
 
-console.log("Contact section toggle initialized successfully");
+console.log("Contact section scroll initialized successfully");
