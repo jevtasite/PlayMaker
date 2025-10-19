@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const videoLightbox = document.getElementById("videoLightbox");
   const lightboxPlayer = document.getElementById("lightboxVideoPlayer");
   const lightboxClose = document.getElementById("videoLightboxClose");
-  const videoPlayButtons = document.querySelectorAll(".video-play-btn");
 
   // Video URLs - Local MP4 files from vid/ folder
   const videoUrls = [
@@ -263,11 +262,13 @@ document.addEventListener("DOMContentLoaded", function () {
     "../vid/showcase9.mp4",
   ];
 
-  // Open lightbox with HTML5 video
-  videoPlayButtons.forEach((button) => {
-    button.addEventListener("click", function (e) {
+  // Use event delegation to handle both visible and hidden video buttons
+  document.addEventListener("click", function (e) {
+    // Check if clicked element is or contains a video play button
+    const button = e.target.closest(".video-play-btn");
+    if (button) {
       e.preventDefault();
-      const videoId = this.getAttribute("data-video-id");
+      const videoId = button.getAttribute("data-video-id");
       const videoUrl = videoUrls[videoId] || videoUrls[0];
 
       // Get the video element and set source
@@ -275,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (videoElement) {
         videoElement.src = videoUrl;
         videoElement.load(); // Force reload of the video
+        videoElement.style.display = "block"; // Ensure video is visible
       }
 
       videoLightbox.classList.add("active");
@@ -282,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Fade in animation
       gsap.fromTo(videoLightbox, { opacity: 0 }, { opacity: 1, duration: 0.3 });
-    });
+    }
   });
 
   // Close lightbox
