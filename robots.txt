@@ -7,6 +7,9 @@ Allow: /
 # Sitemaps
 Sitemap: https://playmakergroup.com/sitemap.xml
 
+# LLM/AI Information (for ChatGPT, Claude, Perplexity, etc.)
+# See: https://playmakergroup.com/llms.txt
+
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
 
