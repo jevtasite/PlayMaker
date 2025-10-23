@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==========================================================================
 
   const videosSwiper = new Swiper(".videosSwiper", {
-    // Effect and centering - EXACTLY like graphics page
+    // Effect and centering
     effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // No looping
     loop: false,
 
-    // Smooth transitions
-    speed: 800,
+    // Smooth transitions - reduced for better performance
+    speed: 600,
 
     // Navigation
     navigation: {
@@ -54,36 +54,50 @@ document.addEventListener("DOMContentLoaded", function () {
     // Pagination (optional)
     autoplay: false,
 
-    // Breakpoints - match graphics page exactly
+    // Performance optimizations
+    watchSlidesProgress: true,
+    watchSlidesVisibility: true,
+    preventInteractionOnTransition: true,
+
+    // Lazy loading for images (not videos - those load on click)
+    preloadImages: false,
+    lazy: {
+      loadPrevNext: true,
+      loadPrevNextAmount: 1,
+    },
+
+    // Breakpoints - Optimized for performance
     breakpoints: {
       // Mobile - Maximum Performance
       320: {
         effect: "slide",
         slidesPerView: "auto",
         loop: false,
-        speed: 400,
+        speed: 300,
         grabCursor: false,
+        watchSlidesProgress: true,
       },
       // Tablet - Balanced Performance
       768: {
         effect: "coverflow",
         slidesPerView: "auto",
         loop: false,
-        speed: 600,
+        speed: 400,
         coverflowEffect: {
           rotate: 0,
           stretch: 0,
-          depth: 80,
-          modifier: 1,
+          depth: 60,
+          modifier: 1.2,
           slideShadows: false,
         },
+        watchSlidesProgress: true,
       },
       // Desktop - Full Effects
       1025: {
         effect: "coverflow",
         slidesPerView: "auto",
         loop: false,
-        speed: 800,
+        speed: 600,
         grabCursor: true,
         coverflowEffect: {
           rotate: 0,
@@ -92,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           modifier: 2,
           slideShadows: false,
         },
+        watchSlidesProgress: true,
       },
     },
   });
@@ -612,63 +627,62 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ==========================================================================
-  // HERO SECTION INTRO ANIMATIONS
+  // HERO SECTION INTRO ANIMATIONS - PERFORMANCE OPTIMIZED
   // ==========================================================================
 
   // Initialize hero animations - Run immediately after DOM ready
+  // Optimized: Removed blur effects, reduced durations, simpler easing
   setTimeout(() => {
     // Animate page badge
     gsap.to(".page-badge", {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      delay: 0.2,
-      ease: "power3.out",
+      duration: 0.6,
+      delay: 0.1,
+      ease: "power2.out",
     });
 
     // Animate main title
     gsap.fromTo(
       ".hero-main-title",
-      { y: 40, scale: 0.95 },
+      { y: 30, scale: 0.97 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1,
-        delay: 0.4,
-        ease: "power3.out",
+        duration: 0.7,
+        delay: 0.2,
+        ease: "power2.out",
       }
     );
 
     // Animate subtitle
     gsap.fromTo(
       ".hero-subtitle",
-      { y: 30 },
+      { y: 20 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        delay: 0.6,
-        ease: "power3.out",
+        duration: 0.6,
+        delay: 0.3,
+        ease: "power2.out",
       }
     );
 
-    // Animate swiper with blur reveal effect
+    // Animate swiper - REMOVED BLUR for better performance
     gsap.fromTo(
       ".hero-swiper",
       {
-        y: 60,
-        filter: "blur(20px)",
-        scale: 0.9,
+        y: 40,
+        scale: 0.95,
       },
       {
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
         scale: 1,
-        duration: 1.2,
-        delay: 0.8,
-        ease: "power3.out",
+        duration: 0.8,
+        delay: 0.4,
+        ease: "power2.out",
       }
     );
 
@@ -678,27 +692,27 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         opacity: 1,
         scale: 1,
-        duration: 0.6,
-        delay: 1.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
+        duration: 0.5,
+        delay: 0.8,
+        stagger: 0.08,
+        ease: "back.out(1.5)",
       }
     );
 
     // Animate explore button
     gsap.fromTo(
       ".btn-explore-work",
-      { y: 30, scale: 0.9 },
+      { y: 20, scale: 0.95 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
-        delay: 1.4,
-        ease: "back.out(1.7)",
+        duration: 0.6,
+        delay: 0.7,
+        ease: "back.out(1.5)",
       }
     );
-  }, 100);
+  }, 50); // Reduced timeout for faster start
 
   // ==========================================================================
   // DYNAMIC VIDEO THUMBNAILS & DURATION EXTRACTION

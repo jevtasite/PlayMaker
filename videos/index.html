@@ -164,7 +164,9 @@
                   <img
                     src="../images/gallery/gallery1.webp"
                     alt="Highlight Reel"
+                    loading="eager"
                     fetchpriority="high"
+                    decoding="async"
                   />
                   <div class="play-overlay">
                     <button class="play-button" aria-label="Play video">
@@ -179,6 +181,7 @@
                     title="Highlight Reel"
                     controls
                     playsinline
+                    preload="none"
                   >
                     <source type="video/mp4" />
                     Your browser does not support the video tag.
@@ -192,10 +195,13 @@
               <div class="video-container">
                 <div class="video-thumbnail">
                   <img
-                    src="../images/gallery/gallery2.webp"
+                    data-src="../images/gallery/gallery2.webp"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 16'%3E%3C/svg%3E"
                     alt="Player Feature"
-                    loading="lazy"
+                    class="swiper-lazy"
+                    decoding="async"
                   />
+                  <div class="swiper-lazy-preloader"></div>
                   <div class="play-overlay">
                     <button class="play-button" aria-label="Play video">
                       <i class="fas fa-play"></i>
@@ -209,6 +215,7 @@
                     title="Player Feature"
                     controls
                     playsinline
+                    preload="none"
                   >
                     <source type="video/mp4" />
                     Your browser does not support the video tag.
@@ -222,10 +229,13 @@
               <div class="video-container">
                 <div class="video-thumbnail">
                   <img
-                    src="../images/gallery/gallery3.webp"
+                    data-src="../images/gallery/gallery3.webp"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 16'%3E%3C/svg%3E"
                     alt="Game Day Promo"
-                    loading="lazy"
+                    class="swiper-lazy"
+                    decoding="async"
                   />
+                  <div class="swiper-lazy-preloader"></div>
                   <div class="play-overlay">
                     <button class="play-button" aria-label="Play video">
                       <i class="fas fa-play"></i>
@@ -239,6 +249,7 @@
                     title="Game Day Promo"
                     controls
                     playsinline
+                    preload="none"
                   >
                     <source type="video/mp4" />
                     Your browser does not support the video tag.
@@ -252,10 +263,13 @@
               <div class="video-container">
                 <div class="video-thumbnail">
                   <img
-                    src="../images/gallery/gallery5.webp"
+                    data-src="../images/gallery/gallery5.webp"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 16'%3E%3C/svg%3E"
                     alt="Behind the Scenes"
-                    loading="lazy"
+                    class="swiper-lazy"
+                    decoding="async"
                   />
+                  <div class="swiper-lazy-preloader"></div>
                   <div class="play-overlay">
                     <button class="play-button" aria-label="Play video">
                       <i class="fas fa-play"></i>
@@ -269,6 +283,7 @@
                     title="Behind the Scenes"
                     controls
                     playsinline
+                    preload="none"
                   >
                     <source type="video/mp4" />
                     Your browser does not support the video tag.
@@ -282,10 +297,13 @@
               <div class="video-container">
                 <div class="video-thumbnail">
                   <img
-                    src="../images/gallery/gallery7.webp"
+                    data-src="../images/gallery/gallery7.webp"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 16'%3E%3C/svg%3E"
                     alt="Championship Recap"
-                    loading="lazy"
+                    class="swiper-lazy"
+                    decoding="async"
                   />
+                  <div class="swiper-lazy-preloader"></div>
                   <div class="play-overlay">
                     <button class="play-button" aria-label="Play video">
                       <i class="fas fa-play"></i>
@@ -299,6 +317,7 @@
                     title="Championship Recap"
                     controls
                     playsinline
+                    preload="none"
                   >
                     <source type="video/mp4" />
                     Your browser does not support the video tag.

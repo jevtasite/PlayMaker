@@ -48,7 +48,7 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
   loop: false,
 
   // Smooth transitions
-  speed: 800,
+  speed: 600, // Reduced from 800 for better performance
 
   // Navigation
   navigation: {
@@ -65,6 +65,18 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
   // Pagination (optional)
   autoplay: false,
 
+  // Performance optimizations
+  watchSlidesProgress: true,
+  watchSlidesVisibility: true,
+  preventInteractionOnTransition: true,
+
+  // Lazy loading for better performance
+  preloadImages: false,
+  lazy: {
+    loadPrevNext: true,
+    loadPrevNextAmount: 1,
+  },
+
   // Breakpoints for responsive design - Optimized for mobile/tablet performance
   breakpoints: {
     // Mobile - Maximum Performance
@@ -72,29 +84,31 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
       effect: "slide", // Switch to slide effect for better performance
       slidesPerView: "auto",
       loop: false, // Disable loop to reduce DOM nodes
-      speed: 400, // Faster transitions
+      speed: 300, // Faster transitions for mobile
       grabCursor: false, // Disable on mobile
+      watchSlidesProgress: true,
     },
     // Tablet - Balanced Performance
     768: {
       effect: "coverflow",
       slidesPerView: "auto",
       loop: false, // Disable loop
-      speed: 600,
+      speed: 400, // Faster than desktop
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
-        depth: 80, // Reduced depth
-        modifier: 1, // Lighter effect
+        depth: 60, // Further reduced for tablet
+        modifier: 1.2, // Lighter effect
         slideShadows: false,
       },
+      watchSlidesProgress: true,
     },
     // Desktop - Full Effects (>1024px)
     1025: {
       effect: "coverflow",
       slidesPerView: "auto",
-      loop: false, // Enable loop on desktop
-      speed: 800,
+      loop: false,
+      speed: 600, // Reduced from 800
       grabCursor: true,
       coverflowEffect: {
         rotate: 0,
@@ -103,6 +117,7 @@ const graphicsSwiper = new Swiper(".graphicsSwiper", {
         modifier: 2,
         slideShadows: false,
       },
+      watchSlidesProgress: true,
     },
   },
 });
@@ -654,63 +669,62 @@ gsap.utils.toArray(".faq-item").forEach((item, index) => {
 });
 
 // ==========================================================================
-// HERO SECTION INTRO ANIMATIONS
+// HERO SECTION INTRO ANIMATIONS - PERFORMANCE OPTIMIZED
 // ==========================================================================
 
 // Initialize hero animations - Run immediately after DOM ready
+// Optimized: Removed blur effects, reduced durations, simpler easing
 setTimeout(() => {
   // Animate page badge
   gsap.to(".page-badge", {
     opacity: 1,
     y: 0,
-    duration: 0.8,
-    delay: 0.2,
-    ease: "power3.out",
+    duration: 0.6,
+    delay: 0.1,
+    ease: "power2.out",
   });
 
   // Animate main title
   gsap.fromTo(
     ".hero-main-title",
-    { y: 40, scale: 0.95 },
+    { y: 30, scale: 0.97 },
     {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1,
-      delay: 0.4,
-      ease: "power3.out",
+      duration: 0.7,
+      delay: 0.2,
+      ease: "power2.out",
     }
   );
 
   // Animate subtitle
   gsap.fromTo(
     ".hero-subtitle",
-    { y: 30 },
+    { y: 20 },
     {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      delay: 0.6,
-      ease: "power3.out",
+      duration: 0.6,
+      delay: 0.3,
+      ease: "power2.out",
     }
   );
 
-  // Animate swiper with blur reveal effect
+  // Animate swiper - REMOVED BLUR for better performance
   gsap.fromTo(
     ".hero-swiper",
     {
-      y: 60,
-      filter: "blur(20px)",
-      scale: 0.9,
+      y: 40,
+      scale: 0.95,
     },
     {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       scale: 1,
-      duration: 1.2,
-      delay: 0.8,
-      ease: "power3.out",
+      duration: 0.8,
+      delay: 0.4,
+      ease: "power2.out",
     }
   );
 
@@ -720,27 +734,27 @@ setTimeout(() => {
     {
       opacity: 1,
       scale: 1,
-      duration: 0.6,
-      delay: 1.6,
-      stagger: 0.1,
-      ease: "back.out(1.7)",
+      duration: 0.5,
+      delay: 0.8,
+      stagger: 0.08,
+      ease: "back.out(1.5)",
     }
   );
 
   // Animate explore button
   gsap.fromTo(
     ".btn-explore-work",
-    { y: 30, scale: 0.9 },
+    { y: 20, scale: 0.95 },
     {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 0.8,
-      delay: 1.4,
-      ease: "back.out(1.7)",
+      duration: 0.6,
+      delay: 0.7,
+      ease: "back.out(1.5)",
     }
   );
-}, 100);
+}, 50); // Reduced timeout for faster start
 
 console.log("Graphics 3-card carousel initialized successfully");
 console.log("Press Conference FAQ initialized successfully");

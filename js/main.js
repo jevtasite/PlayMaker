@@ -378,7 +378,7 @@ function animateHeroContent() {
 window.addEventListener("load", animateHeroContent);
 
 // ==========================================================================
-// 3D PHONE STACK SHOWCASE
+// 3D PHONE STACK SHOWCASE - PERFORMANCE OPTIMIZED
 // ==========================================================================
 
 const phoneStack = document.getElementById("phoneStack");
@@ -393,19 +393,27 @@ const totalPhones = phoneCards.length;
 let isDragging = false;
 let startX = 0;
 let rotationY = 0;
+let animationFrameId = null;
 
 // Set total number
 if (totalNumber) totalNumber.textContent = totalPhones;
 
-// Update phone positions based on current index
+// Update phone positions based on current index - optimized with requestAnimationFrame
 function updatePhoneStack() {
-  phoneCards.forEach((card, index) => {
-    const relativeIndex = (index - currentPhone + totalPhones) % totalPhones;
-    card.setAttribute("data-index", relativeIndex);
-  });
+  // Cancel any pending animation frame
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
 
-  // Update counter
-  if (currentNumber) currentNumber.textContent = currentPhone + 1;
+  animationFrameId = requestAnimationFrame(() => {
+    phoneCards.forEach((card, index) => {
+      const relativeIndex = (index - currentPhone + totalPhones) % totalPhones;
+      card.setAttribute("data-index", relativeIndex);
+    });
+
+    // Update counter
+    if (currentNumber) currentNumber.textContent = currentPhone + 1;
+  });
 }
 
 // Next phone
@@ -432,12 +440,12 @@ if (prevBtn)
     prevPhone();
   });
 
-// Mouse/Touch drag interaction
+// Mouse/Touch drag interaction - optimized with passive listeners and RAF
 if (phoneStack) {
   phoneStack.addEventListener("mousedown", startDrag);
-  phoneStack.addEventListener("touchstart", startDrag);
-  document.addEventListener("mousemove", onDrag);
-  document.addEventListener("touchmove", onDrag);
+  phoneStack.addEventListener("touchstart", startDrag, { passive: true });
+  document.addEventListener("mousemove", onDrag, { passive: true });
+  document.addEventListener("touchmove", onDrag, { passive: true });
   document.addEventListener("mouseup", endDrag);
   document.addEventListener("touchend", endDrag);
 }
@@ -448,21 +456,38 @@ function startDrag(e) {
   if (phoneStack) phoneStack.style.cursor = "grabbing";
 }
 
+// Throttle drag updates using requestAnimationFrame
+let dragFrameId = null;
 function onDrag(e) {
   if (!isDragging) return;
 
   const currentX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
   const deltaX = currentX - startX;
 
-  // Update rotation
-  rotationY = deltaX * 0.3;
-  if (phoneStack) phoneStack.style.transform = `rotateY(${rotationY}deg)`;
+  // Cancel previous frame if still pending
+  if (dragFrameId) {
+    cancelAnimationFrame(dragFrameId);
+  }
+
+  // Update rotation using RAF for smooth 60fps
+  dragFrameId = requestAnimationFrame(() => {
+    rotationY = deltaX * 0.3;
+    if (phoneStack) {
+      phoneStack.style.transform = `rotateY(${rotationY}deg)`;
+    }
+  });
 }
 
 function endDrag() {
   if (!isDragging) return;
   isDragging = false;
   if (phoneStack) phoneStack.style.cursor = "grab";
+
+  // Cancel any pending drag frame
+  if (dragFrameId) {
+    cancelAnimationFrame(dragFrameId);
+    dragFrameId = null;
+  }
 
   // Determine if we should advance to next/prev
   if (Math.abs(rotationY) > 30) {
