@@ -6,24 +6,24 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://playmakergroup.com/</loc>
-    <lastmod>2025-01-23</lastmod>
+    <loc>https://playmakergroup.net/</loc>
+    <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Graphics Portfolio Page -->
   <url>
-    <loc>https://playmakergroup.com/graphics/</loc>
-    <lastmod>2025-01-23</lastmod>
+    <loc>https://playmakergroup.net/graphics/</loc>
+    <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Videos Portfolio Page -->
   <url>
-    <loc>https://playmakergroup.com/videos/</loc>
-    <lastmod>2025-01-23</lastmod>
+    <loc>https://playmakergroup.net/videos/</loc>
+    <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

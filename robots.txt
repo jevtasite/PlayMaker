@@ -1,14 +1,14 @@
 # Robots.txt for Playmaker Group
-# https://playmakergroup.com/robots.txt
+# https://playmakergroup.net/robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://playmakergroup.com/sitemap.xml
+Sitemap: https://playmakergroup.net/sitemap.xml
 
 # LLM/AI Information (for ChatGPT, Claude, Perplexity, etc.)
-# See: https://playmakergroup.com/llms.txt
+# See: https://playmakergroup.net/llms.txt
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
