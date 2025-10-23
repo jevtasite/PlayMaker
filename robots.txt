@@ -1,0 +1,16 @@
+# Robots.txt for Playmaker Group
+# https://playmakergroup.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://playmakergroup.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
+
+# Block access to sensitive directories (if any)
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /temp/
