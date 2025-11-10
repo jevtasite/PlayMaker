@@ -2478,31 +2478,31 @@ textarea.form-input {
   margin: 0;
 }
 
-.jevta-link {
+.devlook-link {
   text-decoration: none;
   color: inherit;
 }
 
-.jevta-shine {
+.devlook-shine {
   position: relative;
   display: inline;
   background: linear-gradient(
     90deg,
-    #f4d03f 0%,
-    #ffd700 25%,
+    #5fcfb8 0%,
+    #7FFFD4 25%,
     #fff 50%,
-    #ffd700 75%,
-    #f4d03f 100%
+    #7FFFD4 75%,
+    #5fcfb8 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 600;
-  animation: jevta-shine 1.5s linear infinite;
+  animation: devlook-shine 1.5s linear infinite;
 }
 
-@keyframes jevta-shine {
+@keyframes devlook-shine {
   0% {
     background-position: 0% 50%;
   }
